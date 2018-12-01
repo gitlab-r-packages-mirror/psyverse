@@ -1,3 +1,27 @@
+#' Parse DCT specifications
+#'
+#' This function parses DCT specifications into a visual
+#' representation as a [DiagrammeR::DiagrammeR] graph and
+#' Markdown documents with the instructions for creating
+#' measurement instruments or manipulations, and for coding
+#' measurement instruments, manipulations, or aspects of
+#' a construct.
+#'
+#' This function is called by [process_dir()]; it is normally not
+#' necessary to call this function directly.
+#'
+#' @param dctSpecs A list of lists of DCT specifications (class
+#' `dctRawSpecListSet`), a list of DCT specifications (class
+#' `dtcRawSpecList`) or a DCT specification (class `dtcRawSpec`).
+#' @param x The parsed `parsed_dct` object.
+#' @param ... Any other arguments are passed to the print command.
+#'
+#' @return An object with the [DiagrammeR::DiagrammeR] graph stored
+#' in `output$graph` and the instructions in `output$instr`.
+#' @rdname parse_dct_specs
+#' @examples extractedSpecs <- extract_dct_specs(text=unlist(strsplit(dct::example_dct_spec, '\n')));
+#' parse_dct_specs(extractedSpecs);
+#' @export
 parse_dct_specs <- function(dctSpecs) {
 
   res <- list(input = as.list(environment()));
@@ -8,15 +32,18 @@ parse_dct_specs <- function(dctSpecs) {
 
   ### If we have specification lists from multiple files,
   ### flatten them by removing the file level
-  if (class(dctSpecs) == "dctRawSpecListSet") {
+  if ("dctRawSpecListSet" %in% class(dctSpecs)) {
     dctSpecs <-
       structure(unlist(dctSpecs,
                        recursive=FALSE),
                 class="dtcRawSpecList");
-  } else if (class(dctSpecs) == "dtcRawSpec") {
+  } else if ("dtcRawSpec" %in% class(dctSpecs)) {
     dctSpecs <-
       structure(list(dctSpecs),
                 class="dtcRawSpecList");
+  } else if (!("dtcRawSpecList" %in% class(dctSpecs))) {
+    stop("Only provide an object of class `dtcRawSpec`,
+         `dtcRawSpecList`, or `dctRawSpecListSet`!.");
   }
 
   ### Extract 'special' variables: identifier and parents
@@ -106,7 +133,7 @@ parse_dct_specs <- function(dctSpecs) {
                                to = id2row[unname(unlist(dctSpecParents))],
                                rel = "changes");
 
-  edge_df <- edge_df[complete.cases(edge_df), ];
+  edge_df <- edge_df[stats::complete.cases(edge_df), ];
 
   ### Combine node and edge dataframes into a graph
   dctTree <- DiagrammeR::create_graph(nodes_df = node_df,
@@ -182,6 +209,8 @@ parse_dct_specs <- function(dctSpecs) {
 
 }
 
+#' @rdname parse_dct_specs
+#' @method print parsed_dct
 print.parsed_dct <- function(x, ...) {
   cat("Processed", length(x$intermediate$dctSpecs),
       "specifications, containing", nrow(x$intermediate$nodes),

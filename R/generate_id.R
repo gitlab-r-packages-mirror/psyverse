@@ -1,3 +1,23 @@
+#' Generate unique identifier(s)
+#'
+#' To allow unique reference to constructs, they require unique identifiers.
+#' These functions generate such identifiers by combining one or more identifier
+#' prefixes (usually a human-readable construct name such as 'attitude') with
+#' a unique identifier based on the second the identifier was generated. The
+#' identifier prefix may only contain lowercase and uppercase letters and
+#' underscores.
+#'
+#' @param prefix An identifier prefix.
+#' @param x A vector of identifier prefixes.
+#' @param stopOnIllegalChars Whether to [base::stop()] or produce a [base::warning()]
+#'        when encountering illegal characters (i.e. anything other than a letter or
+#'        underscore).
+#'
+#' @return a character vector containing the identifier(s).
+#' @examples generate_id('attitude');
+#' @name generate_id
+#' @rdname generate_id
+#' @export
 generate_id <- function(prefix = paste(sample(letters, 4), collapse=""),
                         stopOnIllegalChars = FALSE) {
 

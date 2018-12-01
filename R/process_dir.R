@@ -15,10 +15,12 @@
 #'   encountered.
 #' @param silent Whether to provide information on progress.
 #'
-#' @return The result of a call to `parse_dct_specs` on all matching files.
+#' @return An object with the [DiagrammeR::DiagrammeR] graph stored
+#' in `output$graph` and the instructions in `output$instr` (the result of
+#' a call to [parse_dct_specs()] on all matching files).
+#' @examples \dontrun{process_dir("A:/path/to/some/directory");
+#' }
 #' @export
-#'
-#' @examples
 process_dir <- function(path,
                         extension = "dct",
                         regex,

@@ -1,3 +1,5 @@
+#' @rdname generate_id
+#' @export
 generate_ids <- function(x,
                          stopOnIllegalChars = FALSE) {
   if (is.numeric(x)) {
