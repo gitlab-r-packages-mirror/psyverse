@@ -5,7 +5,7 @@
 \alias{print.parsed_dct}
 \title{Parse DCT specifications}
 \usage{
-parse_dct_specs(dctSpecs)
+parse_dct_specs(dctSpecs, arrowDirection = "forward")
 
 \method{print}{parsed_dct}(x, ...)
 }
@@ -13,6 +13,9 @@ parse_dct_specs(dctSpecs)
 \item{dctSpecs}{A list of lists of DCT specifications (class
 \code{dctRawSpecListSet}), a list of DCT specifications (class
 \code{dtcRawSpecList}) or a DCT specification (class \code{dtcRawSpec}).}
+
+\item{arrowDirection}{The direction of the arrows; either \code{forward},
+\code{back}, \code{both}, or \code{none}.}
 
 \item{x}{The parsed \code{parsed_dct} object.}
 

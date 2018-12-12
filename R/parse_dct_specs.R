@@ -13,6 +13,8 @@
 #' @param dctSpecs A list of lists of DCT specifications (class
 #' `dctRawSpecListSet`), a list of DCT specifications (class
 #' `dtcRawSpecList`) or a DCT specification (class `dtcRawSpec`).
+#' @param arrowDirection The direction of the arrows in the visual representation
+#' of the distributed construct taxonomy; either `forward`, `back`, `both`, or `none`.
 #' @param x The parsed `parsed_dct` object.
 #' @param ... Any other arguments are passed to the print command.
 #'
@@ -22,7 +24,8 @@
 #' @examples extractedSpecs <- extract_dct_specs(text=unlist(strsplit(dct::example_dct_spec, '\n')));
 #' parse_dct_specs(extractedSpecs);
 #' @export
-parse_dct_specs <- function(dctSpecs) {
+parse_dct_specs <- function(dctSpecs,
+                            arrowDirection = "forward") {
 
   res <- list(input = as.list(environment()));
 
@@ -136,26 +139,22 @@ parse_dct_specs <- function(dctSpecs) {
   edge_df <- edge_df[stats::complete.cases(edge_df), ];
 
   ### Combine node and edge dataframes into a graph
-  dctTree <- DiagrammeR::create_graph(nodes_df = node_df,
-                                      edges_df = edge_df);
+  dctGraph <- DiagrammeR::create_graph(nodes_df = node_df,
+                                       edges_df = edge_df);
 
   ### Set attributes for rendering
-  dctTree <-
-    DiagrammeR::add_global_graph_attrs(dctTree, "layout", "dot", "graph");
-  dctTree <-
-    DiagrammeR::add_global_graph_attrs(dctTree, "rankdir", "LR", "graph");
-  dctTree <-
-    DiagrammeR::add_global_graph_attrs(dctTree, "outputorder", "nodesfirst", "graph");
-  dctTree <-
-    DiagrammeR::add_global_graph_attrs(dctTree, "fixedsize", "false", "node");
-  dctTree <-
-    DiagrammeR::add_global_graph_attrs(dctTree, "shape", "box", "node");
-  dctTree <-
-    DiagrammeR::add_global_graph_attrs(dctTree, "style", "rounded,filled", "node");
-  dctTree <-
-    DiagrammeR::add_global_graph_attrs(dctTree, "color", "#000000", "node");
-  dctTree <-
-    DiagrammeR::add_global_graph_attrs(dctTree, "fillcolor", "#FFFFFF", "node");
+  dctGraph <-
+    dct::apply_graph_theme(dctGraph,
+                           c("layout", "dot", "graph"),
+                           c("rankdir", "LR", "graph"),
+                           c("outputorder", "nodesfirst", "graph"),
+                           c("fixedsize", "false", "node"),
+                           c("shape", "box", "node"),
+                           c("style", "rounded,filled", "node"),
+                           c("color", "#000000", "node"),
+                           c("color", "#888888", "edge"),
+                           c("dir", arrowDirection, "edge"),
+                           c("fillcolor", "#FFFFFF", "node"));
 
   ###--------------------------------------------------------------------------
   ### Overviews with instructions for developing measurement instruments, for
@@ -196,7 +195,7 @@ parse_dct_specs <- function(dctSpecs) {
   res$intermediate <- list(dctSpecs = dctSpecs,
                            nodes = node_df,
                            edges = edge_df);
-  res$output <- list(graph = dctTree,
+  res$output <- list(graph = dctGraph,
                      instr = list(measure_dev = measure_dev,
                                   measure_code = measure_code,
                                   manipulate_dev = manipulate_dev,

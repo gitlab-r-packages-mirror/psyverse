@@ -3,7 +3,7 @@
 example_dct_spec <- "
 ---
 id: attitude_xl678lqgq
-label: Altitude
+label: Attitude
 date: 2018-11-28
 source:
   label: Reasoned Action Approach

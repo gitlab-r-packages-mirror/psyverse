@@ -7,6 +7,8 @@
 #' @param path The path from where to read the DCT files.
 #' @param extension The extension of the file; convenient alternative to
 #'   specifying a `regex`.
+#' @param arrowDirection The direction of the arrows in the visual representation
+#' of the distributed construct taxonomy; either `forward`, `back`, `both`, or `none`.
 #' @param regex A regular expression; when provided, overrides the `extension`
 #'   argument to guide file selection in the `path`.
 #' @param delimiterRegEx The regular expression specifying how the YAML fragments
@@ -23,6 +25,7 @@
 #' @export
 process_dir <- function(path,
                         extension = "dct",
+                        arrowDirection = "forward",
                         regex,
                         delimiterRegEx = "^---$",
                         ignoreOddDelimiters = FALSE,
