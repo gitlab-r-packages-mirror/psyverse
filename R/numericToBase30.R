@@ -32,6 +32,6 @@ numericToBase30 <- function(x) {
 
 base30 <- c(0:9,
             'b', 'c', 'd', 'f', 'g',
-            'h' ,'j', 'k', 'l', 'n',
+            'h' ,'j', 'k', 'l', 'm', 'n',
             'p', 'q', 'r', 's', 't',
             'v', 'w', 'x', 'y', 'z');

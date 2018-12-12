@@ -43,7 +43,8 @@ generate_id <- function(prefix = paste(sample(letters, 4), collapse=""),
     }
   };
 
-  timeNrString <- gsub('\\.', '', format(Sys.time(), "%y%m%d%H%M%OS2"));
+  #timeNrString <- gsub('\\.', '', format(Sys.time(), "%y%m%d%H%M%OS2"));
+  timeNrString <- as.character(round(as.numeric(Sys.time()) * 100, 0));
 
   res <- numericToBase30(as.numeric(timeNrString));
   return(paste0(prefix, "_", res));
