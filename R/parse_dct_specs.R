@@ -182,11 +182,11 @@ parse_dct_specs <- function(dctSpecs,
            "Change (code): ", node_df$manipulate_code, "\n",
            "Aspect (code): ", node_df$aspect_code);
 
+  node_df$completeness <-
+    sanitize_for_DiagrammeR(node_df$completeness);
+
   completeness_node_df <-
     node_df;
-
-  completeness_node_df$label <-
-    sanitize_for_DiagrammeR(completeness_node_df$completeness);
 
   ### Combine node and edge dataframes into a graph
   completeness_dctGraph <- DiagrammeR::create_graph(nodes_df = completeness_node_df,
