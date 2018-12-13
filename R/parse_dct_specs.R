@@ -219,6 +219,7 @@ parse_dct_specs <- function(dctSpecs,
 
 #' @rdname parse_dct_specs
 #' @method print parsed_dct
+#' @export
 print.parsed_dct <- function(x, ...) {
   cat("Processed", length(x$intermediate$dctSpecs),
       "specifications, containing", nrow(x$intermediate$nodes),
