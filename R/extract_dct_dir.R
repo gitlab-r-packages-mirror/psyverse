@@ -40,7 +40,10 @@ extract_dct_dir <- function(path,
   }
 
   res <- lapply(filelist,
-                extract_dct_specs);
+                extract_dct_specs,
+                silent=silent,
+                delimiterRegEx=delimiterRegEx,
+                ignoreOddDelimiters=ignoreOddDelimiters);
 
   return(structure(res,
                    class="dctRawSpecListSet"));

@@ -48,6 +48,10 @@ extract_dct_specs <- function(file,
   rawSpecs <- lapply(yamlLineSets,
                      yaml::yaml.load);
 
+  if (!silent) {
+    glue::glue("Loaded {length(rawSpecs)} raw DCT specifications from file '{file}'.\n");
+  }
+
   rawSpecs <-
     lapply(rawSpecs,
            function(x) {
