@@ -173,7 +173,7 @@ parse_dct_specs <- function(dctSpecs,
   ### Generate completeness DiagrammeR graph
   ###--------------------------------------------------------------------------
 
-  node_df$completeness <-
+  node_df$fullInstructions <-
     paste0(node_df$label, "\n",
            "Def: ", node_df$def, "\n",
            "Measure (dev): ", node_df$measure_dev, "\n",
@@ -181,6 +181,15 @@ parse_dct_specs <- function(dctSpecs,
            "Measure (code): ", node_df$measure_code, "\n",
            "Change (code): ", node_df$manipulate_code, "\n",
            "Aspect (code): ", node_df$aspect_code);
+
+  node_df$completeness <-
+    paste0(node_df$label, "\n",
+           "Def: ", !is.na(node_df$def), "\n",
+           "Measure (dev): ", !is.na(node_df$measure_dev), "\n",
+           "Change (dev): ", !is.na(node_df$manipulate_dev), "\n",
+           "Measure (code): ", !is.na(node_df$measure_code), "\n",
+           "Change (code): ", !is.na(node_df$manipulate_code), "\n",
+           "Aspect (code): ", !is.na(node_df$aspect_code));
 
   node_df$completeness <-
     sanitize_for_DiagrammeR(node_df$completeness);
