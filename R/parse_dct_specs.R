@@ -189,7 +189,7 @@ parse_dct_specs <- function(dctSpecs,
     completeness_node_df$completeness;
 
   ### Combine node and edge dataframes into a graph
-  completeness_dctGraph <- DiagrammeR::create_graph(nodes_df = node_df,
+  completeness_dctGraph <- DiagrammeR::create_graph(nodes_df = completeness_node_df,
                                        edges_df = edge_df);
 
   ### Set attributes for rendering
@@ -246,7 +246,7 @@ parse_dct_specs <- function(dctSpecs,
                            nodes = node_df,
                            edges = edge_df);
   res$output <- list(basic_graph = dctGraph,
-                     compleness_graph = completeness_dctGraph,
+                     completeness_graph = completeness_dctGraph,
                      instr = list(measure_dev = measure_dev,
                                   measure_code = measure_code,
                                   manipulate_dev = manipulate_dev,
