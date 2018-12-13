@@ -77,7 +77,7 @@ parse_dct_specs <- function(dctSpecs,
                                      'datetime')))];
 
   ###--------------------------------------------------------------------------
-  ### Generate DiagrammeR graph
+  ### Prepare node and edge dataframes for DiagrammeR graph
   ###--------------------------------------------------------------------------
 
   ### create pre node df that we will then fill with info from
@@ -147,6 +147,10 @@ parse_dct_specs <- function(dctSpecs,
 
   edge_df <- edge_df[stats::complete.cases(edge_df), ];
 
+  ###--------------------------------------------------------------------------
+  ### Generate basic DiagrammeR graph
+  ###--------------------------------------------------------------------------
+
   ### Combine node and edge dataframes into a graph
   dctGraph <- DiagrammeR::create_graph(nodes_df = node_df,
                                        edges_df = edge_df);
@@ -154,6 +158,43 @@ parse_dct_specs <- function(dctSpecs,
   ### Set attributes for rendering
   dctGraph <-
     dct::apply_graph_theme(dctGraph,
+                           c("layout", "dot", "graph"),
+                           c("rankdir", "LR", "graph"),
+                           c("outputorder", "nodesfirst", "graph"),
+                           c("fixedsize", "false", "node"),
+                           c("shape", "box", "node"),
+                           c("style", "rounded,filled", "node"),
+                           c("color", "#000000", "node"),
+                           c("color", "#888888", "edge"),
+                           c("dir", arrowDirection, "edge"),
+                           c("fillcolor", "#FFFFFF", "node"));
+
+  ###--------------------------------------------------------------------------
+  ### Generate completeness DiagrammeR graph
+  ###--------------------------------------------------------------------------
+
+  node_df$completeness <-
+    paste0(node_df$label, "\n",
+           "Def: ", node_df$def, "\n",
+           "Measure (dev): ", node_df$measure_dev, "\n",
+           "Change (dev): ", node_df$manipulate_dev, "\n",
+           "Measure (code): ", node_df$measure_code, "\n",
+           "Change (code): ", node_df$manipulate_code, "\n",
+           "Aspect (code): ", node_df$aspect_code);
+
+  completeness_node_df <-
+    node_df;
+
+  completeness_node_df$label <-
+    completeness_node_df$completeness;
+
+  ### Combine node and edge dataframes into a graph
+  completeness_dctGraph <- DiagrammeR::create_graph(nodes_df = node_df,
+                                       edges_df = edge_df);
+
+  ### Set attributes for rendering
+  completeness_dctGraph <-
+    dct::apply_graph_theme(completeness_dctGraph,
                            c("layout", "dot", "graph"),
                            c("rankdir", "LR", "graph"),
                            c("outputorder", "nodesfirst", "graph"),
@@ -204,7 +245,8 @@ parse_dct_specs <- function(dctSpecs,
   res$intermediate <- list(dctSpecs = dctSpecs,
                            nodes = node_df,
                            edges = edge_df);
-  res$output <- list(graph = dctGraph,
+  res$output <- list(basic_graph = dctGraph,
+                     compleness_graph = completeness_dctGraph,
                      instr = list(measure_dev = measure_dev,
                                   measure_code = measure_code,
                                   manipulate_dev = manipulate_dev,
@@ -228,4 +270,12 @@ print.parsed_dct <- function(x, ...) {
       "coding measurement instruments, manipulations, and aspects",
       "are now available in the returned object, if you stored it.");
   invisible(x);
+}
+
+
+#' @rdname parse_dct_specs
+#' @method plot parsed_dct
+#' @export
+plot.parsed_dct <- function(x, ...) {
+  DiagrammeR::render_graph(x$output$basic_graph);
 }
