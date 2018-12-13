@@ -186,7 +186,7 @@ parse_dct_specs <- function(dctSpecs,
     node_df;
 
   completeness_node_df$label <-
-    completeness_node_df$completeness;
+    sanitize_for_DiagrammeR(completeness_node_df$completeness);
 
   ### Combine node and edge dataframes into a graph
   completeness_dctGraph <- DiagrammeR::create_graph(nodes_df = completeness_node_df,
