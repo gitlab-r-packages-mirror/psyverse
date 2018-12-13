@@ -99,8 +99,17 @@ parse_dct_specs <- function(dctSpecs,
       if (is.null(unlist(dctSpec[[element]]))) {
         ### Nothing provided
       } else if (length(unlist(dctSpec[[element]])) == 1) {
+        if (length(dctSpec[[element]]) > 1) {
+          node_df[id2row[dctSpec$id], element] <-
+            dctSpec[[element]][[1]] %||% "";
+      } else if (length(dctSpec[[element]]) == 0) {
         node_df[id2row[dctSpec$id], element] <-
-          dctSpec[[element]];
+          "";
+      } else {
+        node_df[id2row[dctSpec$id], element] <-
+          dctSpec[[element]] %||% "";
+      }
+
       } else {
         flattenedList <-
           unlist(dctSpec[[element]]);

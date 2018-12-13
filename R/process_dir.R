@@ -41,10 +41,3 @@ process_dir <- function(path,
   return(parse_dct_specs(rawSpecs));
 
 }
-
-
-# z <- process_dir("B:/Data/R/tmp");
-#
-# DiagrammeR::render_graph(z$output$graph);
-#
-# ufs::cat0(paste0(z$output$instr$measure_code, collape="\n"));

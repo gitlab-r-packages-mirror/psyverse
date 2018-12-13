@@ -14,8 +14,8 @@ parse_dct_specs(dctSpecs, arrowDirection = "forward")
 \code{dctRawSpecListSet}), a list of DCT specifications (class
 \code{dtcRawSpecList}) or a DCT specification (class \code{dtcRawSpec}).}
 
-\item{arrowDirection}{The direction of the arrows; either \code{forward},
-\code{back}, \code{both}, or \code{none}.}
+\item{arrowDirection}{The direction of the arrows in the visual representation
+of the distributed construct taxonomy; either \code{forward}, \code{back}, \code{both}, or \code{none}.}
 
 \item{x}{The parsed \code{parsed_dct} object.}
 

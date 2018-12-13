@@ -4,14 +4,17 @@
 \alias{process_dir}
 \title{Process a directory with DCT files}
 \usage{
-process_dir(path, extension = "dct", regex, delimiterRegEx = "^---$",
-  ignoreOddDelimiters = FALSE, silent = FALSE)
+process_dir(path, extension = "dct", arrowDirection = "forward", regex,
+  delimiterRegEx = "^---$", ignoreOddDelimiters = FALSE, silent = FALSE)
 }
 \arguments{
 \item{path}{The path from where to read the DCT files.}
 
 \item{extension}{The extension of the file; convenient alternative to
 specifying a \code{regex}.}
+
+\item{arrowDirection}{The direction of the arrows in the visual representation
+of the distributed construct taxonomy; either \code{forward}, \code{back}, \code{both}, or \code{none}.}
 
 \item{regex}{A regular expression; when provided, overrides the \code{extension}
 argument to guide file selection in the \code{path}.}
