@@ -182,6 +182,9 @@ parse_dct_specs <- function(dctSpecs,
            "Change (code): ", node_df$manipulate_code, "\n",
            "Aspect (code): ", node_df$aspect_code);
 
+  node_df$fullInstructions <-
+    sanitize_for_DiagrammeR(node_df$fullInstructions);
+
   node_df$completeness <-
     paste0(node_df$label, "\n",
            "Def: ", !is.na(node_df$def), "\n",
@@ -190,9 +193,6 @@ parse_dct_specs <- function(dctSpecs,
            "Measure (code): ", !is.na(node_df$measure_code), "\n",
            "Change (code): ", !is.na(node_df$manipulate_code), "\n",
            "Aspect (code): ", !is.na(node_df$aspect_code));
-
-  node_df$completeness <-
-    sanitize_for_DiagrammeR(node_df$completeness);
 
   completeness_node_df <-
     node_df;
