@@ -74,7 +74,7 @@ parse_dct_specs <- function(dctSpecs,
   ### Order chronologically
   dctSpecs <-
     dctSpecs[order(unlist(purrr::map(dctSpecs,
-                                            'datetime')))];
+                                     'datetime')))];
 
   ###--------------------------------------------------------------------------
   ### Generate DiagrammeR graph

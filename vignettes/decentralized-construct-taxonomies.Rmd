@@ -49,6 +49,50 @@ However, at the same time there is a need for consistency in communication.
 
 
 
+
+Psychology struggles with a number of 
+
+
+A DCT file is a YAML file of the following form:
+
+
+
+
+
+
+```
+---
+id: intention_xl678lqgr
+name: Intention
+source:
+  name: Reasoned Action Approach
+  xdoi: ISBN
+  spec: p. 888
+def:
+  def: Intention Def
+  source:
+    spec: pp. 8-1
+measure:
+  instruction: Ask about intention
+manipulate:
+  instruction: Instruction for manipulating intention directly.
+  source:
+operationalisation_coding: 
+  instruction: If asked about intentions/plans/etc
+  source: none
+aspect_coding:
+  instruction: Expressions of planning/intention/goals
+  source: none
+parent:
+  id: behavior
+alters:
+  id: motivation
+---
+```
+
+
+
+
 ## References
 
 Abraham, C., & Michie, S. (2008). A taxonomy of behavior change techniques used in interventions. Health Psychology, 27(3), 379–87. doi: [10.1037/0278-6133.27.3.379](https://doi.org/10.1037/0278-6133.27.3.379)

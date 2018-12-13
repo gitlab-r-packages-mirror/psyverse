@@ -34,6 +34,11 @@ extract_dct_dir <- function(path,
                          pattern=regex,
                          full.names=TRUE);
 
+  if (length(filelist) == 0) {
+    stop(glue::glue("No files in directory '{path}' matched ",
+                    "regular expression {regex}."));
+  }
+
   res <- lapply(filelist,
                 extract_dct_specs);
 

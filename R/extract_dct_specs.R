@@ -63,9 +63,9 @@ extract_dct_specs <- function(file,
 
   rawSpecs <- lapply(rawSpecs,
                      structure,
-                     class='dtcRawSpec');
+                     class='dctRawSpec');
 
   return(structure(rawSpecs,
-                   class="dtcRawSpecList"));
+                   class="dctRawSpecList"));
 
 }
