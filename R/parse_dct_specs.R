@@ -190,11 +190,21 @@ parse_dct_specs <- function(dctSpecs,
   node_df$completeness <-
     paste0(node_df$label, "\n",
            "Def: ", !is.na(node_df$def_def), "\n",
-           "Measure (dev): ", !is.na(node_df$measure_dev_instr), "\n",
-           "Change (dev): ", !is.na(node_df$manipulate_dev_instr), "\n",
-           "Measure (code): ", !is.na(node_df$measure_code_instr), "\n",
-           "Change (code): ", !is.na(node_df$manipulate_code_instr), "\n",
-           "Aspect (code): ", !is.na(node_df$aspect_code_instr));
+           "Measure (dev): ", ifelse(is.na(node_df$measure_dev_instr),
+                                      "-",
+                                      "Included"), "\n",
+           "Change (dev): ", ifelse(is.na(node_df$manipulate_dev_instr),
+                                    "-",
+                                    "Included"), "\n",
+           "Measure (code): ", ifelse(is.na(node_df$measure_code_instr),
+                                      "-",
+                                      "Included"), "\n",
+           "Change (code): ", ifelse(is.na(node_df$manipulate_code_instr),
+                                     "-",
+                                     "Included"), "\n",
+           "Aspect (code): ", ifelse(is.na(node_df$aspect_code_instr),
+                                     "-",
+                                     "Included"));
 
   completeness_node_df <-
     node_df;
@@ -294,6 +304,4 @@ plot.parsed_dct <- function(x, ...) {
   DiagrammeR::render_graph(x$output$basic_graph);
 }
 
-
-#a <- process_dir('B:/Data/research/decentralized-construct-taxonomy/dct-files');
 
