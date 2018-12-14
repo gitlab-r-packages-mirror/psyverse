@@ -96,6 +96,7 @@ parse_dct_specs <- function(dctSpecs,
     for (element in (setdiff(names(dctSpec), c('id',
                                                'name',
                                                'parent')))) {
+
       if (is.null(unlist(dctSpec[[element]]))) {
         ### Nothing provided
       } else if (length(unlist(dctSpec[[element]])) == 1) {
@@ -197,6 +198,9 @@ parse_dct_specs <- function(dctSpecs,
   completeness_node_df <-
     node_df;
 
+  completeness_node_df$label <-
+    completeness_node_df$completeness;
+
   ### Combine node and edge dataframes into a graph
   completeness_dctGraph <- DiagrammeR::create_graph(nodes_df = completeness_node_df,
                                        edges_df = edge_df);
@@ -288,3 +292,7 @@ print.parsed_dct <- function(x, ...) {
 plot.parsed_dct <- function(x, ...) {
   DiagrammeR::render_graph(x$output$basic_graph);
 }
+
+
+#a <- process_dir('B:/Data/research/decentralized-construct-taxonomy/dct-files');
+
