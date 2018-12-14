@@ -189,7 +189,7 @@ parse_dct_specs <- function(dctSpecs,
 
   node_df$completeness <-
     paste0(node_df$label, "\n",
-           "Def: ", ifelse(is.null(node_df$def_def) || !is.na(node_df$def_def),
+           "Definition: ", ifelse(is.null(node_df$def_def) || !is.na(node_df$def_def),
                            "-",
                            "Included"), "\n",
            "Measure (dev): ", ifelse(is.null(node_df$measure_dev_instr) || is.na(node_df$measure_dev_instr),
