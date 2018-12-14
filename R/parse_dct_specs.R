@@ -98,18 +98,19 @@ parse_dct_specs <- function(dctSpecs,
                                                'parent')))) {
 
       if (is.null(unlist(dctSpec[[element]]))) {
-        ### Nothing provided
+        node_df[id2row[dctSpec$id], element] <-
+          "";
       } else if (length(unlist(dctSpec[[element]])) == 1) {
         if (length(dctSpec[[element]]) > 1) {
           node_df[id2row[dctSpec$id], element] <-
             dctSpec[[element]][[1]] %||% "";
-      } else if (length(dctSpec[[element]]) == 0) {
-        node_df[id2row[dctSpec$id], element] <-
-          "";
-      } else {
-        node_df[id2row[dctSpec$id], element] <-
-          dctSpec[[element]] %||% "";
-      }
+        } else if (length(dctSpec[[element]]) == 0) {
+          node_df[id2row[dctSpec$id], element] <-
+            "";
+        } else {
+          node_df[id2row[dctSpec$id], element] <-
+            dctSpec[[element]] %||% "";
+        }
 
       } else {
         flattenedList <-
@@ -176,24 +177,24 @@ parse_dct_specs <- function(dctSpecs,
 
   node_df$fullInstructions <-
     paste0(node_df$label, "\n",
-           "Def: ", node_df$def, "\n",
-           "Measure (dev): ", node_df$measure_dev, "\n",
-           "Change (dev): ", node_df$manipulate_dev, "\n",
-           "Measure (code): ", node_df$measure_code, "\n",
-           "Change (code): ", node_df$manipulate_code, "\n",
-           "Aspect (code): ", node_df$aspect_code);
+           "Def: ", node_df$def_def, "\n",
+           "Measure (dev): ", node_df$measure_dev_instr, "\n",
+           "Change (dev): ", node_df$manipulate_dev_instr, "\n",
+           "Measure (code): ", node_df$measure_code_instr, "\n",
+           "Change (code): ", node_df$manipulate_code_instr, "\n",
+           "Aspect (code): ", node_df$aspect_code_instr);
 
   node_df$fullInstructions <-
     sanitize_for_DiagrammeR(node_df$fullInstructions);
 
   node_df$completeness <-
     paste0(node_df$label, "\n",
-           "Def: ", !is.na(node_df$def), "\n",
-           "Measure (dev): ", !is.na(node_df$measure_dev), "\n",
-           "Change (dev): ", !is.na(node_df$manipulate_dev), "\n",
-           "Measure (code): ", !is.na(node_df$measure_code), "\n",
-           "Change (code): ", !is.na(node_df$manipulate_code), "\n",
-           "Aspect (code): ", !is.na(node_df$aspect_code));
+           "Def: ", !is.na(node_df$def_def), "\n",
+           "Measure (dev): ", !is.na(node_df$measure_dev_instr), "\n",
+           "Change (dev): ", !is.na(node_df$manipulate_dev_instr), "\n",
+           "Measure (code): ", !is.na(node_df$measure_code_instr), "\n",
+           "Change (code): ", !is.na(node_df$manipulate_code_instr), "\n",
+           "Aspect (code): ", !is.na(node_df$aspect_code_instr));
 
   completeness_node_df <-
     node_df;
