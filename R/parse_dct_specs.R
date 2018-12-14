@@ -177,7 +177,7 @@ parse_dct_specs <- function(dctSpecs,
 
   node_df$fullInstructions <-
     paste0(node_df$label, "\n",
-           "Def: ", node_df$def_def, "\n",
+           "Definition: ", node_df$def_def, "\n",
            "Measure (dev): ", node_df$measure_dev_instr, "\n",
            "Change (dev): ", node_df$manipulate_dev_instr, "\n",
            "Measure (code): ", node_df$measure_code_instr, "\n",
@@ -189,9 +189,9 @@ parse_dct_specs <- function(dctSpecs,
 
   node_df$completeness <-
     paste0(node_df$label, "\n",
-           "Def: ", ifelse(is.null(node_df$def_def) || !is.na(node_df$def_def),
-                           "-",
-                           "Included"), "\n",
+           "Definition: ", ifelse(is.null(node_df$def_def) || is.na(node_df$def_def),
+                                  "-",
+                                  "Included"), "\n",
            "Measure (dev): ", ifelse(is.null(node_df$measure_dev_instr) || is.na(node_df$measure_dev_instr),
                                       "-",
                                       "Included"), "\n",
