@@ -3,11 +3,14 @@
 \name{parse_dct_specs}
 \alias{parse_dct_specs}
 \alias{print.parsed_dct}
+\alias{plot.parsed_dct}
 \title{Parse DCT specifications}
 \usage{
 parse_dct_specs(dctSpecs, arrowDirection = "forward")
 
 \method{print}{parsed_dct}(x, ...)
+
+\method{plot}{parsed_dct}(x, ...)
 }
 \arguments{
 \item{dctSpecs}{A list of lists of DCT specifications (class
