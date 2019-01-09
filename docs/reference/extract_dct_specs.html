@@ -120,7 +120,7 @@ the DCT specifications from them.</p>
     <pre class="usage"><span class='no'>example_dct_spec</span>
 
 <span class='fu'>extract_dct_specs</span>(<span class='no'>file</span>, <span class='no'>text</span>, <span class='kw'>delimiterRegEx</span> <span class='kw'>=</span> <span class='st'>"^---$"</span>,
-  <span class='kw'>ignoreOddDelimiters</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>silent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>dctContainer</span> <span class='kw'>=</span> <span class='st'>"dct"</span>, <span class='kw'>ignoreOddDelimiters</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>silent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,6 +138,13 @@ every element should represent one line in the file.</p></td>
       <th>delimiterRegEx</th>
       <td><p>The regular expression used to locate YAML
 fragments</p></td>
+    </tr>
+    <tr>
+      <th>dctContainer</th>
+      <td><p>The container of the DCT specifications in the YAML
+fragments. Because only DCT specifications are read that are stored in
+this container, the files can contain YAML fragments with other data, too,
+without interfering with the parsing of the DCT specifications.</p></td>
     </tr>
     <tr>
       <th>ignoreOddDelimiters</th>

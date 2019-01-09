@@ -120,7 +120,8 @@ instructions for development and coding.</p>
     </div>
 
     <pre class="usage"><span class='fu'>process_dir</span>(<span class='no'>path</span>, <span class='kw'>extension</span> <span class='kw'>=</span> <span class='st'>"dct"</span>, <span class='kw'>arrowDirection</span> <span class='kw'>=</span> <span class='st'>"forward"</span>, <span class='no'>regex</span>,
-  <span class='kw'>delimiterRegEx</span> <span class='kw'>=</span> <span class='st'>"^---$"</span>, <span class='kw'>ignoreOddDelimiters</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>silent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>delimiterRegEx</span> <span class='kw'>=</span> <span class='st'>"^---$"</span>, <span class='kw'>dctContainer</span> <span class='kw'>=</span> <span class='st'>"dct"</span>,
+  <span class='kw'>ignoreOddDelimiters</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>silent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -148,6 +149,13 @@ argument to guide file selection in the <code>path</code>.</p></td>
       <th>delimiterRegEx</th>
       <td><p>The regular expression specifying how the YAML fragments
 specifying the constructs are delimited. Should normally never be changed.</p></td>
+    </tr>
+    <tr>
+      <th>dctContainer</th>
+      <td><p>The container of the DCT specifications in the YAML
+fragments. Because only DCT specifications are read that are stored in
+this container, the files can contain YAML fragments with other data, too,
+without interfering with the parsing of the DCT specifications.</p></td>
     </tr>
     <tr>
       <th>ignoreOddDelimiters</th>
