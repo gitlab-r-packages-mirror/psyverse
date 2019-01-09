@@ -5,7 +5,7 @@
 \title{Extract DCT specifications from all files in a directory}
 \usage{
 extract_dct_dir(path, extension = "dct", regex, delimiterRegEx = "^---$",
-  ignoreOddDelimiters = FALSE, silent = FALSE)
+  dctContainer = "dct", ignoreOddDelimiters = FALSE, silent = FALSE)
 }
 \arguments{
 \item{path}{The path from where to read the DCT files.}
@@ -18,6 +18,11 @@ argument to guide file selection in the \code{path}.}
 
 \item{delimiterRegEx}{The regular expression specifying how the YAML fragments
 specifying the constructs are delimited. Should normally never be changed.}
+
+\item{dctContainer}{The container of the DCT specifications in the YAML
+fragments. Because only DCT specifications are read that are stored in
+this container, the files can contain YAML fragments with other data, too,
+without interfering with the parsing of the DCT specifications.}
 
 \item{ignoreOddDelimiters}{Whether to ignore a final odd delimiter, if
 encountered.}

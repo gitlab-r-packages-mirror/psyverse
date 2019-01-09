@@ -13,6 +13,10 @@
 #'   argument to guide file selection in the `path`.
 #' @param delimiterRegEx The regular expression specifying how the YAML fragments
 #'   specifying the constructs are delimited. Should normally never be changed.
+#' @param dctContainer The container of the DCT specifications in the YAML
+#'   fragments. Because only DCT specifications are read that are stored in
+#'   this container, the files can contain YAML fragments with other data, too,
+#'   without interfering with the parsing of the DCT specifications.
 #' @param ignoreOddDelimiters Whether to ignore a final odd delimiter, if
 #'   encountered.
 #' @param silent Whether to provide information on progress.
@@ -28,6 +32,7 @@ process_dir <- function(path,
                         arrowDirection = "forward",
                         regex,
                         delimiterRegEx = "^---$",
+                        dctContainer = "dct",
                         ignoreOddDelimiters = FALSE,
                         silent=FALSE) {
 
@@ -35,6 +40,7 @@ process_dir <- function(path,
                               extension = "dct",
                               regex,
                               delimiterRegEx = "^---$",
+                              dctContainer=dctContainer,
                               ignoreOddDelimiters = FALSE,
                               silent=FALSE);
 

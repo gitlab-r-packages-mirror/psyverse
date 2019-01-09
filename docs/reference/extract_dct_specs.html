@@ -77,6 +77,18 @@ the DCT specifications from them." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/decentralized-construct-taxonomies.html">Decentralized Construct Taxonomies</a>
+    </li>
+  </ul>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -154,97 +166,7 @@ necessary to call this function directly.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>extract_dct_specs</span>(<span class='kw'>text</span><span class='kw'>=</span><span class='fu'>unlist</span>(<span class='fu'>strsplit</span>(<span class='kw pkg'>dct</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/dct/topics/extract_dct_specs'>example_dct_spec</a></span>, <span class='st'>'\n'</span>)));</div><div class='output co'>#&gt; [[1]]
-#&gt; $id
-#&gt; [1] "attitude_xl678lqgq"
-#&gt; 
-#&gt; $label
-#&gt; [1] "Altitude"
-#&gt; 
-#&gt; $date
-#&gt; [1] "2018-11-28"
-#&gt; 
-#&gt; $source
-#&gt; $source$label
-#&gt; [1] "Reasoned Action Approach"
-#&gt; 
-#&gt; $source$xdoi
-#&gt; [1] "ISBN"
-#&gt; 
-#&gt; $source$spec
-#&gt; [1] "p. 22"
-#&gt; 
-#&gt; 
-#&gt; $defs
-#&gt; $defs$def
-#&gt; [1] "Attitude Def"
-#&gt; 
-#&gt; $defs$source
-#&gt; $defs$source$spec
-#&gt; [1] "pp. 11-12"
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; $measure_dev
-#&gt; $measure_dev$instr
-#&gt; [1] "Use semantic differentials with root \"For me, [TARGET BEHAVIOR] is ...\" and a bidimensional scale where the right-most anchor expresses a beneficial or pleasant evaluation and the left-most anchor expresses the opposite undesirable/harmful/unpleasant evaluation."
-#&gt; 
-#&gt; 
-#&gt; $manipulate_dev
-#&gt; $manipulate_dev$instr
-#&gt; [1] "persuasive communication"
-#&gt; 
-#&gt; $manipulate_dev$source
-#&gt; $manipulate_dev$source$label
-#&gt; [1] "pers comm matrix"
-#&gt; 
-#&gt; $manipulate_dev$source$xdoi
-#&gt; [1] "doi of article"
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; $measure_code
-#&gt; $measure_code$instr
-#&gt; [1] "Operationalisations that measure beneficial or pleasant aspects of the latent disposition or tendency to respond favourably versus unfavourably to [target behavior], for example using the semantic differentials good/bad, pleasant/unpleasant, wise/unwise."
-#&gt; 
-#&gt; $measure_code$source
-#&gt; [1] "none"
-#&gt; 
-#&gt; 
-#&gt; $manipulate_code
-#&gt; $manipulate_code$instr
-#&gt; [1] "Code any presentation of a stimulus asserting that engaging in the target behavior will yield positive or negative consequences."
-#&gt; 
-#&gt; $manipulate_code$source
-#&gt; [1] "none"
-#&gt; 
-#&gt; 
-#&gt; $aspect_code
-#&gt; $aspect_code$instruction
-#&gt; [1] "Expressions of any consequences for oneself that one perceives to be caused by engaging in the target behavior."
-#&gt; 
-#&gt; $aspect_code$source
-#&gt; [1] "none"
-#&gt; 
-#&gt; 
-#&gt; $parent
-#&gt; $parent$id
-#&gt; [1] "intention_xl678lqgr"
-#&gt; 
-#&gt; 
-#&gt; $alters
-#&gt; $alters$id
-#&gt; NULL
-#&gt; 
-#&gt; 
-#&gt; $datetime
-#&gt; [1] 1543359600
-#&gt; 
-#&gt; attr(,"class")
-#&gt; [1] "dtcRawSpec"
-#&gt; 
-#&gt; attr(,"class")
-#&gt; [1] "dtcRawSpecList"</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>extract_dct_specs</span>(<span class='kw'>text</span><span class='kw'>=</span><span class='fu'>unlist</span>(<span class='fu'>strsplit</span>(<span class='kw pkg'>dct</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/dct/topics/extract_dct_specs'>example_dct_spec</a></span>, <span class='st'>'\n'</span>)));</div><div class='output co'>#&gt; <span class='error'>Error in eval(parse(text = text, keep.source = FALSE), envir): argument "file" is missing, with no default</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

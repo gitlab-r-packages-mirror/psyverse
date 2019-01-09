@@ -10,7 +10,7 @@
 example_dct_spec
 
 extract_dct_specs(file, text, delimiterRegEx = "^---$",
-  ignoreOddDelimiters = FALSE, silent = FALSE)
+  dctContainer = "dct", ignoreOddDelimiters = FALSE, silent = FALSE)
 }
 \arguments{
 \item{file}{The file containing the YAML fragments.}
@@ -20,6 +20,11 @@ every element should represent one line in the file.}
 
 \item{delimiterRegEx}{The regular expression used to locate YAML
 fragments}
+
+\item{dctContainer}{The container of the DCT specifications in the YAML
+fragments. Because only DCT specifications are read that are stored in
+this container, the files can contain YAML fragments with other data, too,
+without interfering with the parsing of the DCT specifications.}
 
 \item{ignoreOddDelimiters}{Whether to throw an error (FALSE) or
 delete the last delimiter (TRUE) if an odd number of delimiters is

@@ -11,6 +11,10 @@
 #' every element should represent one line in the file.
 #' @param delimiterRegEx The regular expression used to locate YAML
 #' fragments
+#' @param dctContainer The container of the DCT specifications in the YAML
+#'   fragments. Because only DCT specifications are read that are stored in
+#'   this container, the files can contain YAML fragments with other data, too,
+#'   without interfering with the parsing of the DCT specifications.
 #' @param ignoreOddDelimiters Whether to throw an error (FALSE) or
 #' delete the last delimiter (TRUE) if an odd number of delimiters is
 #' encountered.
@@ -24,6 +28,7 @@
 extract_dct_specs <- function(file,
                               text,
                               delimiterRegEx = "^---$",
+                              dctContainer = "dct",
                               ignoreOddDelimiters = FALSE,
                               silent=FALSE) {
 
@@ -41,15 +46,23 @@ extract_dct_specs <- function(file,
     stop("Provide either a `file` or a `text` to scan!");
   }
 
-  pastedYamlLineSets <- lapply(yamlLineSets,
-                               paste,
-                               collapse="\n");
+  # pastedYamlLineSets <- lapply(yamlLineSets,
+  #                              paste,
+  #                              collapse="\n");
 
   rawSpecs <- lapply(yamlLineSets,
                      yaml::yaml.load);
 
   if (!silent) {
-    glue::glue("Loaded {length(rawSpecs)} raw DCT specifications from file '{file}'.\n");
+    glue::glue("Loaded {length(rawSpecs)} YAML fragments from file '{file}'.\n");
+  }
+
+  ### Get the codes
+  rawSpecs <-
+    purrr::map(rawSpecs, dctContainer);
+
+  if (!silent) {
+    glue::glue("Identified {length(rawSpecs)} raw DCT specifications.\n");
   }
 
   rawSpecs <-

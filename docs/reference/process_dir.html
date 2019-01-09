@@ -78,6 +78,18 @@ instructions for development and coding." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/decentralized-construct-taxonomies.html">Decentralized Construct Taxonomies</a>
+    </li>
+  </ul>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -107,8 +119,8 @@ instructions for development and coding.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>process_dir</span>(<span class='no'>path</span>, <span class='kw'>extension</span> <span class='kw'>=</span> <span class='st'>"dct"</span>, <span class='no'>regex</span>, <span class='kw'>delimiterRegEx</span> <span class='kw'>=</span> <span class='st'>"^---$"</span>,
-  <span class='kw'>ignoreOddDelimiters</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>silent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>process_dir</span>(<span class='no'>path</span>, <span class='kw'>extension</span> <span class='kw'>=</span> <span class='st'>"dct"</span>, <span class='kw'>arrowDirection</span> <span class='kw'>=</span> <span class='st'>"forward"</span>, <span class='no'>regex</span>,
+  <span class='kw'>delimiterRegEx</span> <span class='kw'>=</span> <span class='st'>"^---$"</span>, <span class='kw'>ignoreOddDelimiters</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>silent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -121,6 +133,11 @@ instructions for development and coding.</p>
       <th>extension</th>
       <td><p>The extension of the file; convenient alternative to
 specifying a <code>regex</code>.</p></td>
+    </tr>
+    <tr>
+      <th>arrowDirection</th>
+      <td><p>The direction of the arrows in the visual representation
+of the distributed construct taxonomy; either <code>forward</code>, <code>back</code>, <code>both</code>, or <code>none</code>.</p></td>
     </tr>
     <tr>
       <th>regex</th>

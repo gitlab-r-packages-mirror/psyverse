@@ -215,8 +215,9 @@ parse_dct_specs <- function(dctSpecs,
     completeness_node_df$completeness;
 
   ### Combine node and edge dataframes into a graph
-  completeness_dctGraph <- DiagrammeR::create_graph(nodes_df = completeness_node_df,
-                                       edges_df = edge_df);
+  completeness_dctGraph <-
+    DiagrammeR::create_graph(nodes_df = completeness_node_df,
+                             edges_df = edge_df);
 
   ### Set attributes for rendering
   completeness_dctGraph <-
@@ -297,7 +298,6 @@ print.parsed_dct <- function(x, ...) {
       "are now available in the returned object, if you stored it.");
   invisible(x);
 }
-
 
 #' @rdname parse_dct_specs
 #' @method plot parsed_dct
