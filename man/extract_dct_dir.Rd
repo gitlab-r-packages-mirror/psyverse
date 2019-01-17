@@ -4,8 +4,9 @@
 \alias{extract_dct_dir}
 \title{Extract DCT specifications from all files in a directory}
 \usage{
-extract_dct_dir(path, extension = "dct", regex, delimiterRegEx = "^---$",
-  dctContainer = "dct", ignoreOddDelimiters = FALSE, silent = FALSE)
+extract_dct_dir(path, extension = "dct", regex,
+  delimiterRegEx = "^---$", dctContainer = "dct",
+  ignoreOddDelimiters = FALSE, silent = FALSE)
 }
 \arguments{
 \item{path}{The path from where to read the DCT files.}

@@ -16,49 +16,35 @@ knitr::opts_chunk$set(
 )
 ```
 
-In psychology, many different guidelines exist for
-    developing measurement instruments and manipulations of constructs.
-    When conducting empirical research or secondary research,
-    therefore, it is important to have a clear idea, and clearly
-    communicate, which guidelines are followed. However, these guidelines
-    are fragmented, and no universal consensus exists regarding how any
-    construct must be measured or manipulated. Therefore, developing one
-    'final' taxonomy is not feasible or even desirable. At the same time,
-    it is important that people clearly communicate their 'study-specific
-    taxonomy'. The `dct` package makes it possible to combine these two
-    goals.
+In psychology, many different guidelines exist for developing measurement instruments and manipulations of constructs. When conducting empirical research or secondary research, therefore, it is important to have a clear idea, and clearly communicate, which guidelines are followed. However, these guidelines are fragmented, and no universal consensus exists regarding how any construct must be measured or manipulated. Therefore, developing one 'final' taxonomy is not feasible or even desirable. At the same time, it is important that people clearly communicate their 'study-specific taxonomy'. The `dct` package makes it possible to combine these two goals.
 
-For more background information on the concept of Decentralized Construct Taxonomies, see the reasoning set out in Peters & Crutzen (2017a, 2017b) and Crutzen & Peters (2018). In brief, in those papers the following premises are postulated:
+For more background information on the concept underlying the Decentralized Construct Taxonomies, see the reasoning set out in Peters & Crutzen (2017a, 2017b) and Crutzen & Peters (2018). In brief, in those papers the following premises are postulated:
 
 - Psychological constructs do not exist as such, but instead are useful metaphors that enable communication about, and measurement and manipulation of, aspects of the human psychology.
 - These constructs have verying degrees of specificity and levels of aggregation, and are therefore often represented in theories as influencing or causing one another.
 
 From these premises it follows that is is not feasible (or desirable) to develop one 'final' taxonomy of psychological constructs or of manipulations of psychological constructs. Instead, multiple taxonomies exist, each of which has different uses. For example, in behavior change research, one taxonomy has been developed that is well-suited for describing intervention content but that is not useful when developing interventions (Abraham & Michie, 2008), and another that is well-suited for developing interventions, but is in its present form less useful for coding interventions (Kok et al., 2016).
 
-Similarly, different theories that explain behavior postulate 
+Similarly, different theories that explain behavior postulate different psychological variables as important predictors of behavior. These variables generally overlap with each other: usually between theories, but also within the same theory. For example, the main three determinants in the Reasoned Action Approach are postulated to correlate (Fishbein & Ajzen, 2010), correlations that are empirically almost impossible to distinguish from structural composition (Peters & Crutzen, 2017a).
 
-For example, the heterogeneity in definitions and measurement instrument of self-efficacy has been lamented (Williams & Rhodes, 2016a, 2016b).
+Not only do psychological variables often capture overlapping aspects of the human psychology, operationalisations often vary between studies, languages, target behaviors, and cultures. For example, the heterogeneity in definitions and measurement instrument of self-efficacy has recently been lamented (Williams & Rhodes, 2016a, 2016b), and a recent review of self-identity operationalisations identified hundreds of different items.
 
+As a consequence of this pluriformity, research syntheses suffer, and in communication about research results, a lot is lost in translation.
 
-
-While the 
-
-As a consequence of this pluriformity 
+However, given that the constructs in health psychology do not correspond to natural kinds (Fried, 2017), there is no way to settle on 'the best' definitions or operationalisations. The opinions and preferences of experienced researchers reflect, to an unknown degree, their training; and therefore, convictions from decades ago. Correlation strengths reflect artefacts such as correlated measurement error that render the assumption that correlation strengths can be used to infer 'the best' definitions or operationalisations circumspect.
 
 However, at the same time there is a need for consistency in communication.
 
+How can this be realised given that there's no scientifically justifiable way to identify 'the best' definitions or operationalisations?
+
+This is the problem Decentralized Construct Taxonomies aim to solve.
+
+DTCs are plain text files that follow a number of conventions that enable unequivocal communication and reference to specific constructs and definitions, as well as their assumed structural composition (which is still assumed to be equivalent to causal influence for all practical purposes).
 
 
-
-Psychology struggles with a number of 
 
 
 A DCT file is a YAML file of the following form:
-
-
-
-
-
 
 ```
 ---
@@ -99,6 +85,14 @@ Abraham, C., & Michie, S. (2008). A taxonomy of behavior change techniques used 
 
 Crutzen, R., & Peters, G.-J. Y. (2018). Evolutionary learning processes as the foundation for behaviour change. *Health Psychology Review*, 12(1), 43–57. doi: [10.1080/17437199.2017.1362569](https://doi.org/10.1080/17437199.2017.1362569)
 
+
+
+> Add Fried reference from PN discussion
+
+
+> Add RAA book reference
+
+
 Kok, G., Gottlieb, N. H., Peters, G.-J. Y., Mullen, P. D., Parcel, G. S., Ruiter, R. A. C., … Bartholomew, L. K. (2016). A taxonomy of behavior change methods: an Intervention Mapping approach. Health Psychology Review, 10(3), 297–312. doi: [10.1080/17437199.2015.1077155](https://doi.org/10.1080/17437199.2015.1077155)
 
 Peters, G.-J. Y., & Crutzen, R. (2017a). Pragmatic nihilism: how a Theory of Nothing can help health psychology progress. *Health Psychology Review*, 11(2). doi: [10.1080/17437199.2017.1284015](https://doi.org/10.1080/17437199.2017.1284015)
@@ -108,54 +102,3 @@ Peters, G.-J. Y., & Crutzen, R. (2017b). Confidence in constant progress: or how
 Williams, D. M., & Rhodes, R. E. (2016a). The confounded self-efficacy construct: review, conceptual analysis, and recommendations for future research. Health Psychology Review, 10(2), 113–128. doi: [10.1080/17437199.2014.941998](https://doi.org/10.1080/17437199.2014.941998)
 
 Williams, D. M., & Rhodes, R. E. (2016b). Reviving the critical distinction between perceived capability and motivation: A response to commentaries. Health Psychology Review, 7199(April), 1–7. doi: [10.1080/17437199.2016.1171729](https://doi.org/10.1080/17437199.2016.1171729)
-
-
-
-
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
-
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
-
-## Vignette Info
-
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
-
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
-```
-
-You can enable figure captions by `fig_caption: yes` in YAML:
-
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
-
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
-```
-
-Also a quote using `>`:
-
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))

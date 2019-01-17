@@ -22,7 +22,7 @@ BugReports: https://github.com/academy-of-behavior-change/dct/issues
 URL: https://dct.opens.science
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 Depends: R (>= 3.0.0)
 Imports: DiagrammeR (>= 1.0.0),
