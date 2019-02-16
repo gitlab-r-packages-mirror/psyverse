@@ -18,7 +18,7 @@ load_dct_dir(path, recursive = TRUE, extension = "rock|dct", regex,
   delimiterRegEx = "^---$", ignoreOddDelimiters = FALSE,
   encoding = "UTF-8", silent = TRUE)
 
-load_dct_specs(file, text, delimiterRegEx = "^---$",
+load_dct_specs(text, file, delimiterRegEx = "^---$",
   dctContainer = "dct", arrowDirection = "forward",
   ignoreOddDelimiters = FALSE, encoding = "UTF-8", silent = TRUE)
 
@@ -59,13 +59,19 @@ NULL to let \code{\link[=readLines]{readLines()}} guess.}
 
 \item{silent}{Whether to be silent (TRUE) or informative (FALSE).}
 
-\item{file, text}{Either specify a \code{file} to read with encoding \code{encoding}, which will
-then be read using \code{\link[base:readLines]{base::readLines()}} (if specified, takes precedence over \code{text});
-or specify a \code{text} to process, which should be a character vectors where every
-element is a line of the original source (like provided \code{\link[base:readLines]{base::readLines()}});
-although if a character vector of one element \emph{but} including at least one
-newline character (\code{\\n}) is provided as \code{text}, this is split at the newline
-characters using \code{\link[base:strsplit]{base::strsplit()}}.}
+\item{text, file}{As \code{text} or \code{file}, you can specify a \code{file} to read with
+encoding \code{encoding}, which will then be read using \code{\link[base:readLines]{base::readLines()}}. If the
+argument is named \code{text}, whether it is the path to an existing file is checked
+first, and if it is, that file is read. If the argument is named \code{file}, and it
+does not point to an existing file, an error is produced (useful if calling
+from other functions). A \code{text} should be a character vector where every
+element is a line of the original source (like provided by \code{\link[base:readLines]{base::readLines()}});
+although if a character vector of one element \emph{and} including at least one
+newline character (\code{\\n}) is provided as \code{text}, it is split at the newline
+characters using \code{\link[base:strsplit]{base::strsplit()}}. Basically, this behavior means that the
+first argument can be either a character vector or the path to a file; and if
+you're specifying a file and you want to be certain that an error is thrown if
+it doesn't exist, make sure to name it \code{file}.}
 
 \item{x}{The parsed \code{parsed_dct} object.}
 
@@ -73,7 +79,9 @@ characters using \code{\link[base:strsplit]{base::strsplit()}}.}
 }
 \value{
 An object with the \link[DiagrammeR:DiagrammeR]{DiagrammeR::DiagrammeR} graph stored
-in \code{output$graph} and the instructions in \code{output$instr}.
+in \code{output$basic_graph}, a \link[DiagrammeR:DiagrammeR]{DiagrammeR::DiagrammeR} graph with a summary
+of which specifications are provided for each construct in
+\code{output$completeness_graph} and the instructions in \code{output$instr}.
 }
 \description{
 These function load DCT specifications from the YAML fragments
