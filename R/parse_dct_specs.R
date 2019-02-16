@@ -1,29 +1,3 @@
-#' Parse DCT specifications
-#'
-#' This function parses DCT specifications into a visual
-#' representation as a [DiagrammeR::DiagrammeR] graph and
-#' Markdown documents with the instructions for creating
-#' measurement instruments or manipulations, and for coding
-#' measurement instruments, manipulations, or aspects of
-#' a construct.
-#'
-#' This function is called by [process_dir()]; it is normally not
-#' necessary to call this function directly.
-#'
-#' @param dctSpecs A list of lists of DCT specifications (class
-#' `dctRawSpecListSet`), a list of DCT specifications (class
-#' `dtcRawSpecList`) or a DCT specification (class `dtcRawSpec`).
-#' @param arrowDirection The direction of the arrows in the visual representation
-#' of the distributed construct taxonomy; either `forward`, `back`, `both`, or `none`.
-#' @param x The parsed `parsed_dct` object.
-#' @param ... Any other arguments are passed to the print command.
-#'
-#' @return An object with the [DiagrammeR::DiagrammeR] graph stored
-#' in `output$graph` and the instructions in `output$instr`.
-#' @rdname parse_dct_specs
-#' @examples extractedSpecs <- extract_dct_specs(text=unlist(strsplit(dct::example_dct_spec, '\n')));
-#' parse_dct_specs(extractedSpecs);
-#' @export
 parse_dct_specs <- function(dctSpecs,
                             arrowDirection = "forward") {
 
@@ -33,27 +7,26 @@ parse_dct_specs <- function(dctSpecs,
   ### Start parsing and organising the DCT specifications
   ###--------------------------------------------------------------------------
 
-  ### If we have specification lists from multiple files,
-  ### flatten them by removing the file level
-  if ("dctRawSpecListSet" %in% class(dctSpecs)) {
-    dctSpecs <-
-      structure(unlist(dctSpecs,
-                       recursive=FALSE),
-                class="dtcRawSpecList");
-  } else if ("dtcRawSpec" %in% class(dctSpecs)) {
-    dctSpecs <-
-      structure(list(dctSpecs),
-                class="dtcRawSpecList");
-  } else if (!("dtcRawSpecList" %in% class(dctSpecs))) {
-    stop("Only provide an object of class `dtcRawSpec`,
-         `dtcRawSpecList`, or `dctRawSpecListSet`!.");
-  }
+  ### yum::load_yaml_fragments always returns a list where each element
+  ### corresponds to one YAML fragment. Because we normally pass a 'select'
+  ### argument (the `dctContainer` argument to this function), only the objects
+  ### in that list with that name will be preserved.
+  ###
+  ### Therefore, we remove two layers of the list to simply get a list of all
+  ### DCT specifications.
+  dctSpecs <-
+    unlist(unlist(dctSpecs,
+                  recursive=FALSE),
+           recursive=FALSE);
+  names(dctSpecs) <-
+    purrr::map_chr(dctSpecs,
+                   'id');
 
   ### Extract 'special' variables: identifier and parents
   dctSpecIds <-
     purrr::map_chr(dctSpecs, 'id');
   dctSpecParentList <-
-    lapply(purrr::map(dctSpecs, 'parent'),
+    lapply(purrr::map(dctSpecs, 'parentId'),
            unlist);
   names(dctSpecParentList) <-
     dctSpecIds;
@@ -62,7 +35,7 @@ parse_dct_specs <- function(dctSpecs,
   dctSpecUniqueIds <-
     unique(dctSpecIds);
 
-  # Combine all specified parents in vectors for each id
+  ### Combine all specified parents in vectors for each id
   dctSpecParents <- list();
   for (currentId in dctSpecUniqueIds) {
     if (!is.null(dctSpecParentList[[currentId]])) {
@@ -72,9 +45,12 @@ parse_dct_specs <- function(dctSpecs,
   }
 
   ### Order chronologically
-  dctSpecs <-
-    dctSpecs[order(unlist(purrr::map(dctSpecs,
-                                     'datetime')))];
+  dctSpecDates <-
+    unlist(purrr::map(dctSpecs,
+                      'datetime'));
+  if (length(dctSpecDates) == length(dctSpecs)) {
+    dctSpecs <- dctSpecs[dctSpecDates];
+  }
 
   ###--------------------------------------------------------------------------
   ### Prepare node and edge dataframes for DiagrammeR graph
@@ -147,7 +123,8 @@ parse_dct_specs <- function(dctSpecs,
                                to = id2row[unname(unlist(dctSpecParents))],
                                rel = "changes");
 
-  edge_df <- edge_df[stats::complete.cases(edge_df), ];
+  edge_df <-
+    edge_df[stats::complete.cases(edge_df), ];
 
   ###--------------------------------------------------------------------------
   ### Generate basic DiagrammeR graph
@@ -159,17 +136,17 @@ parse_dct_specs <- function(dctSpecs,
 
   ### Set attributes for rendering
   dctGraph <-
-    dct::apply_graph_theme(dctGraph,
-                           c("layout", "dot", "graph"),
-                           c("rankdir", "LR", "graph"),
-                           c("outputorder", "nodesfirst", "graph"),
-                           c("fixedsize", "false", "node"),
-                           c("shape", "box", "node"),
-                           c("style", "rounded,filled", "node"),
-                           c("color", "#000000", "node"),
-                           c("color", "#888888", "edge"),
-                           c("dir", arrowDirection, "edge"),
-                           c("fillcolor", "#FFFFFF", "node"));
+    apply_graph_theme(dctGraph,
+                      c("layout", "dot", "graph"),
+                      c("rankdir", "LR", "graph"),
+                      c("outputorder", "nodesfirst", "graph"),
+                      c("fixedsize", "false", "node"),
+                      c("shape", "box", "node"),
+                      c("style", "rounded,filled", "node"),
+                      c("color", "#000000", "node"),
+                      c("color", "#888888", "edge"),
+                      c("dir", arrowDirection, "edge"),
+                      c("fillcolor", "#FFFFFF", "node"));
 
   ###--------------------------------------------------------------------------
   ### Generate completeness DiagrammeR graph
@@ -193,8 +170,8 @@ parse_dct_specs <- function(dctSpecs,
                                   "-",
                                   "Included"), "\n",
            "Measure (dev): ", ifelse(is.null(node_df$measure_dev_instr) | is.na(node_df$measure_dev_instr),
-                                      "-",
-                                      "Included"), "\n",
+                                     "-",
+                                     "Included"), "\n",
            "Change (dev): ", ifelse(is.null(node_df$manipulate_dev_instr) | is.na(node_df$manipulate_dev_instr),
                                     "-",
                                     "Included"), "\n",
@@ -221,17 +198,17 @@ parse_dct_specs <- function(dctSpecs,
 
   ### Set attributes for rendering
   completeness_dctGraph <-
-    dct::apply_graph_theme(completeness_dctGraph,
-                           c("layout", "dot", "graph"),
-                           c("rankdir", "LR", "graph"),
-                           c("outputorder", "nodesfirst", "graph"),
-                           c("fixedsize", "false", "node"),
-                           c("shape", "box", "node"),
-                           c("style", "rounded,filled", "node"),
-                           c("color", "#000000", "node"),
-                           c("color", "#888888", "edge"),
-                           c("dir", arrowDirection, "edge"),
-                           c("fillcolor", "#FFFFFF", "node"));
+    apply_graph_theme(completeness_dctGraph,
+                      c("layout", "dot", "graph"),
+                      c("rankdir", "LR", "graph"),
+                      c("outputorder", "nodesfirst", "graph"),
+                      c("fixedsize", "false", "node"),
+                      c("shape", "box", "node"),
+                      c("style", "rounded,filled", "node"),
+                      c("color", "#000000", "node"),
+                      c("color", "#888888", "edge"),
+                      c("dir", arrowDirection, "edge"),
+                      c("fillcolor", "#FFFFFF", "node"));
 
   ###--------------------------------------------------------------------------
   ### Overviews with instructions for developing measurement instruments, for
@@ -282,28 +259,6 @@ parse_dct_specs <- function(dctSpecs,
 
   ### Set class and return
   return(structure(res,
-                   class="parsed_dct"));
+                   class="dct_specs"));
 
 }
-
-#' @rdname parse_dct_specs
-#' @method print parsed_dct
-#' @export
-print.parsed_dct <- function(x, ...) {
-  cat("Processed", length(x$intermediate$dctSpecs),
-      "specifications, containing", nrow(x$intermediate$nodes),
-      "distinct constructs. Graph and instructions for",
-      "developing measurement instruments and manipulations and for",
-      "coding measurement instruments, manipulations, and aspects",
-      "are now available in the returned object, if you stored it.");
-  invisible(x);
-}
-
-#' @rdname parse_dct_specs
-#' @method plot parsed_dct
-#' @export
-plot.parsed_dct <- function(x, ...) {
-  DiagrammeR::render_graph(x$output$basic_graph);
-}
-
-

@@ -6,8 +6,9 @@
 #' `node`, or `edge`).
 #'
 #' @return The [DiagrammeR::DiagrammeR] graph.
-#' @examples extractedSpecs <- extract_dct_specs(text=unlist(strsplit(dct::example_dct_spec, '\n')));
-#' dctGraph <- parse_dct_specs(extractedSpecs)$output$graph
+#' @examples
+#' parsedSpecs <- load_dct_specs(text=dct::example_dct_spec);
+#' dctGraph <- parsedSpecs$output$basic_graph;
 #' dctGraph <- apply_graph_theme(dctGraph,
 #'                               c("color", "#0000AA", "node"),
 #'                               c("fillcolor", "#00FFFF", "node"));

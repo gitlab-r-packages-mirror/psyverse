@@ -1,0 +1,45 @@
+---
+dct:
+  -
+    id: intention_71vr5q3q
+    label: Intention
+    date: 2018-12-13
+    source:
+      name: Reasoned Action Approach
+      id: ISBN
+    def:
+      def: The readiness to engage in the behavior, incorporating concepts such as willingness, behavioral expectation, and trying.
+      id: pp. 43
+    measure_dev:
+      instr: Use a likert scale to ask participants to what degree they intend to, are willing to, or plan to perform the target behavior.
+      source:
+        spec: p. 463
+    measure_code: 
+      instr: Operationalisations that measure the degree to which [target population] have a deliberate (reasoned) plan/intention to engage in [target behavior].
+    aspect_code:
+      instr: Any expressions that somebody has the intention, goal, or plan to perform a target behavior.
+    parentId: behavior_xl67k7w8j
+    alterId:
+---
+
+dfhffhhffhd h ffsh fs
+fhs df 
+hf f shsf 
+
+
+fsh  shf
+
+---
+justifier:
+  -
+    id: decision1
+    project-id: wim
+    name: list finalization study recruitment
+    date: 2018-09-12
+    actors: ['Kok, Gerjo', 'Peters, Louk', 'Crutzen, Rik', 'Peters, Gjalt-Jorn']
+    description: We decided to blablabla
+    alternatives: ['only invite people we know', 'cast a wide net']
+    choice: 2
+    justification: more inclusive
+    specifications:
+---
