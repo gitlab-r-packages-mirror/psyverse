@@ -1,7 +1,12 @@
 ^codecov\.yml$
-^.*\.Rproj$
-^\.Rproj\.user$
+^LICENSE\.md$
 ^\.travis\.yml$
-
-docs
-delete
+^\.gitlab-ci\.yml$
+^_pkgdown\.yml$
+^README\.Rmd$
+\.Rproj$
+^\.Rproj\.user$
+^docs/
+^public/
+^docs/
+^delete/
