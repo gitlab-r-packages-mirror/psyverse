@@ -1,4 +1,5 @@
 variables:
+  CODECOV_TOKEN: "becdbadb-d1dc-4329-acda-37ff64d075cc"
   _R_CHECK_CRAN_INCOMING_: "false"
   _R_CHECK_FORCE_SUGGESTS_: "true"
   APT_PKGS: "libcurl4-openssl-dev libssh2-1-dev libssl-dev libxml2-dev zlib1g-dev git"
@@ -29,3 +30,20 @@ devtools-check:
     - R -e 'devtools::check()'
   tags:
     - docker
+
+
+coverage:
+  stage: deploy
+  tags:
+    - docker
+  image: rocker/tidyverse
+  when: on_success
+  only:
+    - master
+  script:
+    - install2.r covr
+    - R -e 'install.packages(c("DiagrammeR", "purrr", "yaml", "data.tree"))'
+    - R -e 'install.packages(c("devtools", "covr", "testthat", "here"))'
+    - R -e 'devtools::install()'
+    - R -e 'covr::codecov(type = c("tests", "examples"), quiet = FALSE)'
+
