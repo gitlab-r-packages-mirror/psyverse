@@ -26,7 +26,8 @@ load_dct_dir <- function(path,
   ###--------------------------------------------------------------------------
 
   dctSpecList <-
-    yum::load_yaml_dir(path=path,
+    yum::load_and_simplify_dir(path=path,
+    #yum::load_yaml_dir(path=path,
                        recursive=recursive,
                        fileRegexes = regex,
                        select=dctContainer,
@@ -36,9 +37,9 @@ load_dct_dir <- function(path,
                        silent=silent);
 
   ### Remove 'file' level
-  dctSpecs <-
-    unlist(dctSpecList,
-           recursive=FALSE);
+  # dctSpecs <-
+  #   unlist(dctSpecList,
+  #          recursive=FALSE);
 
   ###--------------------------------------------------------------------------
   ### Parse DCT specifications and return result

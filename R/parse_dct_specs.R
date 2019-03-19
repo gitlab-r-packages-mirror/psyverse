@@ -14,10 +14,13 @@ parse_dct_specs <- function(dctSpecs,
   ###
   ### Therefore, we remove two layers of the list to simply get a list of all
   ### DCT specifications.
-  dctSpecs <-
-    unlist(unlist(dctSpecs,
-                  recursive=FALSE),
-           recursive=FALSE);
+  # dctSpecs <-
+  #   unlist(unlist(dctSpecs,
+  #                 recursive=FALSE),
+  #          recursive=FALSE);
+  ###
+  ### This bit above became redundant because we used yum's simplification
+
   names(dctSpecs) <-
     purrr::map_chr(dctSpecs,
                    'id');
