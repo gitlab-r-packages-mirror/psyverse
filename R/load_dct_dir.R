@@ -25,8 +25,9 @@ load_dct_dir <- function(path,
   ### Load the YAML fragments containing the DCT specifications
   ###--------------------------------------------------------------------------
 
-  dctSpecList <-
+  dctSpecs <-
     yum::load_and_simplify_dir(path=path,
+  #dctSpecList <-
     #yum::load_yaml_dir(path=path,
                        recursive=recursive,
                        fileRegexes = regex,
