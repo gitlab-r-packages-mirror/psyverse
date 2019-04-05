@@ -1,4 +1,4 @@
-generate_instruction_overview <- function(dtcSpecDf,
+generate_instruction_overview <- function(dctSpecDf,
                                           type,
                                           title = paste0("Instructions for", type)) {
   typeInstr <- paste0(type, "_instr");
@@ -6,7 +6,7 @@ generate_instruction_overview <- function(dtcSpecDf,
     c(paste0("# ", title),
       format(Sys.time(), '*Generated at %H:%M:%S on %Y-%m-%d %Z (GMT%z)*'),
       "",
-      apply(dtcSpecDf[order(dtcSpecDf$label), ],
+      apply(dctSpecDf[order(dctSpecDf$label), ],
             1,
             function(spec) {
               return(c(paste("##", spec['label']),

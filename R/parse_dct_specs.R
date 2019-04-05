@@ -160,6 +160,7 @@ parse_dct_specs <- function(dctSpecs,
            "Definition: ", node_df$def_def, "\n",
            "Measure (dev): ", node_df$measure_dev_instr, "\n",
            "Change (dev): ", node_df$manipulate_dev_instr, "\n",
+           "Aspect (elicit): ", node_df$manipulate_elicit_instr, "\n",
            "Measure (code): ", node_df$measure_code_instr, "\n",
            "Change (code): ", node_df$manipulate_code_instr, "\n",
            "Aspect (code): ", node_df$aspect_code_instr);
@@ -178,6 +179,9 @@ parse_dct_specs <- function(dctSpecs,
            "Change (dev): ", ifelse(is.null(node_df$manipulate_dev_instr) | is.na(node_df$manipulate_dev_instr),
                                     "-",
                                     "Included"), "\n",
+           "Aspect (elicit): ", ifelse(is.null(node_df$aspect_elicit_instr) | is.na(node_df$aspect_elicit_instr),
+                                     "-",
+                                     "Included"), "\n",
            "Measure (code): ", ifelse(is.null(node_df$measure_code_instr) | is.na(node_df$measure_code_instr),
                                       "-",
                                       "Included"), "\n",
@@ -238,6 +242,11 @@ parse_dct_specs <- function(dctSpecs,
     generate_instruction_overview(node_df,
                                   type="manipulate_code",
                                   title = "Instructions for the coding of existing manipulations");
+
+  aspect_code <-
+    generate_instruction_overview(node_df,
+                                  type="aspect_elicit",
+                                  title = "Instructions for the elicitation of aspects");
 
   aspect_code <-
     generate_instruction_overview(node_df,
