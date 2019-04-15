@@ -96,10 +96,11 @@ parse_dct_specs <- function(dctSpecs,
       if (!is.null(names(dctSpec[[element]]))) {
         ### The fields are named
         if (length(dctSpec[[element]]) == 1) {
-          node_df[id2row[dctSpec$id], paste0(element,
-                                             "_",
-                                             names(dctSpec[[element]]))] <-
-            dctSpec[[element]][[1]];
+          node_df[id2row[dctSpec$id],
+                  paste0(element,
+                         "_",
+                         names(dctSpec[[element]]))] <-
+            dctSpec[[element]][[1]] %||% "";
         }
       } else if (is.null(unlist(dctSpec[[element]]))) {
         node_df[id2row[dctSpec$id], element] <-
