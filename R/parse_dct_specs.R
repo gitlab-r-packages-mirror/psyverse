@@ -28,6 +28,23 @@ parse_dct_specs <- function(dctSpecs,
   ### Extract 'special' variables: identifier and parents
   dctSpecIds <-
     purrr::map_chr(dctSpecs, 'id');
+
+
+
+
+
+
+
+  ### If in the 'rel' list, a 'type' is causal_influences_unspecified,
+  ### also add that as a parent.
+
+
+
+
+
+
+
+
   dctSpecParentList <-
     lapply(purrr::map(dctSpecs, 'parentId'),
            unlist);
@@ -59,7 +76,7 @@ parse_dct_specs <- function(dctSpecs,
   ### Prepare node and edge dataframes for DiagrammeR graph
   ###--------------------------------------------------------------------------
 
-  ### create pre node df that we will then fill with info from
+  ### Create pre node df that we will then fill with info from
   ### the DCT specs
   node_df <-
     data.frame(id = seq_along(dctSpecUniqueIds),
@@ -76,7 +93,15 @@ parse_dct_specs <- function(dctSpecs,
                                                'name',
                                                'parent')))) {
 
-      if (is.null(unlist(dctSpec[[element]]))) {
+      if (!is.null(names(dctSpec[[element]]))) {
+        ### The fields are named
+        if (length(dctSpec[[element]]) == 1) {
+          node_df[id2row[dctSpec$id], paste0(element,
+                                             "_",
+                                             names(dctSpec[[element]]))] <-
+            dctSpec[[element]][[1]];
+        }
+      } else if (is.null(unlist(dctSpec[[element]]))) {
         node_df[id2row[dctSpec$id], element] <-
           "";
       } else if (length(unlist(dctSpec[[element]])) == 1) {
