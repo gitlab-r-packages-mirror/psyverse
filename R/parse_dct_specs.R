@@ -184,12 +184,12 @@ parse_dct_specs <- function(dctSpecs,
   node_df$fullInstructions <-
     paste0(node_df$label, "\n",
            "Definition: ", node_df$def_def, "\n",
-           "Measure (dev): ", node_df$measure_dev_instr, "\n",
-           "Change (dev): ", node_df$manipulate_dev_instr, "\n",
-           "Aspect (elicit): ", node_df$manipulate_elicit_instr, "\n",
-           "Measure (code): ", node_df$measure_code_instr, "\n",
-           "Change (code): ", node_df$manipulate_code_instr, "\n",
-           "Aspect (code): ", node_df$aspect_code_instr);
+           "Measure (dev): ", node_df$measure_dev_instruction, "\n",
+           "Change (dev): ", node_df$manipulate_dev_instruction, "\n",
+           "Aspect (elicit): ", node_df$manipulate_elicit_instruction, "\n",
+           "Measure (code): ", node_df$measure_code_instruction, "\n",
+           "Change (code): ", node_df$manipulate_code_instruction, "\n",
+           "Aspect (code): ", node_df$aspect_code_instruction);
 
   node_df$fullInstructions <-
     sanitize_for_DiagrammeR(node_df$fullInstructions);
@@ -199,22 +199,22 @@ parse_dct_specs <- function(dctSpecs,
            "Definition: ", ifelse(is.null(node_df$def_def) | is.na(node_df$def_def),
                                   "-",
                                   "Included"), "\n",
-           "Measure (dev): ", ifelse(is.null(node_df$measure_dev_instr) | is.na(node_df$measure_dev_instr),
+           "Measure (dev): ", ifelse(is.null(node_df$measure_dev_instruction) | is.na(node_df$measure_dev_instruction),
                                      "-",
                                      "Included"), "\n",
-           "Change (dev): ", ifelse(is.null(node_df$manipulate_dev_instr) | is.na(node_df$manipulate_dev_instr),
+           "Change (dev): ", ifelse(is.null(node_df$manipulate_dev_instruction) | is.na(node_df$manipulate_dev_instruction),
                                     "-",
                                     "Included"), "\n",
-           "Aspect (elicit): ", ifelse(is.null(node_df$aspect_elicit_instr) | is.na(node_df$aspect_elicit_instr),
+           "Aspect (elicit): ", ifelse(is.null(node_df$aspect_elicit_instruction) | is.na(node_df$aspect_elicit_instruction),
                                      "-",
                                      "Included"), "\n",
-           "Measure (code): ", ifelse(is.null(node_df$measure_code_instr) | is.na(node_df$measure_code_instr),
+           "Measure (code): ", ifelse(is.null(node_df$measure_code_instruction) | is.na(node_df$measure_code_instruction),
                                       "-",
                                       "Included"), "\n",
-           "Change (code): ", ifelse(is.null(node_df$manipulate_code_instr) | is.na(node_df$manipulate_code_instr),
+           "Change (code): ", ifelse(is.null(node_df$manipulate_code_instruction) | is.na(node_df$manipulate_code_instruction),
                                      "-",
                                      "Included"), "\n",
-           "Aspect (code): ", ifelse(is.null(node_df$aspect_code_instr) | is.na(node_df$aspect_code_instr),
+           "Aspect (code): ", ifelse(is.null(node_df$aspect_code_instruction) | is.na(node_df$aspect_code_instruction),
                                      "-",
                                      "Included"));
 
@@ -271,7 +271,7 @@ parse_dct_specs <- function(dctSpecs,
 
   aspect_code <-
     generate_instruction_overview(node_df,
-                                  type="aspect_elicit",
+                                  type="aspect_dev",
                                   title = "Instructions for the elicitation of aspects");
 
   aspect_code <-
