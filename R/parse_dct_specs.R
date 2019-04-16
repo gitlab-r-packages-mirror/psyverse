@@ -109,7 +109,7 @@ parse_dct_specs <- function(dctSpecs,
                     paste0(element,
                            "_",
                            names(dctSpec[[element]]))] <-
-              dctSpec[[element]][[names(dctSpec[[element]])]] %||% "";
+              dctSpec[[element]] %||% "";
           } else {
             ### This is the most complicated version; we need to collapse
             ### deeper elements
