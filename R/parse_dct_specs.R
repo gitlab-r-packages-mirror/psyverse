@@ -205,7 +205,7 @@ parse_dct_specs <- function(dctSpecs,
            "Change (dev): ", ifelse(is.null(node_df$manipulate_dev_instruction) | is.na(node_df$manipulate_dev_instruction),
                                     "-",
                                     "Included"), "\n",
-           "Aspect (elicit): ", ifelse(is.null(node_df$aspect_elicit_instruction) | is.na(node_df$aspect_elicit_instruction),
+           "Aspect (dev): ", ifelse(is.null(node_df$aspect_dev_instruction) | is.na(node_df$aspect_dev_instruction),
                                      "-",
                                      "Included"), "\n",
            "Measure (code): ", ifelse(is.null(node_df$measure_code_instruction) | is.na(node_df$measure_code_instruction),
@@ -293,6 +293,7 @@ parse_dct_specs <- function(dctSpecs,
                                   measure_code = measure_code,
                                   manipulate_dev = manipulate_dev,
                                   manipulate_code = manipulate_code,
+                                  aspect_dev = aspect_dev,
                                   aspect_code = aspect_code));
 
   ### Set class and return
