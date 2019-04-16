@@ -269,7 +269,7 @@ parse_dct_specs <- function(dctSpecs,
                                   type="manipulate_code",
                                   title = "Instructions for the coding of existing manipulations");
 
-  aspect_code <-
+  aspect_dev <-
     generate_instruction_overview(node_df,
                                   type="aspect_dev",
                                   title = "Instructions for the elicitation of aspects");
