@@ -20,7 +20,7 @@ generate_instruction_overview <- function(dctSpecDf,
               }
               return(c(paste("##", spec['label']),
                        extraInfo,
-                       ifelse(is.null(spec[typeInstr]) || is.na(spec[typeInstr]),
+                       ifelse(is.null(spec[typeInstr]) || is.na(spec[typeInstr]) || (nchar(spec[typeInstr])==0),
                               "*(Not specified)*",
                               spec[typeInstr]),
                        ""));
