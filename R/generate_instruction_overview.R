@@ -11,6 +11,7 @@ generate_instruction_overview <- function(dctSpecDf,
             1,
             function(spec) {
               return(c(paste("##", spec['label']),
+                       paste0("*Code with code: `", spec['id'], "`."),
                        "",
                        ifelse(is.null(spec[typeInstr]),
                               "*(Not specified)*",
