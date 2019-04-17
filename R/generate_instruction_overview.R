@@ -12,7 +12,7 @@ generate_instruction_overview <- function(dctSpecDf,
             function(spec) {
               if (type == "aspect_code") {
                 extraInfo <-
-                  c(paste0("*When coding aspects, use the following code (including square brackets): **`[dct:", spec['dct_id'], "]`***"),
+                  c(paste0("*When coding aspects, use the following code: **`dct:", spec['dct_id'], "`***"),
                     "");
               } else {
                 extraInfo <-
@@ -20,7 +20,7 @@ generate_instruction_overview <- function(dctSpecDf,
               }
               return(c(paste("##", spec['label']),
                        extraInfo,
-                       ifelse(is.null(spec[typeInstr]),
+                       ifelse(is.null(spec[typeInstr]) || is.na(spec[typeInstr]),
                               "*(Not specified)*",
                               spec[typeInstr]),
                        ""));
