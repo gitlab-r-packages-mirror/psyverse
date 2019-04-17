@@ -94,6 +94,12 @@ parse_dct_specs <- function(dctSpecs,
                                                'parent')))) {
 
       if (!is.null(names(dctSpec[[element]]))) {
+        if (('instruction' %in% names(dctSpec[[element]])) && !is.null(dctSpec[[element]][['instruction']])) {
+          node_df[id2row[dctSpec$id],
+                  paste0(element,
+                         "_instruction")] <-
+            dctSpec[[element]]['instruction'];
+        }
         ### The fields are named
         if (length(dctSpec[[element]]) == 1) {
           ### Just one field; simply set it with its name
@@ -103,17 +109,20 @@ parse_dct_specs <- function(dctSpecs,
                          names(dctSpec[[element]]))] <-
             dctSpec[[element]][[1]] %||% "";
         } else {
-          ### Multiple names fields; check whether they're all single values
-          if (all(unlist(lapply(dctSpec[[element]], length))==1)) {
-            node_df[id2row[dctSpec$id],
-                    paste0(element,
-                           "_",
-                           names(dctSpec[[element]]))] <-
-              dctSpec[[element]] %||% "";
-          } else {
-            ### This is the most complicated version; we need to collapse
-            ### deeper elements
-          }
+          # ### Multiple names fields; check whether they're all single values
+          # if (all(unlist(lapply(dctSpec[[element]], length))==1)) {
+          #   print(element);
+          #   print(names(dctSpec[[element]]));
+          #   print(dctSpec[[element]]);
+          #   node_df[id2row[dctSpec$id],
+          #           paste0(element,
+          #                  "_",
+          #                  names(dctSpec[[element]]))] <-
+          #     unlist(dctSpec[[element]]);
+          # } else {
+          #   ### This is the most complicated version; we need to collapse
+          #   ### deeper elements
+          # }
         }
       } else if (is.null(unlist(dctSpec[[element]]))) {
         node_df[id2row[dctSpec$id], element] <-
