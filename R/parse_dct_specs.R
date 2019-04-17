@@ -25,44 +25,32 @@ parse_dct_specs <- function(dctSpecs,
     purrr::map_chr(dctSpecs,
                    'id');
 
-  ### Extract 'special' variables: identifier and parents
+  ### Extract identifiers
   dctSpecIds <-
     purrr::map_chr(dctSpecs, 'id');
-
-
-
-
-
 
 
   ### If in the 'rel' list, a 'type' is causal_influences_unspecified,
   ### also add that as a parent.
 
-
-
-
-
-
-
-
-  dctSpecParentList <-
-    lapply(purrr::map(dctSpecs, 'parentId'),
-           unlist);
-  names(dctSpecParentList) <-
-    dctSpecIds;
+  # dctSpecParentList <-
+  #   lapply(purrr::map(dctSpecs, 'parentId'),
+  #          unlist);
+  # names(dctSpecParentList) <-
+  #   dctSpecIds;
 
   ### Get a list of unique identifiers to build the node dataframe
   dctSpecUniqueIds <-
     unique(dctSpecIds);
 
   ### Combine all specified parents in vectors for each id
-  dctSpecParents <- list();
-  for (currentId in dctSpecUniqueIds) {
-    if (!is.null(dctSpecParentList[[currentId]])) {
-      dctSpecParents[[currentId]] <-
-        unname(dctSpecParentList[[currentId]]);
-    }
-  }
+  # dctSpecParents <- list();
+  # for (currentId in dctSpecUniqueIds) {
+  #   if (!is.null(dctSpecParentList[[currentId]])) {
+  #     dctSpecParents[[currentId]] <-
+  #       unname(dctSpecParentList[[currentId]]);
+  #   }
+  # }
 
   ### Order chronologically
   dctSpecDates <-
@@ -167,12 +155,53 @@ parse_dct_specs <- function(dctSpecs,
                                    'type',
                                    'label')))];
 
-  ### Create edge dataframe with arrows to parent(s)
+  ###
+  ### Process relationships
+  ###
+
+  edge_df_input <- data.frame();
+  for (dctSpec in dctSpecs) {
+    if ('rel' %in% names(dctSpec)) {
+      if (is.list(dctSpec)) {
+        rel <- dctSpec[['rel']];
+        dct_id <- dctSpec[['id']];
+      } else {
+        rel <- dctSpec['rel'];
+        dct_id <- dctSpec['id'];
+      }
+      ### 'Homogenize' input (sometimes people
+      ### specify only one relationship, without
+      ### the dash in YAML).
+      if (!is.null(names(rel))) {
+        rel <- list(rel);
+      }
+      edge_df_input <-
+        rbind(edge_df_input,
+              matrix(unlist(lapply(rel,
+                               function(x) {
+                                 res <-
+                                   list(unname(id2row[dct_id]),
+                                        unname(id2row[x$id]),
+                                        x$type);
+                                 return(res);
+                               })),
+                     ncol=3));
+    }
+  }
+
+  edge_df_input <-
+    as.data.frame(edge_df_input);
+
+  names(edge_df_input) <-
+    c('from',
+      'to',
+      'rel');
+
+  ### Create DiagrammeR edge dataframe
   edge_df <-
-    DiagrammeR::create_edge_df(from = id2row[rep(names(dctSpecParents),
-                                                 purrr::map_dbl(dctSpecParents, length))],
-                               to = id2row[unname(unlist(dctSpecParents))],
-                               rel = "changes");
+    DiagrammeR::create_edge_df(from = as.numeric(as.character(edge_df_input$from)),
+                               to = as.numeric(as.character(edge_df_input$to)),
+                               rel = as.character(edge_df_input$rel));
 
   edge_df <-
     edge_df[stats::complete.cases(edge_df), ];
