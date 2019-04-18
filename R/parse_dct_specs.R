@@ -1,4 +1,5 @@
 parse_dct_specs <- function(dctSpecs,
+                            headingLevel = 2,
                             arrowDirection = "forward") {
 
   res <- list(input = as.list(environment()));
@@ -59,6 +60,43 @@ parse_dct_specs <- function(dctSpecs,
   if (length(dctSpecDates) == length(dctSpecs)) {
     dctSpecs <- dctSpecs[dctSpecDates];
   }
+
+  ###--------------------------------------------------------------------------
+  ### Do some cleaning up in case shorthands are used
+  ###--------------------------------------------------------------------------
+
+  dctSpecs <-
+    lapply(dctSpecs,
+           function(spec) {
+             ### Specifying only one character value is shorthand for
+             ### specifying an instruction only.
+             for (currentCheck in c('measure_dev',
+                                    'measure_code',
+                                    'manipulate_dev',
+                                    'manipulate_code',
+                                    'aspect_dev',
+                                    'aspect_code')) {
+               if (!is.null(spec[[currentCheck]]) &&
+                   !is.list(spec[[currentCheck]]) &&
+                   is.character(spec[[currentCheck]])) {
+                 if (length(spec[[currentCheck]]) == 1) {
+                   spec[[currentCheck]] <- list(instruction = spec[[currentCheck]]);
+                 } else {
+                   stop("STILL HAVE TO ADD A NEAT NICE WARNING HERE!!!");
+                 }
+               }
+             }
+             if (!is.null(spec$definition) &&
+                 !is.list(spec$definition) &&
+                 is.character(spec$definition)) {
+               if (length(spec$definition) == 1) {
+                 spec$definition <- list(definition = spec$definition);
+               } else {
+                 stop("STILL HAVE TO ADD A NEAT NICE WARNING HERE!!!");
+               }
+             }
+             return(spec);
+           });
 
   ###--------------------------------------------------------------------------
   ### Prepare node and edge dataframes for DiagrammeR graph
@@ -190,14 +228,18 @@ parse_dct_specs <- function(dctSpecs,
   }
 
   edge_df_input <-
-    as.data.frame(edge_df_input);
+    as.data.frame(edge_df_input,
+                  stringsAsFactors=FALSE);
 
   names(edge_df_input) <-
     c('from',
       'to',
       'rel');
 
-  ### Create DiagrammeR edge dataframe
+  ### Create DiagrammeR edge dataframe - note that for some
+  ### odd reason, in the 'edge_df_input' dataframe, the columns
+  ### become factors, so we have to make sure we get the original
+  ### values.
   edge_df <-
     DiagrammeR::create_edge_df(from = as.numeric(as.character(edge_df_input$from)),
                                to = as.numeric(as.character(edge_df_input$to)),
@@ -303,32 +345,42 @@ parse_dct_specs <- function(dctSpecs,
   measure_dev <-
     generate_instruction_overview(node_df,
                                   type="measure_dev",
-                                  title = "Instructions for the development of measurement instruments");
+                                  headingLevel=headingLevel);
 
   measure_code <-
     generate_instruction_overview(node_df,
                                   type="measure_code",
-                                  title = "Instructions for the coding of existing measurment instruments");
+                                  headingLevel=headingLevel);
 
   manipulate_dev <-
     generate_instruction_overview(node_df,
                                   type="manipulate_dev",
-                                  title = "Instructions for the development of manipulations");
+                                  headingLevel=headingLevel);
 
   manipulate_code <-
     generate_instruction_overview(node_df,
                                   type="manipulate_code",
-                                  title = "Instructions for the coding of existing manipulations");
+                                  headingLevel=headingLevel);
 
   aspect_dev <-
     generate_instruction_overview(node_df,
                                   type="aspect_dev",
-                                  title = "Instructions for the elicitation of aspects");
+                                  headingLevel=headingLevel);
 
   aspect_code <-
     generate_instruction_overview(node_df,
                                   type="aspect_code",
-                                  title = "Instructions for the coding of aspects");
+                                  headingLevel=headingLevel);
+
+  ###--------------------------------------------------------------------------
+  ### Overviews per construct, basically a neatly formatted version of the DCT
+  ### specification in YAML
+  ###--------------------------------------------------------------------------
+
+  construct_overviews <-
+    lapply(dctSpecs,
+           generate_construct_overview,
+           headingLevel=headingLevel);
 
   ###--------------------------------------------------------------------------
   ### Return result
@@ -340,6 +392,7 @@ parse_dct_specs <- function(dctSpecs,
                            edges = edge_df);
   res$output <- list(basic_graph = dctGraph,
                      completeness_graph = completeness_dctGraph,
+                     construct_overviews = construct_overviews,
                      instr = list(measure_dev = measure_dev,
                                   measure_code = measure_code,
                                   manipulate_dev = manipulate_dev,
