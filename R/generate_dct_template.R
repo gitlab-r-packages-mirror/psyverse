@@ -1,3 +1,5 @@
+#' @rdname generate_dct_templates
+#' @export
 generate_dct_template <- function(prefix = paste(sample(letters, 4), collapse=""),
                                   output = NULL,
                                   overwrite = FALSE,

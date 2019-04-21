@@ -14,7 +14,7 @@
 example_dct_spec
 
 load_dct_dir(path, recursive = TRUE, extension = "rock|dct", regex,
-  dctContainer = "dct", arrowDirection = "forward",
+  dctContainer = "dct", arrowDirection = "forward", headingLevel = 2,
   delimiterRegEx = "^---$", ignoreOddDelimiters = FALSE,
   encoding = "UTF-8", silent = TRUE)
 
