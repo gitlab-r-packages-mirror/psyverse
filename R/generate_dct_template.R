@@ -1,4 +1,23 @@
-#' @rdname generate_dct_templates
+#' DCT templates
+#'
+#' These functions can generate one or more empty DCT templates.
+#'
+#' @param prefix,x The prefix (`prefix`) or vector of prefixes (`x`) to use.
+#' @param output,outputDir The filename or directory to which to write the
+#' templates.
+#' @param overwrite Whether to overwrite any existing files.
+#' @param createDirs Whether to recursively create the directories if the path
+#' specified in `output` or `outputPath` does not yet exist.
+#' @param addComments Whether to add comments to the DCT specification as extra
+#' explanation.
+#' @param stopOnIllegalChars DCT identifier prefixes can only contain upper- and
+#' lowercase letters and underscores. This argument specifies whether to remove
+#' illegal characters with a warning, or whether to throw an error (and stop) if
+#' illegal characters are found,
+#'
+#' @return The DCT template(s), either invisibly (if `output` or `outputDir` is
+#' specified) or visibly.
+#' @rdname dct_templates
 #' @export
 generate_dct_template <- function(prefix = paste(sample(letters, 4), collapse=""),
                                   output = NULL,

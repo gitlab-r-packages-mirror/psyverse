@@ -1,4 +1,4 @@
-#' @rdname generate_dct_templates
+#' @rdname dct_templates
 #' @export
 generate_dct_templates <- function(x,
                                    outputDir = NULL,
