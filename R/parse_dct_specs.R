@@ -135,7 +135,7 @@ parse_dct_specs <- function(dctSpecs,
                          names(dctSpec[[element]]))] <-
             dctSpec[[element]][[1]] %||% "";
         } else {
-          # ### Multiple names fields; check whether they're all single values
+          # ### Multiple named fields; check whether they're all single values
           # if (all(unlist(lapply(dctSpec[[element]], length))==1)) {
           #   print(element);
           #   print(names(dctSpec[[element]]));
@@ -210,7 +210,7 @@ parse_dct_specs <- function(dctSpecs,
       ### 'Homogenize' input (sometimes people
       ### specify only one relationship, without
       ### the dash in YAML).
-      if (!is.null(names(rel))) {
+      if (is.null(names(rel))) {
         rel <- list(rel);
       }
       edge_df_input <-
