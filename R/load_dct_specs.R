@@ -71,7 +71,7 @@ load_dct_specs <- function(text,
                            file,
                            delimiterRegEx = "^---$",
                            dctContainer = "dct",
-                           arrowDirection = "forward",
+                           headingLevel = 2,
                            ignoreOddDelimiters = FALSE,
                            encoding="UTF-8",
                            silent=TRUE) {
@@ -104,7 +104,7 @@ load_dct_specs <- function(text,
 
   res <-
     parse_dct_specs(dctSpecs,
-                    arrowDirection=arrowDirection);
+                    headingLevel=headingLevel);
 
   return(res);
 

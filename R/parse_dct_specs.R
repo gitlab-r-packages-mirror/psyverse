@@ -1,6 +1,17 @@
+#' Parse DCT specifications
+#'
+#' This function parses DCT specifications; it's normally
+#' called by [load_dct_dir()] or [load_dct_specs()], so you
+#' won't have to use it directly.
+#'
+#' @param dctSpecs The DCT specifications (a list).
+#' @param headingLevel The heading level for Rmd output.
+#'
+#' @return The object of parsed DCT specifications.
+#' @importFrom magrittr %>%
+#' @export
 parse_dct_specs <- function(dctSpecs,
-                            headingLevel = 2,
-                            arrowDirection = "forward") {
+                            headingLevel = 2) {
 
   res <- list(input = as.list(environment()));
 
@@ -210,9 +221,11 @@ parse_dct_specs <- function(dctSpecs,
       ### 'Homogenize' input (sometimes people
       ### specify only one relationship, without
       ### the dash in YAML).
-      if (is.null(names(rel))) {
+
+      if (!is.null(names(rel))) {
         rel <- list(rel);
       }
+
       edge_df_input <-
         rbind(edge_df_input,
               matrix(unlist(lapply(rel,
@@ -223,7 +236,7 @@ parse_dct_specs <- function(dctSpecs,
                                         x$type);
                                  return(res);
                                })),
-                     ncol=3));
+                     ncol=3, byrow=TRUE));
     }
   }
 
@@ -264,11 +277,213 @@ parse_dct_specs <- function(dctSpecs,
                       c("outputorder", "nodesfirst", "graph"),
                       c("fixedsize", "false", "node"),
                       c("shape", "box", "node"),
-                      c("style", "rounded,filled", "node"),
+                      c("style", "filled", "node"),
                       c("color", "#000000", "node"),
-                      c("color", "#888888", "edge"),
-                      c("dir", arrowDirection, "edge"),
+                      c("color", "#000000", "edge"),
+                      c("dir", "forward", "edge"),
                       c("fillcolor", "#FFFFFF", "node"));
+
+  ### -------------------------------------------------------------------------
+  ### Set edge specifications for different relationship types
+  ### -------------------------------------------------------------------------
+
+  setEdgeConditionally <- function(gr,
+                                   edf,
+                                   relVal,
+                                   ...) {
+    relationships <- as.character(edf$rel);
+    if (relVal %in% relationships) {
+      suppressMessages(gr <-
+                         DiagrammeR::clear_selection(gr));
+      suppressMessages(gr <-
+                         DiagrammeR::select_edges(gr,
+                                                  conditions = rel == relVal));
+      for (currentSetting in list(...)) {
+        suppressMessages(gr <-
+                           do.call(DiagrammeR::set_edge_attrs_ws,
+                                   list(gr, currentSetting[1], currentSetting[2])));
+          #DiagrammeR::set_edge_attrs_ws(gr, currentSetting[1], currentSetting[2]));
+      }
+      suppressMessages(gr <- DiagrammeR::clear_selection(gr));
+    }
+    return(gr);
+  }
+
+  ### Causal
+  dctGraph <- setEdgeConditionally(gr  = dctGraph, edf = edge_df,
+                                   relVal = "causal_influences_unspecified",
+                                   c("style", "solid"),
+                                   c("dir", "forward"),
+                                   c("label", ""));
+
+  dctGraph <- setEdgeConditionally(gr  = dctGraph, edf = edge_df,
+                                   relVal = "causal_influences_positive",
+                                   c("style", "solid"),
+                                   c("dir", "forward"),
+                                   c("label", "+"));
+
+  dctGraph <- setEdgeConditionally(gr  = dctGraph, edf = edge_df,
+                                   relVal = "causal_influences_negative",
+                                   c("style", "solid"),
+                                   c("dir", "forward"),
+                                   c("label", "-"));
+
+  dctGraph <- setEdgeConditionally(gr  = dctGraph, edf = edge_df,
+                                   relVal = "causal_influences_unknown",
+                                   c("style", "solid"),
+                                   c("dir", "forward"),
+                                   c("label", "?"));
+
+  dctGraph <- setEdgeConditionally(gr  = dctGraph, edf = edge_df,
+                                   relVal = "causal_influences_product",
+                                   c("style", "solid"),
+                                   c("dir", "forward"),
+                                   c("label", "*"));
+
+  dctGraph <- setEdgeConditionally(gr  = dctGraph, edf = edge_df,
+                                   relVal = "causal_influences_sum",
+                                   c("style", "solid"),
+                                   c("dir", "forward"),
+                                   c("label", "Sum"));
+
+  dctGraph <- setEdgeConditionally(gr  = dctGraph, edf = edge_df,
+                                   relVal = "causal_influences_correlates",
+                                   c("style", "solid"),
+                                   c("dir", "both"),
+                                   c("label", ""));
+
+  # suppressMessages(dctGraph <- dctGraph %>%
+  #                    DiagrammeR::clear_selection()  %>%
+  #                    DiagrammeR::select_edges(conditions = rel == "causal_influences_unspecified") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("style", "solid") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("dir", "forward") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("label", ""));
+  #
+  # suppressMessages(dctGraph <- dctGraph %>%
+  #                    DiagrammeR::clear_selection()  %>%
+  #                    DiagrammeR::select_edges(conditions = rel == "causal_influences_positive") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("style", "solid") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("dir", "forward") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("label", "+"));
+  #
+  # suppressMessages(dctGraph <- dctGraph %>%
+  #                    DiagrammeR::clear_selection()  %>%
+  #                    DiagrammeR::select_edges(conditions = rel == "causal_influences_negative") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("style", "solid") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("dir", "forward") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("label", "-"));
+  #
+  # suppressMessages(dctGraph <- dctGraph %>%
+  #                    DiagrammeR::clear_selection()  %>%
+  #                    DiagrammeR::select_edges(conditions = rel == "causal_influences_unknown") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("style", "solid") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("dir", "forward") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("label", "?"));
+  #
+  # suppressMessages(dctGraph <- dctGraph %>%
+  #                    DiagrammeR::clear_selection()  %>%
+  #                    DiagrammeR::select_edges(conditions = rel == "causal_influences_product") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("style", "solid") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("dir", "forward") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("label", "*"));
+  #
+  # suppressMessages(dctGraph <- dctGraph %>%
+  #                    DiagrammeR::clear_selection()  %>%
+  #                    DiagrammeR::select_edges(conditions = rel == "causal_influences_sum") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("style", "solid") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("dir", "forward") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("label", "Sum"));
+  #
+  #
+  # suppressMessages(dctGraph <- dctGraph %>%
+  #                    DiagrammeR::clear_selection()  %>%
+  #                    DiagrammeR::select_edges(conditions = rel == "causal_correlates") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("style", "solid") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("dir", "both") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("label", ""));
+  #
+  # ### Semantic
+
+  dctGraph <- setEdgeConditionally(gr  = dctGraph, edf = edge_df,
+                                   relVal = "semantic_type_of",
+                                   c("style", "dotted"),
+                                   c("dir", "forward"),
+                                   c("label", "Type of"));
+
+  dctGraph <- setEdgeConditionally(gr  = dctGraph, edf = edge_df,
+                                   relVal = "semantic_value_of",
+                                   c("style", "dotted"),
+                                   c("dir", "forward"),
+                                   c("label", "Value of"));
+
+  dctGraph <- setEdgeConditionally(gr  = dctGraph, edf = edge_df,
+                                   relVal = "semantic_has_attribute",
+                                   c("style", "dotted"),
+                                   c("dir", "forward"),
+                                   c("label", "Has attribute"));
+
+  # suppressMessages(dctGraph <- dctGraph %>%
+  #                    DiagrammeR::clear_selection()  %>%
+  #                    DiagrammeR::select_edges(conditions = rel == "semantic_type_of") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("style", "dotted") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("dir", "forward") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("label", "Type of"));
+  #
+  # suppressMessages(dctGraph <- dctGraph %>%
+  #                    DiagrammeR::clear_selection()  %>%
+  #                    DiagrammeR::select_edges(conditions = rel == "semantic_value_of") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("style", "dotted") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("dir", "forward") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("label", "Value of"));
+  #
+  # suppressMessages(dctGraph <- dctGraph %>%
+  #                    DiagrammeR::clear_selection()  %>%
+  #                    DiagrammeR::select_edges(conditions = rel == "semantic_has_attribute") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("style", "dotted") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("dir", "forward") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("label", "Has attribute"));
+  #
+  # ### Structural
+
+  dctGraph <- setEdgeConditionally(gr  = dctGraph, edf = edge_df,
+                                   relVal = "structural_part_of",
+                                   c("style", "dashed"),
+                                   c("dir", "forward"),
+                                   c("label", "Part of"));
+
+  dctGraph <- setEdgeConditionally(gr  = dctGraph, edf = edge_df,
+                                   relVal = "structural_has_start",
+                                   c("style", "dashed"),
+                                   c("dir", "forward"),
+                                   c("label", "has start"));
+
+  dctGraph <- setEdgeConditionally(gr  = dctGraph, edf = edge_df,
+                                   relVal = "structural_has_end",
+                                   c("style", "dashed"),
+                                   c("dir", "forward"),
+                                   c("label", "has end"));
+
+  # suppressMessages(dctGraph <- dctGraph %>%
+  #                    DiagrammeR::clear_selection()  %>%
+  #                    DiagrammeR::select_edges(conditions = rel == "structural_part_of") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("style", "dashed") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("dir", "forward") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("label", "Part of"));
+  #
+  # suppressMessages(dctGraph <- dctGraph %>%
+  #                    DiagrammeR::clear_selection()  %>%
+  #                    DiagrammeR::select_edges(conditions = rel == "structural_has_start") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("style", "dashed") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("dir", "forward") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("label", "has start"));
+  #
+  # suppressMessages(dctGraph <- dctGraph %>%
+  #                    DiagrammeR::clear_selection()  %>%
+  #                    DiagrammeR::select_edges(conditions = rel == "structural_has_end") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("style", "dashed") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("dir", "forward") %>%
+  #                    DiagrammeR::set_edge_attrs_ws("label", "has end"));
+  #
 
   ###--------------------------------------------------------------------------
   ### Generate completeness DiagrammeR graph
@@ -333,7 +548,7 @@ parse_dct_specs <- function(dctSpecs,
                       c("style", "rounded,filled", "node"),
                       c("color", "#000000", "node"),
                       c("color", "#888888", "edge"),
-                      c("dir", arrowDirection, "edge"),
+                      c("dir", "none", "edge"),
                       c("fillcolor", "#FFFFFF", "node"));
 
   ###--------------------------------------------------------------------------

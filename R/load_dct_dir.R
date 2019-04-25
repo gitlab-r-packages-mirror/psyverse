@@ -5,7 +5,6 @@ load_dct_dir <- function(path,
                          extension = "rock|dct",
                          regex,
                          dctContainer = "dct",
-                         arrowDirection = "forward",
                          headingLevel = 2,
                          delimiterRegEx = "^---$",
                          ignoreOddDelimiters = FALSE,
@@ -49,8 +48,7 @@ load_dct_dir <- function(path,
 
   res <-
     parse_dct_specs(dctSpecs,
-                    headingLevel=headingLevel,
-                    arrowDirection=arrowDirection);
+                    headingLevel=headingLevel);
 
   return(res);
 

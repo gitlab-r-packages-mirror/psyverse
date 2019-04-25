@@ -14,12 +14,11 @@
 example_dct_spec
 
 load_dct_dir(path, recursive = TRUE, extension = "rock|dct", regex,
-  dctContainer = "dct", arrowDirection = "forward", headingLevel = 2,
-  delimiterRegEx = "^---$", ignoreOddDelimiters = FALSE,
-  encoding = "UTF-8", silent = TRUE)
+  dctContainer = "dct", headingLevel = 2, delimiterRegEx = "^---$",
+  ignoreOddDelimiters = FALSE, encoding = "UTF-8", silent = TRUE)
 
 load_dct_specs(text, file, delimiterRegEx = "^---$",
-  dctContainer = "dct", arrowDirection = "forward",
+  dctContainer = "dct", headingLevel = 2,
   ignoreOddDelimiters = FALSE, encoding = "UTF-8", silent = TRUE)
 
 \method{print}{dct_specs}(x, ...)
@@ -43,9 +42,6 @@ takes precedece over \code{extension},}
 fragments. Because only DCT specifications are read that are stored in
 this container, the files can contain YAML fragments with other data, too,
 without interfering with the parsing of the DCT specifications.}
-
-\item{arrowDirection}{The direction of the arrows in the visual representation
-of the distributed construct taxonomy; either \code{forward}, \code{back}, \code{both}, or \code{none}.}
 
 \item{delimiterRegEx}{The regular expression used to locate YAML
 fragments}
@@ -76,6 +72,9 @@ it doesn't exist, make sure to name it \code{file}.}
 \item{x}{The parsed \code{parsed_dct} object.}
 
 \item{...}{Any other arguments are passed to the print command.}
+
+\item{arrowDirection}{The direction of the arrows in the visual representation
+of the distributed construct taxonomy; either \code{forward}, \code{back}, \code{both}, or \code{none}.}
 }
 \value{
 An object with the \link[DiagrammeR:DiagrammeR]{DiagrammeR::DiagrammeR} graph stored
