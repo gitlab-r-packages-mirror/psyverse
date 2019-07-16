@@ -122,12 +122,11 @@ in one (<code>load_dct_specs</code>) or multiple files (<code>load_dct_dir</code
     <pre class="usage"><span class='no'>example_dct_spec</span>
 
 <span class='fu'>load_dct_dir</span>(<span class='no'>path</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>extension</span> <span class='kw'>=</span> <span class='st'>"rock|dct"</span>, <span class='no'>regex</span>,
-  <span class='kw'>dctContainer</span> <span class='kw'>=</span> <span class='st'>"dct"</span>, <span class='kw'>arrowDirection</span> <span class='kw'>=</span> <span class='st'>"forward"</span>,
-  <span class='kw'>delimiterRegEx</span> <span class='kw'>=</span> <span class='st'>"^---$"</span>, <span class='kw'>ignoreOddDelimiters</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>encoding</span> <span class='kw'>=</span> <span class='st'>"UTF-8"</span>, <span class='kw'>silent</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+  <span class='kw'>dctContainer</span> <span class='kw'>=</span> <span class='st'>"dct"</span>, <span class='kw'>headingLevel</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>delimiterRegEx</span> <span class='kw'>=</span> <span class='st'>"^---$"</span>,
+  <span class='kw'>ignoreOddDelimiters</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>encoding</span> <span class='kw'>=</span> <span class='st'>"UTF-8"</span>, <span class='kw'>silent</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
 <span class='fu'>load_dct_specs</span>(<span class='no'>text</span>, <span class='no'>file</span>, <span class='kw'>delimiterRegEx</span> <span class='kw'>=</span> <span class='st'>"^---$"</span>,
-  <span class='kw'>dctContainer</span> <span class='kw'>=</span> <span class='st'>"dct"</span>, <span class='kw'>arrowDirection</span> <span class='kw'>=</span> <span class='st'>"forward"</span>,
+  <span class='kw'>dctContainer</span> <span class='kw'>=</span> <span class='st'>"dct"</span>, <span class='kw'>headingLevel</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='kw'>ignoreOddDelimiters</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>encoding</span> <span class='kw'>=</span> <span class='st'>"UTF-8"</span>, <span class='kw'>silent</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
 <span class='co'># S3 method for dct_specs</span>
@@ -165,11 +164,6 @@ takes precedece over <code>extension</code>,</p></td>
 fragments. Because only DCT specifications are read that are stored in
 this container, the files can contain YAML fragments with other data, too,
 without interfering with the parsing of the DCT specifications.</p></td>
-    </tr>
-    <tr>
-      <th>arrowDirection</th>
-      <td><p>The direction of the arrows in the visual representation
-of the distributed construct taxonomy; either <code>forward</code>, <code>back</code>, <code>both</code>, or <code>none</code>.</p></td>
     </tr>
     <tr>
       <th>delimiterRegEx</th>
@@ -215,6 +209,11 @@ it doesn't exist, make sure to name it <code>file</code>.</p></td>
       <th>...</th>
       <td><p>Any other arguments are passed to the print command.</p></td>
     </tr>
+    <tr>
+      <th>arrowDirection</th>
+      <td><p>The direction of the arrows in the visual representation
+of the distributed construct taxonomy; either <code>forward</code>, <code>back</code>, <code>both</code>, or <code>none</code>.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
@@ -242,7 +241,7 @@ manipulations, or aspects of a construct.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>load_dct_specs</span>(<span class='kw'>text</span><span class='kw'>=</span><span class='no'>example_dct_spec</span>);</div><div class='output co'>#&gt; Processed 1 specifications, containing 1 distinct constructs. Graph and instructions for developing measurement instruments and manipulations and for coding measurement instruments, manipulations, and aspects are now available in the returned object, if you stored it.</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>load_dct_specs</span>(<span class='kw'>text</span><span class='kw'>=</span><span class='no'>example_dct_spec</span>);</div><div class='output co'>#&gt; <span class='error'>Error: Result 1 must be a single string, not NULL of length 0</span></div><div class='input'>
 </div><span class='co'># NOT RUN {</span>
 <span class='kw pkg'>dct</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/dct/topics/load_dct_specs'>load_dct_dir</a></span>(<span class='kw'>path</span><span class='kw'>=</span><span class='st'>"A:/some/path"</span>);
 <span class='co'># }</span><div class='input'>

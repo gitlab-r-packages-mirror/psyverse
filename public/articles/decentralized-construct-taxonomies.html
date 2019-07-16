@@ -73,7 +73,7 @@
       <h1>Decentralized Construct Taxonomies</h1>
                         <h4 class="author">Gjalt-Jorn Ygram Peters</h4>
             
-            <h4 class="date">2019-03-03</h4>
+            <h4 class="date">2019-07-16</h4>
       
       
       <div class="hidden name"><code>decentralized-construct-taxonomies.Rmd</code></div>
@@ -82,65 +82,132 @@
 
     
     
-<p>In psychology, many different guidelines exist for developing measurement instruments and manipulations of constructs. When conducting empirical research or secondary research, therefore, it is important to have a clear idea, and clearly communicate, which guidelines are followed. However, these guidelines are fragmented, and no universal consensus exists regarding how any construct must be measured or manipulated. Therefore, developing one ‘final’ taxonomy is not feasible or even desirable. At the same time, it is important that people clearly communicate their ‘study-specific taxonomy’. The <code>dct</code> package makes it possible to combine these two goals.</p>
+<div id="background" class="section level2">
+<h2 class="hasAnchor">
+<a href="#background" class="anchor"></a>Background</h2>
+<p>In psychology, many different guidelines exist for developing measurement instruments and manipulations of constructs. When conducting empirical research or secondary research, therefore, it is important to have a clear idea, and clearly communicate, which guidelines are followed. However, these guidelines are fragmented, and no universal consensus exists regarding how any construct must be measured or manipulated. Therefore, developing one ‘final’ authoritative list or taxonomy is not feasible or even desirable. At the same time, it is important that people clearly communicate their ‘study-specific taxonomy’. The <code>dct</code> package makes it possible to combine these two goals.</p>
 <p>For more background information on the concept underlying the Decentralized Construct Taxonomies, see the reasoning set out in Peters &amp; Crutzen (2017a, 2017b) and Crutzen &amp; Peters (2018). In brief, in those papers the following premises are postulated:</p>
 <ul>
 <li>Psychological constructs do not exist as such, but instead are useful metaphors that enable communication about, and measurement and manipulation of, aspects of the human psychology.</li>
 <li>These constructs have verying degrees of specificity and levels of aggregation, and are therefore often represented in theories as influencing or causing one another.</li>
 </ul>
 <p>From these premises it follows that is is not feasible (or desirable) to develop one ‘final’ taxonomy of psychological constructs or of manipulations of psychological constructs. Instead, multiple taxonomies exist, each of which has different uses. For example, in behavior change research, one taxonomy has been developed that is well-suited for describing intervention content but that is not useful when developing interventions (Abraham &amp; Michie, 2008), and another that is well-suited for developing interventions, but is in its present form less useful for coding interventions (Kok et al., 2016).</p>
-<p>Similarly, different theories that explain behavior postulate different psychological variables as important predictors of behavior. These variables generally overlap with each other: usually between theories, but also within the same theory. For example, the main three determinants in the Reasoned Action Approach are postulated to correlate (Fishbein &amp; Ajzen, 2010), correlations that are empirically almost impossible to distinguish from structural composition (Peters &amp; Crutzen, 2017a).</p>
-<p>Not only do psychological variables often capture overlapping aspects of the human psychology, operationalisations often vary between studies, languages, target behaviors, and cultures. For example, the heterogeneity in definitions and measurement instrument of self-efficacy has recently been lamented (Williams &amp; Rhodes, 2016a, 2016b), and a recent review of self-identity operationalisations identified hundreds of different items.</p>
-<p>As a consequence of this pluriformity, research syntheses suffer, and in communication about research results, a lot is lost in translation.</p>
-<p>However, given that the constructs in health psychology do not correspond to natural kinds (Fried, 2017), there is no way to settle on ‘the best’ definitions or operationalisations. The opinions and preferences of experienced researchers reflect, to an unknown degree, their training; and therefore, convictions from decades ago. Correlation strengths reflect artefacts such as correlated measurement error that render the assumption that correlation strengths can be used to infer ‘the best’ definitions or operationalisations circumspect.</p>
-<p>However, at the same time there is a need for consistency in communication.</p>
-<p>How can this be realised given that there’s no scientifically justifiable way to identify ‘the best’ definitions or operationalisations?</p>
-<p>This is the problem Decentralized Construct Taxonomies aim to solve.</p>
-<p>DTCs are plain text files that follow a number of conventions that enable unequivocal communication and reference to specific constructs and definitions, as well as their assumed structural composition (which is still assumed to be equivalent to causal influence for all practical purposes).</p>
-<p>A DCT file is a YAML file of the following form:</p>
+<p>Similarly, different theories that explain behavior postulate different psychological variables as important predictors of behavior. These variables generally overlap with each other: usually between theories, but also within the same theory. For example, the main three determinants in the Reasoned Action Approach are postulated to correlate (Fishbein &amp; Ajzen, 2010), correlations that are empirically almost impossible to distinguish from structural composition (Peters &amp; Crutzen, 2017a). Where different theories contain the same construct, they often contain slightly different definitions and have different operationalisational implications.</p>
+<p>However, given that psychological constructs do not correspond to natural kinds (Peters &amp; Crutzen, 2017; also see e.g. Fried, 2017b), there is no way to settle on ‘the best’ definitions or operationalisations. The opinions and preferences of experienced researchers reflect, to an unknown degree, their training; and therefore, convictions from decades ago (which does not necessarily make them wrong; but at the same time does nothing to make it likely that they are right). This problem cannot be solved statistically. For example, correlation strengths also reflect artefacts such as correlated measurement error that render the assumption that correlation strengths can be used to infer ‘the best’ definitions or operationalisations circumspect.</p>
+<p>Perhaps then, it is no surprise that in practice, operationalisations often vary between studies, with studies often using a wide array of items, not to mention the variation in languages, target behaviors, and cultures. For example, a recent review of self-identity operationalisations identified hundreds of different items purportedly measuring the same construct (Snippe, Peters &amp; Kok, 2019). And these different measurement instruments purporting to measure the same construct turn out to measure different things when this claim is tested (see Fried, 2017 for depression; Weidman, Steckler &amp; Tracy, 2017, for emotions; Warnell &amp; Redcay, 2019, for theory of mind; and Williams &amp; Rhodes, 2016a, for self-efficacy; a crowd-sourced list is available at <a href="https://docs.google.com/document/d/1vaq0U3_U2PEgouPLteUjab15aVxyEv2IVdbOxTErkHM" class="uri">https://docs.google.com/document/d/1vaq0U3_U2PEgouPLteUjab15aVxyEv2IVdbOxTErkHM</a>). As a consequence of this pluriformity, research syntheses suffer, and in communication about research results, a lot is lost in translation.</p>
+<p>However, this variation obsered in practice is hard to reconclise with the need for consistency in communication. How can this be realised given that there’s no scientifically justifiable way to identify ‘the best’ definitions or operationalisations?</p>
+<p>This is the problem Decentralized Construct Taxonomies (DCTs) aim to solve.</p>
+</div>
+<div id="decentralized-construct-taxonomies" class="section level2">
+<h2 class="hasAnchor">
+<a href="#decentralized-construct-taxonomies" class="anchor"></a>Decentralized Construct Taxonomies</h2>
+<p>DCTs are plain text files that follow a number of conventions that enable unequivocal communication and reference to specific constructs and definitions, as well as their assumed structural composition (which is still assumed to be equivalent to causal influence for most practical purposes). Specifically, for any given construct, DCTs allow explicit specification of the following:</p>
+<ul>
+<li>Construct metadata:
+<ul>
+<li>The construct’s label (name)</li>
+<li>The date this DCT was produced</li>
+<li>The DCTs version</li>
+</ul>
+</li>
+<li>The construct’s definition</li>
+<li>Construct measurement:
+<ul>
+<li>Instructions for developing a measurement instrument to measure the construct</li>
+<li>Instructions for coding a measurement instrument in systematic reviews</li>
+</ul>
+</li>
+<li>Construct manipulation:
+<ul>
+<li>Instructions for developing a manipulation of the construct</li>
+<li>Instructions for coding a manipulation in systematic reviews</li>
+</ul>
+</li>
+<li>Construct aspects:
+<ul>
+<li>Instructions for eliciting aspects or ‘construct content’ (as in qualitative research)</li>
+<li>Instructions for coding aspects or ‘construct content’ (as in qualitative research)</li>
+</ul>
+</li>
+<li>Relationships to other constructs</li>
+</ul>
+<p>The seven main specifications can be based on a source that can also be specified in a human- an machine readable manner. The definitions should describe exactly what aspects of the human psychology are, and which are not, part of the target construct. The six instructions should provide researchers with what they need to develop or recognize (code) operationalisations (i.e. measurement instruments or manipulations) and to conduct qualitative research to explore the construct, for example in a given context or population (note that this latter approach, while commonplace in health psychology, where theory of commonly applied to a variety of different populations and target behaviors, may not apply or be useful in other areas).</p>
+<p>Of course, these seven specifications should form a coherent, consistent set within each DCT specification. DCTs enable researchers to easily communicate how exactly they define their target constructs, as well as exactly what implications this carries for operationalisation. Other researchers can adopt the exact same definitions (and therefore, normally the same instructions for operationalisation etc) by simply copying the DCT specifications and also publishing them with their paper. Or, alternatively, they can adjust them, or use different ones.</p>
+<p>This is enabled by the DCT identifiers. To enable decentralized specification of DCTs, yet maintain the ability to unequivocally refer to a specific DCT, each DCT specification has an identifier. This identifier is generated by the ‘dct’ R package, and is virtually unique without the need for central oversight. This mechanism ensures that it is possible to refer unequivocally to any given DCT, thereby simultaneously supporting clarity of communication and variation in definitions and operationalisations.</p>
+<p>In addition to facilitating clear communication without imposing the need for central curation, DCTs facilitate building databases of construct definitions and accompanying instructions. A lab or course can collect a set of DCT specifications and simply use the DCT package to compile them into sets of instructions for developing operationalisations, or for coding qualitative data, consistent with the other work done at that lab or institution.</p>
+</div>
+<div id="underlying-technology" class="section level2">
+<h2 class="hasAnchor">
+<a href="#underlying-technology" class="anchor"></a>Underlying technology</h2>
+<p>A DCT file is a YAML file of the following form (in its simplest version):</p>
 <pre><code>---
-id: intention_xl678lqgr
-name: Intention
-source:
-  name: Reasoned Action Approach
-  xdoi: ISBN
-  spec: p. 888
-def:
-  def: Intention Def
-  source:
-    spec: pp. 8-1
-measure:
-  instruction: Ask about intention
-manipulate:
-  instruction: Instruction for manipulating intention directly.
-  source:
-operationalisation_coding: 
-  instruction: If asked about intentions/plans/etc
-  source: none
-aspect_coding:
-  instruction: Expressions of planning/intention/goals
-  source: none
-parent:
-  id: behavior
-alters:
-  id: motivation
+dct:
+  version: 0.1.0
+  id: 
+  label: ""
+  date: ""
+  dct_version: 1
+
+################################################################################
+
+  definition:
+    definition: ""
+
+################################################################################
+
+  measure_dev:
+    instruction: ""
+
+################################################################################
+
+  measure_code:
+    instruction: ""
+
+################################################################################
+
+  manipulate_dev:
+    instruction: ""
+
+################################################################################
+
+  manipulate_code:
+    instruction: ""
+
+################################################################################
+
+  aspect_dev:
+    instruction: ""
+
+################################################################################
+
+  aspect_code:
+    instruction: ""
+
+################################################################################
+
+  rel:
+    id: ""
+    type: ""
+
+################################################################################
 ---</code></pre>
+<p>An example in progress is available at <a href="https://a-bc.gitlab.io/dct-raa/" class="uri">https://a-bc.gitlab.io/dct-raa/</a>.</p>
+</div>
 <div id="references" class="section level2">
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
-<p>Abraham, C., &amp; Michie, S. (2008). A taxonomy of behavior change techniques used in interventions. Health Psychology, 27(3), 379–87. doi: <a href="https://doi.org/10.1037/0278-6133.27.3.379">10.1037/0278-6133.27.3.379</a></p>
+<p>Abraham, C., &amp; Michie, S. (2008). A taxonomy of behavior change techniques used in interventions. <em>Health Psychology</em>, 27(3), 379–87. doi: <a href="https://doi.org/10.1037/0278-6133.27.3.379">10.1037/0278-6133.27.3.379</a></p>
 <p>Crutzen, R., &amp; Peters, G.-J. Y. (2018). Evolutionary learning processes as the foundation for behaviour change. <em>Health Psychology Review</em>, 12(1), 43–57. doi: <a href="https://doi.org/10.1080/17437199.2017.1362569">10.1080/17437199.2017.1362569</a></p>
-<blockquote>
-<p>Add Fried reference from PN discussion</p>
-</blockquote>
-<blockquote>
-<p>Add RAA book reference</p>
-</blockquote>
-<p>Kok, G., Gottlieb, N. H., Peters, G.-J. Y., Mullen, P. D., Parcel, G. S., Ruiter, R. A. C., … Bartholomew, L. K. (2016). A taxonomy of behavior change methods: an Intervention Mapping approach. Health Psychology Review, 10(3), 297–312. doi: <a href="https://doi.org/10.1080/17437199.2015.1077155">10.1080/17437199.2015.1077155</a></p>
+<p>Fried, E. I. (2017a). The 52 symptoms of major depression: Lack of content overlap among seven common depression scales. <strong>Journal of Affective Disorders</strong>, 208, 191-197.</p>
+<p>Fried, E. I. (2017b). What are psychological constructs? On the nature and statistical modeling of psychological kinds. <strong>Health Psychology Review</strong>, 11, 130-134.</p>
+<p>Kok, G., Gottlieb, N. H., Peters, G.-J. Y., Mullen, P. D., Parcel, G. S., Ruiter, R. A. C., … Bartholomew, L. K. (2016). A taxonomy of behavior change methods: an Intervention Mapping approach. <strong>Health Psychology Review</strong>, 10(3), 297–312. doi: <a href="https://doi.org/10.1080/17437199.2015.1077155">10.1080/17437199.2015.1077155</a></p>
 <p>Peters, G.-J. Y., &amp; Crutzen, R. (2017a). Pragmatic nihilism: how a Theory of Nothing can help health psychology progress. <em>Health Psychology Review</em>, 11(2). doi: <a href="https://doi.org/10.1080/17437199.2017.1284015">10.1080/17437199.2017.1284015</a></p>
 <p>Peters, G.-J. Y., &amp; Crutzen, R. (2017b). Confidence in constant progress: or how pragmatic nihilism encourages optimism through modesty. <em>Health Psychology Review,</em> 11(2), 140–144. doi: <a href="https://doi.org/10.1080/17437199.2017.1316674">10.1080/17437199.2017.1316674</a></p>
-<p>Williams, D. M., &amp; Rhodes, R. E. (2016a). The confounded self-efficacy construct: review, conceptual analysis, and recommendations for future research. Health Psychology Review, 10(2), 113–128. doi: <a href="https://doi.org/10.1080/17437199.2014.941998">10.1080/17437199.2014.941998</a></p>
-<p>Williams, D. M., &amp; Rhodes, R. E. (2016b). Reviving the critical distinction between perceived capability and motivation: A response to commentaries. Health Psychology Review, 7199(April), 1–7. doi: <a href="https://doi.org/10.1080/17437199.2016.1171729">10.1080/17437199.2016.1171729</a></p>
+<p>Snippe, M. H. M, Peters, G.-J. Y., &amp; Kok, G. (2019) The Operationalization of Self-Identity in Reasoned Action Models: A Systematic Review of Self-Identity Operationalizations in Three Decades of Research. <em>PsyArXiv</em>, <a href="doi:%5B10.31234/osf.io/ygpmw" class="uri">doi:[10.31234/osf.io/ygpmw</a>](<a href="https://doi.org/10.31234/osf.io/ygpmw" class="uri">https://doi.org/10.31234/osf.io/ygpmw</a>)</p>
+<p>Warnell, K. R., &amp; Redcay, E. (2019). Minimal coherence among varied theory of mind measures in childhood and adulthood. <em>Cognition</em>, 191, 103997.</p>
+<p>Weidman, A. C., Steckler, C. M., &amp; Tracy, J. L. (2017). The jingle and jangle of emotion assessment: Imprecise measurement, casual scale usage, and conceptual fuzziness in emotion research. <em>Emotion</em>, 17(2), 267.</p>
+<p>Williams, D. M., &amp; Rhodes, R. E. (2016a). The confounded self-efficacy construct: review, conceptual analysis, and recommendations for future research. <em>Health Psychology Review</em>, 10(2), 113–128. doi: <a href="https://doi.org/10.1080/17437199.2014.941998">10.1080/17437199.2014.941998</a></p>
+<p>Williams, D. M., &amp; Rhodes, R. E. (2016b). Reviving the critical distinction between perceived capability and motivation: A response to commentaries. <em>Health Psychology Review</em>, 7199(April), 1–7. doi: <a href="https://doi.org/10.1080/17437199.2016.1171729">10.1080/17437199.2016.1171729</a></p>
 </div>
   </div>
 
@@ -149,7 +216,10 @@ alters:
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#references">References</a></li>
+<li><a href="#background">Background</a></li>
+      <li><a href="#decentralized-construct-taxonomies">Decentralized Construct Taxonomies</a></li>
+      <li><a href="#underlying-technology">Underlying technology</a></li>
+      <li><a href="#references">References</a></li>
       </ul>
 </div>
       </div>
