@@ -97,7 +97,7 @@ parse_dct_specs <- function(dctSpecs,
                  if (length(spec[[currentCheck]]) == 1) {
                    spec[[currentCheck]] <- list(instruction = spec[[currentCheck]]);
                  } else {
-                   stop("STILL HAVE TO ADD A NEAT NICE WARNING HERE!!!");
+                   stop("Only one instruction text can be provided!");
                  }
                }
              }
@@ -107,7 +107,7 @@ parse_dct_specs <- function(dctSpecs,
                if (length(spec$definition) == 1) {
                  spec$definition <- list(definition = spec$definition);
                } else {
-                 stop("STILL HAVE TO ADD A NEAT NICE WARNING HERE!!!");
+                 stop("Only one definition can be provided!");
                }
              }
              return(spec);
@@ -135,11 +135,21 @@ parse_dct_specs <- function(dctSpecs,
                                                'parent')))) {
 
       if (!is.null(names(dctSpec[[element]]))) {
-        if (('instruction' %in% names(dctSpec[[element]])) && !is.null(dctSpec[[element]][['instruction']])) {
+        if (('instruction' %in% names(dctSpec[[element]])) &&
+            !is.null(dctSpec[[element]][['instruction']])) {
           node_df[id2row[dctSpec$id],
                   paste0(element,
                          "_instruction")] <-
             dctSpec[[element]]['instruction'];
+          ### Replace every single line breaks with double line breaks
+          node_df[id2row[dctSpec$id],
+                  paste0(element,
+                         "_instruction")] <-
+            gsub("\\n",
+                 "\n\n",
+                 node_df[id2row[dctSpec$id],
+                         paste0(element,
+                                "_instruction")]);
         }
         ### The fields are named
         if (length(dctSpec[[element]]) == 1) {
@@ -511,22 +521,34 @@ parse_dct_specs <- function(dctSpecs,
            "Definition: ", ifelse(is.null(node_df$def_def) | is.na(node_df$def_def),
                                   "-",
                                   "Included"), "\n",
-           "Measure (dev): ", ifelse(is.null(node_df$measure_dev_instruction) | is.na(node_df$measure_dev_instruction),
+           "Measure (dev): ", ifelse(is.null(node_df$measure_dev_instruction) |
+                                       is.na(node_df$measure_dev_instruction) |
+                                       (nchar(node_df$measure_dev_instruction) == 0),
                                      "-",
                                      "Included"), "\n",
-           "Change (dev): ", ifelse(is.null(node_df$manipulate_dev_instruction) | is.na(node_df$manipulate_dev_instruction),
+           "Change (dev): ", ifelse(is.null(node_df$manipulate_dev_instruction) |
+                                      is.na(node_df$manipulate_dev_instruction) |
+                                      (nchar(node_df$manipulate_dev_instruction) == 0),
                                     "-",
                                     "Included"), "\n",
-           "Aspect (dev): ", ifelse(is.null(node_df$aspect_dev_instruction) | is.na(node_df$aspect_dev_instruction),
+           "Aspect (dev): ", ifelse(is.null(node_df$aspect_dev_instruction) |
+                                      is.na(node_df$aspect_dev_instruction) |
+                                      (nchar(node_df$aspect_dev_instruction) == 0),
                                      "-",
                                      "Included"), "\n",
-           "Measure (code): ", ifelse(is.null(node_df$measure_code_instruction) | is.na(node_df$measure_code_instruction),
+           "Measure (code): ", ifelse(is.null(node_df$measure_code_instruction) |
+                                        is.na(node_df$measure_code_instruction) |
+                                        (nchar(node_df$measure_code_instruction) == 0),
                                       "-",
                                       "Included"), "\n",
-           "Change (code): ", ifelse(is.null(node_df$manipulate_code_instruction) | is.na(node_df$manipulate_code_instruction),
+           "Change (code): ", ifelse(is.null(node_df$manipulate_code_instruction) |
+                                       is.na(node_df$manipulate_code_instruction) |
+                                       (nchar(node_df$manipulate_code_instruction) == 0),
                                      "-",
                                      "Included"), "\n",
-           "Aspect (code): ", ifelse(is.null(node_df$aspect_code_instruction) | is.na(node_df$aspect_code_instruction),
+           "Aspect (code): ", ifelse(is.null(node_df$aspect_code_instruction) |
+                                       is.na(node_df$aspect_code_instruction) |
+                                       (nchar(node_df$aspect_code_instruction) == 0),
                                      "-",
                                      "Included"));
 
