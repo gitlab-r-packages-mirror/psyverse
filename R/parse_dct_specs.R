@@ -141,15 +141,6 @@ parse_dct_specs <- function(dctSpecs,
                   paste0(element,
                          "_instruction")] <-
             dctSpec[[element]]['instruction'];
-          ### Replace every single line breaks with double line breaks
-          node_df[id2row[dctSpec$id],
-                  paste0(element,
-                         "_instruction")] <-
-            gsub("\\n",
-                 "\n\n",
-                 node_df[id2row[dctSpec$id],
-                         paste0(element,
-                                "_instruction")]);
         }
         ### The fields are named
         if (length(dctSpec[[element]]) == 1) {
@@ -207,6 +198,15 @@ parse_dct_specs <- function(dctSpecs,
         }
       }
     }
+  }
+
+  ### In the definition and instructions, replace every
+  ### single line break with double line breaks
+  for (i in grep('_instruction', names(node_df), value=TRUE)) {
+    node_df[, i] <-
+      gsub("\\n",
+           "\n\n",
+           node_df[, i]);
   }
 
   ### Ensure column order is correct
