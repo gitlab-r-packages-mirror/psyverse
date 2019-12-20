@@ -33,6 +33,10 @@ parse_dct_specs <- function(dctSpecs,
   ###
   ### This bit above became redundant because we used yum's simplification
 
+  if ((length(dctSpecs) == 1) && names(dctSpecs[[1]]) == "dct") {
+    dctSpecs <- dctSpecs[[1]];
+  }
+
   names(dctSpecs) <-
     purrr::map_chr(dctSpecs,
                    'id');
