@@ -3,9 +3,7 @@ generate_construct_overview <- function(dctSpec,
 
   res <-
     c("",
-      paste0(ufs::repStr("#", headingLevel), " ", dctSpec$label),
-      "",
-      paste0(ufs::repStr("#", headingLevel+1), " ", dctSpec$label, " {#", dctSpec$id, "}"),
+      paste0(ufs::repStr("#", headingLevel), " ", dctSpec$label, " {#", dctSpec$id, "}"),
       "",
       format(Sys.time(), '*This overview was generated on %Y-%m-%d at %H:%M:%S %Z (GMT%z)*'),
       "",
