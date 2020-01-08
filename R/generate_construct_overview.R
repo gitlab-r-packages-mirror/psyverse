@@ -2,6 +2,23 @@ generate_construct_overview <- function(dctSpec,
                                         headingLevel = 3,
                                         hyperlink_ucids = "Markdown") {
 
+  instrPrepFnc <- function(x) {
+    if (is.null(x)) {
+      res <- "*Not specified*";
+    } else {
+      res <-
+        gsub("\\n", "\n\n", x);
+      ### Replace links to DCTs with hyperlinks
+      if (hyperlink_ucids == "Markdown") {
+        res <- hyperlink_ucids(res);
+      } else if (hyperlink_ucids == "HTML") {
+        res <- hyperlink_ucids(res,
+                               replacement = '<a href="#\\1">dct:\\1</a>');
+      }
+    }
+    return(res);
+  }
+
   res <-
     c("",
       paste0(ufs::repStr("#", headingLevel), " ", dctSpec$label, " {#", dctSpec$id, "}"),
@@ -18,55 +35,46 @@ generate_construct_overview <- function(dctSpec,
       "",
       paste0(ufs::repStr("#", headingLevel+1), " Definition"),
       "",
-      gsub("\\n", "\n\n", dctSpec$definition$definition) %||% "*Not specified*",
+      instrPrepFnc(dctSpec$definition$definition),
       "",
       paste0(ufs::repStr("#", headingLevel+1), " Instruction for developing measurement instruments"),
       "",
-      gsub("\\n", "\n\n", dctSpec$measure_dev$instruction) %||% "*Not specified*",
+      instrPrepFnc(dctSpec$measure_dev$instruction),
       "",
       paste0(ufs::repStr("#", headingLevel+1), " Instruction for coding measurement instruments"),
       "",
-      gsub("\\n", "\n\n", dctSpec$measure_code$instruction) %||% "*Not specified*",
+      instrPrepFnc(dctSpec$measure_code$instruction),
       "",
       paste0(ufs::repStr("#", headingLevel+1), " Instruction for developing manipulations"),
       "",
-      gsub("\\n", "\n\n", dctSpec$manipulate_dev$instruction) %||% "*Not specified*",
+      instrPrepFnc(dctSpec$manipulate_dev$instruction),
       "",
       paste0(ufs::repStr("#", headingLevel+1), " Instruction for coding manipulations"),
       "",
-      gsub("\\n", "\n\n", dctSpec$manipulate_code$instruction) %||% "*Not specified*",
+      instrPrepFnc(dctSpec$manipulate_code$instruction),
       "",
       paste0(ufs::repStr("#", headingLevel+1), " Instruction for developing aspects"),
       "",
-      gsub("\\n", "\n\n", dctSpec$aspect_dev$instruction) %||% "*Not specified*",
+      instrPrepFnc(dctSpec$aspect_dev$instruction),
       "",
       paste0(ufs::repStr("#", headingLevel+1), " Instruction for coding aspects"),
       "",
       paste0("*When coding aspects, use the following code: **`dct:", dctSpec$id, "`***"),
       "",
-      gsub("\\n", "\n\n", dctSpec$aspect_code$instruction) %||% "*Not specified*",
+      instrPrepFnc(dctSpec$aspect_code$instruction),
       "",
       paste0(ufs::repStr("#", headingLevel+1), " Relationships with other constructs"),
       "",
-      ifelse(is.null(dctSpec$rel),
-             "*Not specified*",
-             ifelse(all(c("id", "type") %in% names(dctSpec$rel)),
-                    paste0("- Related to dct:", dctSpec$rel$id, " with relationship of type ",
-                           dctSpec$rel$type, "\n"),
-                    paste0(unlist(lapply(dctSpec$rel, function(i) {
-                      return(paste0("- Related to dct:", i$id, " with relationship of type ",
-                                    i$type, "\n"));
-                    })), collapse="\n"))),
-#      paste0(as.character(dctSpec$rel), collapse="--> ", sep=" ") %||% "*Not specified*",
+      instrPrepFnc(ifelse(is.null(dctSpec$rel),
+                   "*Not specified*",
+                   ifelse(all(c("id", "type") %in% names(dctSpec$rel)),
+                          paste0("- Related to dct:", dctSpec$rel$id, " with relationship of type ",
+                                 dctSpec$rel$type, "\n"),
+                          paste0(unlist(lapply(dctSpec$rel, function(i) {
+                            return(paste0("- Related to dct:", i$id, " with relationship of type ",
+                                          i$type, "\n"));
+                          })), collapse="\n")))),
       "");
-
-  ### Replace links to DCTs with hyperlinks
-  if (hyperlink_ucids == "Markdown") {
-    res <- hyperlink_ucids(res);
-  } else if (hyperlink_ucids == "HTML") {
-    res <- hyperlink_ucids(res,
-                           replacement = '<a href="#\\1">dct:\\1</a>');
-  }
 
   return(res);
 }
