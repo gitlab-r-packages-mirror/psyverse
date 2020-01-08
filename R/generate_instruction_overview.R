@@ -32,21 +32,25 @@ generate_instruction_overview <- function(dctSpecDf,
                 extraInfo <-
                   "";
               }
-              return(c(paste(ufs::repStr("#", headingLevel+1), " ", spec['label']),
+              res <-
+                ifelse(is.null(spec[typeInstr]) || is.na(spec[typeInstr]) || (nchar(spec[typeInstr])==0),
+                       "*(Not specified)*",
+                       spec[typeInstr]);
+              titleBit <- paste(ufs::repStr("#", headingLevel+1), " ", spec['label']);
+
+              ### Replace links to DCTs with hyperlinks
+              if (hyperlink_ucids == "Markdown") {
+                res <- hyperlink_ucids(res);
+              } else if (hyperlink_ucids == "HTML") {
+                res <- hyperlink_ucids(res,
+                                       replacement = '<a href="#\\1">dct:\\1</a>');
+              }
+
+              return(c(titleBit,
                        extraInfo,
-                       ifelse(is.null(spec[typeInstr]) || is.na(spec[typeInstr]) || (nchar(spec[typeInstr])==0),
-                              "*(Not specified)*",
-                              spec[typeInstr]),
+                       res,
                        ""));
             }));
-
-  ### Replace links to DCTs with hyperlinks
-  if (hyperlink_ucids == "Markdown") {
-    res <- hyperlink_ucids(res);
-  } else if (hyperlink_ucids == "HTML") {
-    res <- hyperlink_ucids(res,
-                           replacement = '<a href="#\\1">dct:\\1</a>');
-  }
 
   return(res);
 }
