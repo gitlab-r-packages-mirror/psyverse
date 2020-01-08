@@ -1,6 +1,7 @@
 generate_instruction_overview <- function(dctSpecDf,
                                           type,
-                                          headingLevel = 3) {
+                                          headingLevel = 3,
+                                          hyperlink_ucids = "Markdown") {
   typeInstr <- paste0(type, "_instruction");
 
   ### Switch order of type and activity
@@ -38,5 +39,14 @@ generate_instruction_overview <- function(dctSpecDf,
                               spec[typeInstr]),
                        ""));
             }));
+
+  ### Replace links to DCTs with hyperlinks
+  if (hyperlink_ucids == "Markdown") {
+    res <- hyperlink_ucids(res);
+  } else if (hyperlink_ucids == "HTML") {
+    res <- hyperlink_ucids(res,
+                           replacement = '<a href="#\\1">dct:\\1</a>');
+  }
+
   return(res);
 }
