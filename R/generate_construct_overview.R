@@ -1,6 +1,7 @@
 generate_construct_overview <- function(dctSpec,
                                         headingLevel = 3,
-                                        hyperlink_ucids = "Markdown") {
+                                        hyperlink_ucids = "Markdown",
+                                        urlPrefix = urlPrefix) {
 
   instrPrepFnc <- function(x) {
     if (is.null(x)) {
@@ -10,11 +11,15 @@ generate_construct_overview <- function(dctSpec,
         gsub("\\n", "\n\n", x);
       ### Replace links to DCTs with hyperlinks
       if (hyperlink_ucids == "Markdown") {
-        res <- hyperlink_ucids(res);
+        res <- hyperlink_ucids(res,
+                               urlPrefix = urlPrefix);
       } else if (hyperlink_ucids == "HTML") {
         res <- hyperlink_ucids(res,
-                               replacement = '<a href="#\\1">dct:\\1</a>');
+                               replacement = paste0('<a href="',
+                                                    urlPrefix,
+                                                    '\\1">dct:\\1</a>'));
       }
+
     }
     return(res);
   }

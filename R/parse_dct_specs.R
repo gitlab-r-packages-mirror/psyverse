@@ -11,7 +11,9 @@
 #' @importFrom magrittr %>%
 #' @export
 parse_dct_specs <- function(dctSpecs,
-                            headingLevel = 2) {
+                            headingLevel = 2,
+                            hyperlink_ucids = "Markdown",
+                            urlPrefix = "#") {
 
   res <- list(input = as.list(environment()));
 
@@ -586,32 +588,44 @@ parse_dct_specs <- function(dctSpecs,
   measure_dev <-
     generate_instruction_overview(node_df,
                                   type="measure_dev",
-                                  headingLevel=headingLevel);
+                                  headingLevel=headingLevel,
+                                  hyperlink_ucids = hyperlink_ucids,
+                                  urlPrefix = urlPrefix);
 
   measure_code <-
     generate_instruction_overview(node_df,
                                   type="measure_code",
-                                  headingLevel=headingLevel);
+                                  headingLevel=headingLevel,
+                                  hyperlink_ucids = hyperlink_ucids,
+                                  urlPrefix = urlPrefix);
 
   manipulate_dev <-
     generate_instruction_overview(node_df,
                                   type="manipulate_dev",
-                                  headingLevel=headingLevel);
+                                  headingLevel=headingLevel,
+                                  hyperlink_ucids = hyperlink_ucids,
+                                  urlPrefix = urlPrefix);
 
   manipulate_code <-
     generate_instruction_overview(node_df,
                                   type="manipulate_code",
-                                  headingLevel=headingLevel);
+                                  headingLevel=headingLevel,
+                                  hyperlink_ucids = hyperlink_ucids,
+                                  urlPrefix = urlPrefix);
 
   aspect_dev <-
     generate_instruction_overview(node_df,
                                   type="aspect_dev",
-                                  headingLevel=headingLevel);
+                                  headingLevel=headingLevel,
+                                  hyperlink_ucids = hyperlink_ucids,
+                                  urlPrefix = urlPrefix);
 
   aspect_code <-
     generate_instruction_overview(node_df,
                                   type="aspect_code",
-                                  headingLevel=headingLevel);
+                                  headingLevel=headingLevel,
+                                  hyperlink_ucids = hyperlink_ucids,
+                                  urlPrefix = urlPrefix);
 
   ###--------------------------------------------------------------------------
   ### Overviews per construct, basically a neatly formatted version of the DCT
@@ -621,7 +635,9 @@ parse_dct_specs <- function(dctSpecs,
   construct_overviews <-
     lapply(dctSpecs,
            generate_construct_overview,
-           headingLevel=headingLevel);
+           headingLevel=headingLevel,
+           hyperlink_ucids = hyperlink_ucids,
+           urlPrefix = urlPrefix);
 
   ###--------------------------------------------------------------------------
   ### Return result
