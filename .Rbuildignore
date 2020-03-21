@@ -6,7 +6,8 @@
 ^README\.Rmd$
 \.Rproj$
 ^\.Rproj\.user$
-^docs/
+
 ^public/
 ^docs/
 ^delete/
+^img/
