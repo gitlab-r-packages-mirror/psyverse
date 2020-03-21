@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 ## Background
 
-In psychology, many different guidelines exist for developing measurement instruments and manipulations of constructs. When conducting empirical research or secondary research, therefore, it is important to have a clear idea, and clearly communicate, which guidelines are followed. However, these guidelines are fragmented, and no universal consensus exists regarding how any construct must be measured or manipulated. Therefore, developing one 'final' authoritative list or taxonomy is not feasible or even desirable. At the same time, it is important that people clearly communicate their 'study-specific taxonomy'. The `dct` package makes it possible to combine these two goals.
+In psychology, many different guidelines exist for developing measurement instruments and manipulations of constructs. When conducting empirical research or secondary research, therefore, it is important to have a clear idea, and clearly communicate, which guidelines are followed. However, these guidelines are fragmented, and no universal consensus exists regarding how any construct must be measured or manipulated. Therefore, developing one 'final' authoritative list or taxonomy is not feasible or even desirable. At the same time, it is important that people clearly communicate their 'study-specific taxonomy'. The `psyverse` package makes it possible to combine these two goals.
 
 For more background information on the concept underlying the Decentralized Construct Taxonomies, see the reasoning set out in Peters & Crutzen (2017a, 2017b) and Crutzen & Peters (2018). In brief, in those papers the following premises are postulated:
 
@@ -33,7 +33,7 @@ However, given that psychological constructs do not correspond to natural kinds 
 
 Perhaps then, it is no surprise that in practice, operationalisations often vary between studies, with studies often using a wide array of items, not to mention the variation in languages, target behaviors, and cultures. For example, a recent review of self-identity operationalisations identified hundreds of different items purportedly measuring the same construct (Snippe, Peters & Kok, 2019). These different measurement instruments purporting to measure the same construct turn out to measure different things when this claim is tested (see Fried, 2017 for depression; Weidman, Steckler & Tracy, 2017, for emotions; Warnell & Redcay, 2019, for theory of mind; and Williams & Rhodes, 2016a, for self-efficacy; a crowd-sourced list is available at https://docs.google.com/document/d/1vaq0U3_U2PEgouPLteUjab15aVxyEv2IVdbOxTErkHM). And when put to the test, many commonly used measurement instruments turn out to be invalid in themselves (Hussey & Hughes, 2019). As a consequence of this pluriformity and lack of validity, research syntheses suffer, and in communication about research results, a lot is lost in translation.
 
-However, this variation obsered in practice is hard to reconcile with the need for consistency in communication. How can this be realised given that there's no scientifically justifiable way to identify 'the best' definitions or operationalisations?
+However, this variation observed in practice is hard to reconcile with the need for consistency in communication. How can this be realised given that there's no scientifically justifiable way to identify 'the best' definitions or operationalisations?
 
 This is the problem Decentralized Construct Taxonomies (DCTs) aim to solve.
 
