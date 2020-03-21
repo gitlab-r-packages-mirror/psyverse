@@ -444,6 +444,7 @@ parse_dct_specs <- function(dctSpecs,
     }
 
   } else {
+    edge_df <- edge_df_input;
     dctGraph <- paste0("The DiagrammeR package is not installed, so no ",
                        "DiagrammeR graph is created.");
   }
