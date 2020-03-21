@@ -10,6 +10,7 @@ pages:
   script:
     - mkdir public/img
     - cp img/hex-logo.png public/img/
+    - ls public/img
   artifacts:
     paths:
     - public
