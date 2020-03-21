@@ -1,3 +1,2 @@
 require(testthat);
-require(here);
-test_check("psyverse");
+testthat::test_check("psyverse");

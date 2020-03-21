@@ -4,11 +4,14 @@ context("loading dct specifications from files and directories")
 ###-----------------------------------------------------------------------------
 ###-----------------------------------------------------------------------------
 
-test_that("a dct specification from a file with a single dct specification is loaded correctly", {
+testthat::test_that("a dct specification from a file with a single dct specification is loaded correctly", {
 
-  res <- load_dct_specs(here::here('tests',
-                                   'testthat',
-                                   'intention_73dnt604.dct'));
+  exampleDir <-
+    file.path(system.file(package="psyverse"),
+              "extdata");
+
+  res <- load_dct_specs(file.path(exampleDir,
+                                  'intention_73dnt604.dct'));
 
   testthat::expect_equal(res$output$completeness_graph$last_node, 1);
 
@@ -16,25 +19,31 @@ test_that("a dct specification from a file with a single dct specification is lo
 
 ###-----------------------------------------------------------------------------
 
-test_that("dct specifications from a file with multiple dct specification are loaded correctly", {
+testthat::test_that("dct specifications from a file with multiple dct specification are loaded correctly", {
 
-  res <- load_dct_specs(here::here('tests',
-                                   'testthat',
-                                   'attitude_73dnt5zc.dct'));
-
-  testthat::expect_equal(res$output$completeness_graph$last_node, 1);
+  # exampleDir <-
+  #   file.path(system.file(package="psyverse"),
+  #             "extdata");
+  #
+  # res <- load_dct_specs(file.path(exampleDir,
+  #                                 'attitude_73dnt5zc.dct'));
+  #
+  # testthat::expect_equal(res$output$completeness_graph$last_node, 1);
 
 });
 
 
 ###-----------------------------------------------------------------------------
 
-test_that("a directory with dct specifications is loaded correctly", {
+testthat::test_that("a directory with dct specifications is loaded correctly", {
 
-  res <- load_dct_dir(here::here('tests',
-                                 'testthat'));
+  exampleDir <-
+    file.path(system.file(package="psyverse"),
+              "extdata");
 
-  testthat::expect_equal(res$output$completeness_graph$last_node, 4);
+  res <- load_dct_dir(exampleDir);
+
+  testthat::expect_equal(res$output$completeness_graph$last_node, 5);
 
 });
 
