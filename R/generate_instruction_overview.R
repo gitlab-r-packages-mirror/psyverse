@@ -1,3 +1,5 @@
+#' @rdname overview_generation
+#' @export
 generate_instruction_overview <- function(dctSpecDf,
                                           type,
                                           headingLevel = 3,
@@ -19,7 +21,7 @@ generate_instruction_overview <- function(dctSpecDf,
   title <- gsub("aspect", "aspects", title);
 
   res <-
-    c(paste0(ufs::repStr("#", headingLevel), " Instruction for ", title),
+    c(paste0(repStr("#", headingLevel), " Instruction for ", title),
       format(Sys.time(), '*This overview was generated on %Y-%m-%d at %H:%M:%S %Z (GMT%z)*'),
       "",
       apply(dctSpecDf[order(dctSpecDf$label), ],
@@ -37,7 +39,7 @@ generate_instruction_overview <- function(dctSpecDf,
                 ifelse(is.null(spec[typeInstr]) || is.na(spec[typeInstr]) || (nchar(spec[typeInstr])==0),
                        "*(Not specified)*",
                        spec[typeInstr]);
-              titleBit <- paste(ufs::repStr("#", headingLevel+1), " ", spec['label']);
+              titleBit <- paste(repStr("#", headingLevel+1), " ", spec['label']);
 
               ### Replace links to DCTs with hyperlinks
               if (hyperlink_ucids == "Markdown") {

@@ -40,8 +40,7 @@
 #' fragments. Because only DCT specifications are read that are stored in
 #' this container, the files can contain YAML fragments with other data, too,
 #' without interfering with the parsing of the DCT specifications.
-#' @param arrowDirection The direction of the arrows in the visual representation
-#' of the distributed construct taxonomy; either `forward`, `back`, `both`, or `none`.
+#' @param headingLevel The level of the Markdown headings that are produced.
 #' @param ignoreOddDelimiters Whether to throw an error (FALSE) or
 #' delete the last delimiter (TRUE) if an odd number of delimiters is
 #' encountered.
@@ -60,10 +59,15 @@
 #' `output$completeness_graph` and the instructions in `output$instr`.
 #'
 #' @examples
-#' load_dct_specs(text=example_dct_spec);
+#' exampleSpec <-
+#'   system.file("inst",
+#'               "extdata",
+#'               "example_dct_spec_1.dct",
+#'               package="psyverse");
+#' load_dct_specs(exampleSpec);
 #'
 #' \dontrun{
-#' dct::load_dct_dir(path="A:/some/path");
+#' psyverse::load_dct_dir(path="A:/some/path");
 #' }
 #'
 #' @export
@@ -127,6 +131,15 @@ print.dct_specs <- function(x, ...) {
 #' @method plot dct_specs
 #' @export
 plot.dct_specs <- function(x, ...) {
+
+  if (!requireNamespace("DiagrammeR", quietly = TRUE)) {
+    stop("This function plots a `DiagrammeR` object. ",
+         "Therefore, obviously, that object must first exist, and you need ",
+         "the `DiagrammeR` package to create it and work with it. Please ",
+         "install it using:\n\n  install.packages('DiagrammeR');\n",
+         call. = FALSE)
+  }
+
   DiagrammeR::render_graph(x$output$basic_graph);
 }
 

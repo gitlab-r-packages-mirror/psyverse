@@ -102,7 +102,7 @@ can be omitted.
 ---
 dct:
   version: ',
-                packageVersion('dct') ,'
+                utils::packageVersion('dct') ,'
 
   ### The identifier (id) is the unique code used to refer to this
   ### Decentralized Construct Taxonomy specification. This id is the
@@ -237,7 +237,7 @@ spaces and line breaks.
     res <- paste0('---
 dct:
   version: ',
-                  packageVersion('dct') ,'
+                  utils::packageVersion('dct') ,'
   id: ',
                   dctId, '
   label: ""

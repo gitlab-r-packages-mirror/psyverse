@@ -7,7 +7,12 @@
 #'
 #' @return The [DiagrammeR::DiagrammeR] graph.
 #' @examples
-#' parsedSpecs <- load_dct_specs(text=dct::example_dct_spec);
+#' exampleSpec <-
+#'   system.file("inst",
+#'               "extdata",
+#'               "example_dct_spec_1.dct",
+#'               package="psyverse");
+#' parsedSpecs <- load_dct_specs(exampleSpec);
 #' dctGraph <- parsedSpecs$output$basic_graph;
 #' dctGraph <- apply_graph_theme(dctGraph,
 #'                               c("color", "#0000AA", "node"),
@@ -15,6 +20,15 @@
 #' @export
 apply_graph_theme <- function(dctGraph,
                               ...) {
+
+  if (!requireNamespace("DiagrammeR", quietly = TRUE)) {
+    stop("This function applies graph themes to a `DiagrammeR` object. ",
+         "Therefore, obviously, that object must first exist, and you need ",
+         "the `DiagrammeR` package to create it and work with it. Please ",
+         "install it using:\n\n  install.packages('DiagrammeR');\n",
+         call. = FALSE)
+  }
+
   for (currentSetting in list(...)) {
     if ((length(currentSetting) != 3) && is.character(currentSetting)) {
       stop("Only provide character vectors of length 3 in the dots (...) argument!");

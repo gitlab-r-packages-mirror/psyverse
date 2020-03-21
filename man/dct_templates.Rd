@@ -6,12 +6,22 @@
 \alias{generate_dct_templates}
 \title{DCT templates}
 \usage{
-generate_dct_template(prefix = paste(sample(letters, 4), collapse = ""),
-  output = NULL, overwrite = FALSE, createDirs = FALSE,
-  addComments = TRUE, stopOnIllegalChars = FALSE)
+generate_dct_template(
+  prefix = paste(sample(letters, 4), collapse = ""),
+  output = NULL,
+  overwrite = FALSE,
+  createDirs = FALSE,
+  addComments = TRUE,
+  stopOnIllegalChars = FALSE
+)
 
-generate_dct_templates(x, outputDir = NULL, createDirs = FALSE,
-  addComments = FALSE, stopOnIllegalChars = FALSE)
+generate_dct_templates(
+  x,
+  outputDir = NULL,
+  createDirs = FALSE,
+  addComments = FALSE,
+  stopOnIllegalChars = FALSE
+)
 }
 \arguments{
 \item{prefix, x}{The prefix (\code{prefix}) or vector of prefixes (\code{x}) to use.}

@@ -1,0 +1,74 @@
+---
+dct:
+  version: 0.1.0
+  id: attitude_73dnt5zc
+  label: "Attitude"
+  date: ""
+  source:
+    id: "raa_book"
+
+################################################################################
+
+  definition:
+    definition: "Attitude is defined as a latent disposition or tendency to respond with some degree of favorableness or unfavorableness to the target behavior. It consists of two sub-constructs: dct:experientialAttitude_73dnt5z5 and dct:instrumentalAttitude_73dnt5zb."
+    source:
+      spec: ""
+
+################################################################################
+
+  measure_dev:
+    instruction: "Attitude consists of two sub-constructs, and is measured by measuring those: dct:experientialAttitude_73dnt5z5 and dct:instrumentalAttitude_73dnt5zb."
+    source:
+      spec: ""
+
+################################################################################
+
+  measure_code:
+    instruction: "Attitude consists of two sub-constructs, and is measured by measuring those: dct:experientialAttitude_73dnt5z5 and dct:instrumentalAttitude_73dnt5zb."
+    source:
+      spec: ""
+
+################################################################################
+
+  manipulate_dev:
+    instruction: "These instructions still have to be extracted from pages 336-359 of the book."
+    source:
+      spec: ""
+
+################################################################################
+
+  manipulate_code:
+    instruction: ""
+    source:
+      spec: ""
+
+################################################################################
+
+  aspect_dev:
+    instruction: ""
+    source:
+      spec: ""
+
+################################################################################
+
+  aspect_code:
+    instruction: "Any global evaluation of the target behavior as a whole. Note that evaluations of specific aspects or consequences of the behavior relate to aspects of underlying constructs, not of attitude itself. Also make sure to check the coding instructions for the two sub-constructs that attitude consists of: dct:experientialAttitude_73dnt5z5 and dct:instrumentalAttitude_73dnt5zb."
+    source:
+      spec: ""
+
+################################################################################
+
+  rel:
+    -
+      id: "intention_73dnt604"
+      type: "causal_influences_positive"
+    -
+      id: "perceivedNorms_73dnt5zq"
+      type: "causal_influences_correlates"
+    -
+      id: "perceivedBehavioralControl_73dnt603"
+      type: "causal_influences_correlates"
+
+################################################################################
+---
+

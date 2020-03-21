@@ -8,7 +8,7 @@ test_that("a dct specification from a file with a single dct specification is lo
 
   res <- load_dct_specs(here::here('tests',
                                    'testthat',
-                                   'intention.dct'));
+                                   'intention_73dnt604.dct'));
 
   testthat::expect_equal(res$output$completeness_graph$last_node, 1);
 
@@ -20,9 +20,9 @@ test_that("dct specifications from a file with multiple dct specification are lo
 
   res <- load_dct_specs(here::here('tests',
                                    'testthat',
-                                   'attitude.dct'));
+                                   'attitude_73dnt5zc.dct'));
 
-  testthat::expect_equal(res$output$completeness_graph$last_node, 3);
+  testthat::expect_equal(res$output$completeness_graph$last_node, 1);
 
 });
 
@@ -34,7 +34,7 @@ test_that("a directory with dct specifications is loaded correctly", {
   res <- load_dct_dir(here::here('tests',
                                  'testthat'));
 
-  testthat::expect_equal(res$output$completeness_graph$last_node, 7);
+  testthat::expect_equal(res$output$completeness_graph$last_node, 4);
 
 });
 

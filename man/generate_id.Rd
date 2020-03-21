@@ -5,8 +5,10 @@
 \alias{generate_ids}
 \title{Generate unique identifier(s)}
 \usage{
-generate_id(prefix = paste(sample(letters, 4), collapse = ""),
-  stopOnIllegalChars = FALSE)
+generate_id(
+  prefix = paste(sample(letters, 4), collapse = ""),
+  stopOnIllegalChars = FALSE
+)
 
 generate_ids(x, stopOnIllegalChars = FALSE)
 }

@@ -1,7 +1,35 @@
+#' Generate construct overviews and instruction overviews
+#'
+#' These functions use a DCT specification to generate a
+#' construct overview or an instruction overview.
+#'
+#' @param dctSpec The DCT specification, as resulting from a call
+#' to [load_dct_specs()] or [load_dct_dir()].
+#' @param dctSpecDf The DCT specification dataframer, as produced
+#' by a call to [load_dct_specs()] or [load_dct_dir()], and stored within
+#' the resulting object.
+#' @param type For instruction overviews, the type of instruction
+#' to generate can be specified: must be
+#' @param headingLevel The level of the heading in the Markdown output
+#' that is produces.
+#' @param hyperlink_ucids The type of hyperlinks to generate; must be
+#' a valid string. Currently, if the value is"`Markdown`" or "`HTML`",
+#' hyperlinks in the corresponding formats are produced, and if it is
+#' "`none`" (or, actually any other string value), nothing is produced.
+#' @param urlPrefix The prefix to insert before the URL in the produced
+#' hyperlink. The default, "`#`", results in a link to an
+#' anchor (an HTML `a` element) on the current page.
+#'
+#' @return A character string with the overview.
+#' @rdname overview_generation
+#' @alias generate_construct_overview generate_instruction_overview
+#' @export
+#'
+#' @examples ### Add example
 generate_construct_overview <- function(dctSpec,
                                         headingLevel = 3,
                                         hyperlink_ucids = "Markdown",
-                                        urlPrefix = urlPrefix) {
+                                        urlPrefix = "#") {
 
   instrPrepFnc <- function(x) {
     if (is.null(x)) {
@@ -26,7 +54,7 @@ generate_construct_overview <- function(dctSpec,
 
   res <-
     c("",
-      paste0(ufs::repStr("#", headingLevel), " ", dctSpec$label, " {#", dctSpec$id, "}"),
+      paste0(repStr("#", headingLevel), " ", dctSpec$label, " {#", dctSpec$id, "}"),
       "",
       format(Sys.time(), '*This overview was generated on %Y-%m-%d at %H:%M:%S %Z (GMT%z)*'),
       "",
@@ -38,37 +66,37 @@ generate_construct_overview <- function(dctSpec,
       "",
       paste0("Unique Construct Identifier (UCID): ", dctSpec$id),
       "",
-      paste0(ufs::repStr("#", headingLevel+1), " Definition"),
+      paste0(repStr("#", headingLevel+1), " Definition"),
       "",
       instrPrepFnc(dctSpec$definition$definition),
       "",
-      paste0(ufs::repStr("#", headingLevel+1), " Instruction for developing measurement instruments"),
+      paste0(repStr("#", headingLevel+1), " Instruction for developing measurement instruments"),
       "",
       instrPrepFnc(dctSpec$measure_dev$instruction),
       "",
-      paste0(ufs::repStr("#", headingLevel+1), " Instruction for coding measurement instruments"),
+      paste0(repStr("#", headingLevel+1), " Instruction for coding measurement instruments"),
       "",
       instrPrepFnc(dctSpec$measure_code$instruction),
       "",
-      paste0(ufs::repStr("#", headingLevel+1), " Instruction for developing manipulations"),
+      paste0(repStr("#", headingLevel+1), " Instruction for developing manipulations"),
       "",
       instrPrepFnc(dctSpec$manipulate_dev$instruction),
       "",
-      paste0(ufs::repStr("#", headingLevel+1), " Instruction for coding manipulations"),
+      paste0(repStr("#", headingLevel+1), " Instruction for coding manipulations"),
       "",
       instrPrepFnc(dctSpec$manipulate_code$instruction),
       "",
-      paste0(ufs::repStr("#", headingLevel+1), " Instruction for developing aspects"),
+      paste0(repStr("#", headingLevel+1), " Instruction for developing aspects"),
       "",
       instrPrepFnc(dctSpec$aspect_dev$instruction),
       "",
-      paste0(ufs::repStr("#", headingLevel+1), " Instruction for coding aspects"),
+      paste0(repStr("#", headingLevel+1), " Instruction for coding aspects"),
       "",
       paste0("*When coding aspects, use the following code: **`dct:", dctSpec$id, "`***"),
       "",
       instrPrepFnc(dctSpec$aspect_code$instruction),
       "",
-      paste0(ufs::repStr("#", headingLevel+1), " Relationships with other constructs"),
+      paste0(repStr("#", headingLevel+1), " Relationships with other constructs"),
       "",
       instrPrepFnc(ifelse(is.null(dctSpec$rel),
                    "*Not specified*",

@@ -20,7 +20,12 @@ The \link[DiagrammeR:DiagrammeR]{DiagrammeR::DiagrammeR} graph.
 Apply multiple DiagrammeR global graph attributes
 }
 \examples{
-parsedSpecs <- load_dct_specs(text=dct::example_dct_spec);
+exampleSpec <-
+  system.file("inst",
+              "extdata",
+              "example_dct_spec_1.dct",
+              package="psyverse");
+parsedSpecs <- load_dct_specs(exampleSpec);
 dctGraph <- parsedSpecs$output$basic_graph;
 dctGraph <- apply_graph_theme(dctGraph,
                               c("color", "#0000AA", "node"),

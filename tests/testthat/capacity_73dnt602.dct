@@ -1,0 +1,67 @@
+---
+dct:
+  version: 0.1.0
+  id: capacity_73dnt602
+  label: "Capacity"
+  date: 2019-04-17
+  source:
+    label: "Fishbein, M. & Ajzen, I. (2010) Predicting and Changing Behavior: The Reasoned Action Approach. New York: Psychology Press."
+    xdoi: "isbn:9781138995215"
+
+
+################################################################################
+
+  definition:
+    definition: "People's perceptions of their ability to perform a behavior; that is, the degree to which they believe they can, are able to, or are capable of performing the behavior."
+    source:
+      spec: "pp. 165-166"
+
+################################################################################
+
+  measure_dev:
+    instruction: "Use Likert scales that measure the degree to which participants believe the target behavior to be something they are capable of performing successfully. The items suggested in the book are: 'I am confident that if I want to, I can [TARGET BEHAVIOR].' with anchors 'No confidence at all' vs 'A lot of confidence' and 'If I really wanted to, I could [TARGET BEHAVIOR].' with anchors 'Unlikely' vs 'Likely'. Note that questions about how easy or difficult participants perceive a target behavior to be fall outside of the constructs of Perceived Behavioral Control, Autonomy, and Capacity as defined in the 2010 RAA book."
+    
+    source:
+      spec: "p. 462"
+      
+################################################################################
+
+  measure_code: 
+    instruction: "Questions or questionnaires that measure the perceived degree to which [target behavior] or [contrast behavior] is something [target population] are confident they can successfully perform. If perceived control over the behavior is also measured, code this as dct:perceivedBehavioralControl_71w8sfdk. For example, the items suggested in the book are: 'I am confident that if I want to, I can [TARGET BEHAVIOR].' with anchors 'No confidence at all' vs 'A lot of confidence' and 'If I really wanted to, I could [TARGET BEHAVIOR].' with anchors 'Unlikely' vs 'Likely'."
+    
+    source: none
+    
+################################################################################
+
+  manipulate_dev:
+    instruction: These instructions still have to be extracted from pages 336-359 of the book.
+      
+    source:
+      spec: "p. 336-359"
+      
+################################################################################
+
+  manipulate_code:
+    instruction:
+    
+################################################################################
+
+  aspect_dev:
+    instruction: "Conduct a qualitative study where participants are interviewed, and the interviews are either recorded and transcribed, or notes are kept. These sources are then coded using the instruction for aspect coding. In this qualitative study, use these two questions. 'Please list any factors or circumstances that would make it easy or enable you to [target behavior].' and 'Please list any factors or circumstances that would make it difficult or prevent you from [target behavior].'"
+    source:
+      spec: p. 452
+      
+################################################################################
+
+  aspect_code:
+    instruction: "Expressions that demonstrate or imply the presence or absence of confidence about one's *ability* to perform the target behavior. Expressions that refer to explicit control over the target behavior (or lack thereof), for example because of a barrier, obstacle, or facilitating condition or circumstance, it should be coded as dct:perceivedBehavioralControl_autonomy_73bg9sq6. Expressions that refer to confidence in general (not in one's *ability*), should be coded as dct:perceivedBehavioralControl_71w8sfdk."
+    
+################################################################################
+
+  rel:
+    id: "perceivedBehavioralControl_73dnt603"
+    type: "structural_part_of"
+
+################################################################################
+---
+

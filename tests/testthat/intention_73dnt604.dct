@@ -1,0 +1,67 @@
+---
+dct:
+  version: 0.1.0
+  id: intention_73dnt604
+  label: "Intention"
+  date: 2019-04-17
+  source:
+    label: "Fishbein, M. & Ajzen, I. (2010) Predicting and Changing Behavior: The Reasoned Action Approach. New York: Psychology Press."
+    xdoi: "isbn:9781138995215"
+    
+################################################################################
+
+  definition:
+    definition: "The readiness to engage in the behavior, incorporating concepts such as willingness, behavioral expectation, and trying."
+    source:
+      spec: pp. 43
+    
+################################################################################
+
+  measure_dev:
+  
+    instruction: "Use a likert scale to ask participants to what degree they intend to, are willing to, or plan to perform the target behavior. The items suggested in the 2010 RAA book are: 'I intend to [TARGET BEHAVIOR].' with anchors 'Definitely do not' vs 'Definitely do'; 'I will [TARGET BEHAVIOR].' with anchors 'Unlikely' vs 'Likely'; 'I am willing to [TARGET BEHAVIOR].' with anchors 'False' vs 'True'; and 'I plan to [TARGET BEHAVIOR].' with anchors 'Absolutely not' vs 'Absolutely'."
+    
+    source:
+      spec: "p. 463"
+
+################################################################################
+
+  measure_code:
+  
+    instruction: "Operationalisations that measure the degree to which a target population member has a deliberate (reasoned) plan/intention to engage in [TARGET BEHAVIOR]. For example, the items suggested in the book are: 'I intend to [TARGET BEHAVIOR].' with anchors 'Definitely do not' vs 'Definitely do'; 'I will [TARGET BEHAVIOR].' with anchors 'Unlikely' vs 'Likely'; 'I am willing to [TARGET BEHAVIOR].' with anchors 'False' vs 'True'; and 'I plan to [TARGET BEHAVIOR].' with anchors 'Absolutely not' vs 'Absolutely'."
+
+################################################################################
+
+  manipulate_dev:
+    instruction: These instructions still have to be extracted from pages 336-359 of the book.
+    source:
+      spec: "p. 336-359"
+        
+################################################################################
+
+  manipulate_code:
+    instruction: ""
+    source:
+      spec: ""
+
+################################################################################
+
+  aspect_dev:
+    instruction: ""
+    source:
+      spec: ""
+
+################################################################################
+
+  aspect_code:
+    instruction: "Any expressions that somebody has the intention, goal, or plan to perform a target behavior."
+
+################################################################################
+
+  rel:
+    id: "behavior_73dnt605"
+    type: "causal_influences_positive"
+
+################################################################################
+---
+

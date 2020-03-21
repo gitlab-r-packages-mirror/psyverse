@@ -3,37 +3,41 @@ Type: Package
 Title: Decentralized Unequivocality in Psychological Science
 Version: 0.1.0
 Authors@R: c(person("Gjalt-Jorn", "Peters",
-                    email = "gjalt-jorn@a-bc.eu",
+                    email = "gjalt-jorn@behaviorchange.eu",
                     role = c("aut", "cre", "ctb")))
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@a-bc.eu>
+Maintainer: Gjalt-Jorn Peters <gjalt-jorn@behaviorchange.eu>
 License: GPL (>= 3)
 Description: In psychology, many different guidelines exist for
-    developing measurement instruments and manipulations of constructs.
-    When conducting empirical research or secondary research,
-    therefore, it is important to have a clear idea, and clearly
-    communicate, which guidelines are followed. However, these guidelines
+    developing measurement instruments and manipulations of constructs, and
+    different theories and empirical investigations often use different
+    definitions for constructs with the same name. When conducting empirical
+    research or secondary research, therefore, it is important to have a clear
+    idea, and clearly communicate, which definitions are used, and which
+    guidelines for developing measurement instruments and coding qualitative
+    data are followed. However, because no standard exists for documenting
+    this information in a systametic manner, these guidelines
     are fragmented, and no universal consensus exists regarding how any
     construct must be measured or manipulated. Therefore, developing one
     'final' taxonomy is not feasible or even desirable. At the same time,
     it is important that people clearly communicate their 'study-specific
-    taxonomy'. The `dct` package makes it possible to combine these two
+    taxonomy'. The `psyverse` package makes it possible to combine these two
     goals.
 BugReports: https://gitlab.com/r-packages/psyverse/issues
 URL: https://r-packages.gitlab.io/psyverse
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Roxygen: list(markdown = TRUE)
 Depends: R (>= 3.0.0)
-Imports: DiagrammeR (>= 1.0.0),
-         magrittr (>= 1.5),
-         purrr (>= 0.2.5),
+Imports: magrittr (>= 1.5),
          stats (>= 3.0.0),
-         ufs (>= 0.2.0),
          yaml (>= 2.1.19),
          yum (>= 0.0.1)
-Suggests: 
+Suggests:
+    covr,
+    DiagrammeR (>= 1.0.0),
+    here,
     knitr,
     rmarkdown,
-    covr
+    testthat
 VignetteBuilder: knitr

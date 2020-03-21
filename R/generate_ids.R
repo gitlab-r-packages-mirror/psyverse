@@ -3,8 +3,11 @@
 generate_ids <- function(x,
                          stopOnIllegalChars = FALSE) {
   if (is.numeric(x)) {
-    x <- purrr::map_chr(1:x,
-                        function(x) return(paste(sample(letters, 4), collapse="")));
+    x <-
+      unlist(
+        lapply(
+          1:x,
+          function(x) return(paste(sample(letters, 4), collapse=""))));
   }
   res <- generate_id(prefix="",
                      stopOnIllegalChars=stopOnIllegalChars);

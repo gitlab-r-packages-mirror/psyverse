@@ -4,12 +4,21 @@
 \alias{parse_dct_specs}
 \title{Parse DCT specifications}
 \usage{
-parse_dct_specs(dctSpecs, headingLevel = 2)
+parse_dct_specs(
+  dctSpecs,
+  headingLevel = 2,
+  hyperlink_ucids = "Markdown",
+  urlPrefix = "#"
+)
 }
 \arguments{
 \item{dctSpecs}{The DCT specifications (a list).}
 
-\item{headingLevel}{The heading level for Rmd output.}
+\item{headingLevel}{The heading level for Markdown output.}
+
+\item{hyperlink_ucids, urlPrefix}{Passed on to the
+\code{\link[=generate_instruction_overview]{generate_instruction_overview()}} and \code{\link[=generate_construct_overview]{generate_construct_overview()}}
+functions.}
 }
 \value{
 The object of parsed DCT specifications.

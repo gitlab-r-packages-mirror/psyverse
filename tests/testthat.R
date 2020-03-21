@@ -1,3 +1,3 @@
 require(testthat);
 require(here);
-test_check("dct");
+test_check("psyverse");
