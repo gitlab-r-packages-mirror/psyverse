@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Parse DCT specifications — parse_dct_specs • psyverse</title>
+<title>Concatenate to screen without spaces — cat0 • psyverse</title>
 
 
 <!-- jquery -->
@@ -35,10 +35,9 @@
 
 
 
-<meta property="og:title" content="Parse DCT specifications — parse_dct_specs" />
-<meta property="og:description" content="This function parses DCT specifications; it's normally
-called by load_dct_dir() or load_dct_specs(), so you
-won't have to use it directly." />
+<meta property="og:title" content="Concatenate to screen without spaces — cat0" />
+<meta property="og:description" content="The cat0 function is to cat what paste0 is to paste; it
+simply makes concatenating many strings without a separator easier." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -114,53 +113,44 @@ won't have to use it directly." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Parse DCT specifications</h1>
+    <h1>Concatenate to screen without spaces</h1>
     
-    <div class="hidden name"><code>parse_dct_specs.Rd</code></div>
+    <div class="hidden name"><code>cat0.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function parses DCT specifications; it's normally
-called by <code><a href='load_dct_specs.html'>load_dct_dir()</a></code> or <code><a href='load_dct_specs.html'>load_dct_specs()</a></code>, so you
-won't have to use it directly.</p>
+    <p>The cat0 function is to cat what paste0 is to paste; it
+simply makes concatenating many strings without a separator easier.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>parse_dct_specs</span>(
-  <span class='no'>dctSpecs</span>,
-  <span class='kw'>headingLevel</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>hyperlink_ucids</span> <span class='kw'>=</span> <span class='st'>"Markdown"</span>,
-  <span class='kw'>urlPrefix</span> <span class='kw'>=</span> <span class='st'>"#"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>cat0</span>(<span class='no'>...</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>dctSpecs</th>
-      <td><p>The DCT specifications (a list).</p></td>
+      <th>...</th>
+      <td><p>The character vector(s) to print; passed to <a href='https://rdrr.io/r/base/cat.html'>cat</a>.</p></td>
     </tr>
     <tr>
-      <th>headingLevel</th>
-      <td><p>The heading level for Markdown output.</p></td>
-    </tr>
-    <tr>
-      <th>hyperlink_ucids, urlPrefix</th>
-      <td><p>Passed on to the
-<code><a href='overview_generation.html'>generate_instruction_overview()</a></code> and <code><a href='overview_generation.html'>generate_construct_overview()</a></code>
-functions.</p></td>
+      <th>sep</th>
+      <td><p>The separator to pass to <a href='https://rdrr.io/r/base/cat.html'>cat</a>, of course, <code>""</code> by default.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The object of parsed DCT specifications.</p>
+    <p>Nothing (invisible <code>NULL</code>, like <a href='https://rdrr.io/r/base/cat.html'>cat</a>).</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>cat0</span>(<span class='st'>"The first variable is '"</span>, <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>mtcars</span>)[<span class='fl'>1</span>], <span class='st'>"'."</span>);</div><div class='output co'>#&gt; The first variable is 'mpg'.</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

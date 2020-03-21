@@ -1,10 +1,10 @@
 ---
-title: "Decentralized Construct Taxonomies"
+title: "Decentralized Construct Taxonomies in the psyverse"
 author: "Gjalt-Jorn Ygram Peters"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Decentralized Construct Taxonomies in the psyverse}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -91,16 +91,6 @@ dct:
 ################################################################################
 
   measure_code:
-    instruction: ""
-
-################################################################################
-
-  manipulate_dev:
-    instruction: ""
-
-################################################################################
-
-  manipulate_code:
     instruction: ""
 
 ################################################################################

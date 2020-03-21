@@ -23,10 +23,9 @@ devtools-check:
   stage: test
   image: rocker/tidyverse
   script:
-    - R -e 'install.packages(c("DiagrammeR", "purrr", "yaml"))'
+    - R -e 'install.packages(c("DiagrammeR", "yaml"))'
     - R -e 'install.packages(c("knitr", "rmarkdown", "covr", "testthat"))'
     - R -e 'devtools::install_gitlab("r-packages/yum")'
-    - R -e 'devtools::install_gitlab("r-packages/ufs")'
     - R -e 'devtools::check()'
   tags:
     - docker
@@ -42,10 +41,9 @@ coverage:
     - master
   script:
     - install2.r covr
-    - R -e 'install.packages(c("DiagrammeR", "purrr", "yaml", "data.tree"))'
-    - R -e 'install.packages(c("devtools", "covr", "testthat", "here"))'
+    - R -e 'install.packages(c("DiagrammeR", "yaml", "data.tree"))'
+    - R -e 'install.packages(c("devtools", "covr", "testthat"))'
     - R -e 'devtools::install_gitlab("r-packages/yum")'
-    - R -e 'devtools::install_gitlab("r-packages/ufs")'
     - R -e 'devtools::install()'
     - R -e 'covr::codecov(type = c("tests", "examples"), quiet = FALSE)'
 

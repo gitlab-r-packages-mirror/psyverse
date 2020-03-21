@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Parse DCT specifications — parse_dct_specs • psyverse</title>
+<title>Generate construct overviews and instruction overviews — generate_construct_overview • psyverse</title>
 
 
 <!-- jquery -->
@@ -35,10 +35,9 @@
 
 
 
-<meta property="og:title" content="Parse DCT specifications — parse_dct_specs" />
-<meta property="og:description" content="This function parses DCT specifications; it's normally
-called by load_dct_dir() or load_dct_specs(), so you
-won't have to use it directly." />
+<meta property="og:title" content="Generate construct overviews and instruction overviews — generate_construct_overview" />
+<meta property="og:description" content="These functions use a DCT specification to generate a
+construct overview or an instruction overview." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -114,20 +113,27 @@ won't have to use it directly." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Parse DCT specifications</h1>
+    <h1>Generate construct overviews and instruction overviews</h1>
     
-    <div class="hidden name"><code>parse_dct_specs.Rd</code></div>
+    <div class="hidden name"><code>overview_generation.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function parses DCT specifications; it's normally
-called by <code><a href='load_dct_specs.html'>load_dct_dir()</a></code> or <code><a href='load_dct_specs.html'>load_dct_specs()</a></code>, so you
-won't have to use it directly.</p>
+    <p>These functions use a DCT specification to generate a
+construct overview or an instruction overview.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>parse_dct_specs</span>(
-  <span class='no'>dctSpecs</span>,
-  <span class='kw'>headingLevel</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+    <pre class="usage"><span class='fu'>generate_construct_overview</span>(
+  <span class='no'>dctSpec</span>,
+  <span class='kw'>headingLevel</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>hyperlink_ucids</span> <span class='kw'>=</span> <span class='st'>"Markdown"</span>,
+  <span class='kw'>urlPrefix</span> <span class='kw'>=</span> <span class='st'>"#"</span>
+)
+
+<span class='fu'>generate_instruction_overview</span>(
+  <span class='no'>dctSpecDf</span>,
+  <span class='no'>type</span>,
+  <span class='kw'>headingLevel</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>hyperlink_ucids</span> <span class='kw'>=</span> <span class='st'>"Markdown"</span>,
   <span class='kw'>urlPrefix</span> <span class='kw'>=</span> <span class='st'>"#"</span>
 )</pre>
@@ -136,31 +142,55 @@ won't have to use it directly.</p>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>dctSpecs</th>
-      <td><p>The DCT specifications (a list).</p></td>
+      <th>dctSpec</th>
+      <td><p>The DCT specification, as resulting from a call
+to <code><a href='load_dct_specs.html'>load_dct_specs()</a></code> or <code><a href='load_dct_specs.html'>load_dct_dir()</a></code>.</p></td>
     </tr>
     <tr>
       <th>headingLevel</th>
-      <td><p>The heading level for Markdown output.</p></td>
+      <td><p>The level of the heading in the Markdown output
+that is produces.</p></td>
     </tr>
     <tr>
-      <th>hyperlink_ucids, urlPrefix</th>
-      <td><p>Passed on to the
-<code><a href='overview_generation.html'>generate_instruction_overview()</a></code> and <code><a href='overview_generation.html'>generate_construct_overview()</a></code>
-functions.</p></td>
+      <th>hyperlink_ucids</th>
+      <td><p>The type of hyperlinks to generate; must be
+a valid string. Currently, if the value is"<code>Markdown</code>" or "<code>HTML</code>",
+hyperlinks in the corresponding formats are produced, and if it is
+"<code>none</code>" (or, actually any other string value), nothing is produced.</p></td>
+    </tr>
+    <tr>
+      <th>urlPrefix</th>
+      <td><p>The prefix to insert before the URL in the produced
+hyperlink. The default, "<code>#</code>", results in a link to an
+anchor (an HTML <code>a</code> element) on the current page.</p></td>
+    </tr>
+    <tr>
+      <th>dctSpecDf</th>
+      <td><p>The DCT specification dataframer, as produced
+by a call to <code><a href='load_dct_specs.html'>load_dct_specs()</a></code> or <code><a href='load_dct_specs.html'>load_dct_dir()</a></code>, and stored within
+the resulting object.</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>For instruction overviews, the type of instruction
+to generate can be specified: must be</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The object of parsed DCT specifications.</p>
+    <p>A character string with the overview.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>### Add example
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
