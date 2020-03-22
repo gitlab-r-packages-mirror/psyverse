@@ -41,15 +41,22 @@ generate_construct_overview <- function(dctSpec,
                                         hyperlink_ucids = "Markdown",
                                         urlPrefix = "#") {
 
-  if (class(dctSpec) == "dctSpecs") {
-    return(lapply(dctSpec,
-                  function(x) {
-                    return(generate_construct_overview(x$intermediate$dctSpec,
-                                                       include = include,
-                                                       headingLevel = headingLevel,
-                                                       hyperlink_ucids = hyperlink_ucids,
-                                                       urlPrefix = urlPrefix));
-                  }));
+  if ("dct_specs" %in% class(dctSpec)) {
+    return(
+      stats::setNames(
+        lapply(dctSpec$intermediate$dctSpec,
+               function(x) {
+                 return(
+                   generate_construct_overview(
+                     x,
+                     include = include,
+                     headingLevel = headingLevel,
+                     hyperlink_ucids = hyperlink_ucids,
+                     urlPrefix = urlPrefix
+                   )
+                 );
+               }),
+        nm = names(dctSpec$intermediate$dctSpec)));
   }
 
   instrPrepFnc <- function(x) {
