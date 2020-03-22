@@ -550,6 +550,16 @@ parse_dct_specs <- function(dctSpecs,
   }
 
   ###--------------------------------------------------------------------------
+  ### Overview with all definitions
+  ###--------------------------------------------------------------------------
+
+  definition_overview <-
+    generate_definitions_overview(node_df,
+                                  headingLevel=headingLevel,
+                                  hyperlink_ucids = hyperlink_ucids,
+                                  urlPrefix = urlPrefix);
+
+  ###--------------------------------------------------------------------------
   ### Overviews with instructions for developing measurement instruments, for
   ### developing manipulations, for coding measurement instruments, for coding
   ### manipulations, and for coding aspects
@@ -620,6 +630,7 @@ parse_dct_specs <- function(dctSpecs,
   res$output <- list(basic_graph = dctGraph,
                      completeness_graph = completeness_dctGraph,
                      construct_overviews = construct_overviews,
+                     defs = definition_overview,
                      instr = list(measure_dev = measure_dev,
                                   measure_code = measure_code,
                                   manipulate_dev = manipulate_dev,

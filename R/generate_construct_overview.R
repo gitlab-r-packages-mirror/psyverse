@@ -22,14 +22,35 @@
 #'
 #' @return A character string with the overview.
 #' @rdname overview_generation
-#' @alias generate_construct_overview generate_instruction_overview
+#' @alias generate_construct_overview
+#' generate_instruction_overview
+#' generate_definitions_overview
 #' @export
 #'
 #' @examples ### Add example
 generate_construct_overview <- function(dctSpec,
+                                        include = c("definition",
+                                                    "measure_dev",
+                                                    "measure_code",
+                                                    "manipulate_dev",
+                                                    "manipulate_code",
+                                                    "aspect_dev",
+                                                    "aspect_code",
+                                                    "rel"),
                                         headingLevel = 3,
                                         hyperlink_ucids = "Markdown",
                                         urlPrefix = "#") {
+
+  if (class(dctSpec) == "dctSpecs") {
+    return(lapply(dctSpec,
+                  function(x) {
+                    return(generate_construct_overview(x$intermediate$dctSpec,
+                                                       include = include,
+                                                       headingLevel = headingLevel,
+                                                       hyperlink_ucids = hyperlink_ucids,
+                                                       urlPrefix = urlPrefix));
+                  }));
+  }
 
   instrPrepFnc <- function(x) {
     if (is.null(x)) {
@@ -65,49 +86,82 @@ generate_construct_overview <- function(dctSpec,
              "."),
       "",
       paste0("Unique Construct Identifier (UCID): ", dctSpec$id),
-      "",
-      paste0(repStr("#", headingLevel+1), " Definition"),
-      "",
-      instrPrepFnc(dctSpec$definition$definition),
-      "",
-      paste0(repStr("#", headingLevel+1), " Instruction for developing measurement instruments"),
-      "",
-      instrPrepFnc(dctSpec$measure_dev$instruction),
-      "",
-      paste0(repStr("#", headingLevel+1), " Instruction for coding measurement instruments"),
-      "",
-      instrPrepFnc(dctSpec$measure_code$instruction),
-      "",
-      paste0(repStr("#", headingLevel+1), " Instruction for developing manipulations"),
-      "",
-      instrPrepFnc(dctSpec$manipulate_dev$instruction),
-      "",
-      paste0(repStr("#", headingLevel+1), " Instruction for coding manipulations"),
-      "",
-      instrPrepFnc(dctSpec$manipulate_code$instruction),
-      "",
-      paste0(repStr("#", headingLevel+1), " Instruction for developing aspects"),
-      "",
-      instrPrepFnc(dctSpec$aspect_dev$instruction),
-      "",
-      paste0(repStr("#", headingLevel+1), " Instruction for coding aspects"),
-      "",
-      paste0("*When coding aspects, use the following code: **`dct:", dctSpec$id, "`***"),
-      "",
-      instrPrepFnc(dctSpec$aspect_code$instruction),
-      "",
-      paste0(repStr("#", headingLevel+1), " Relationships with other constructs"),
-      "",
-      instrPrepFnc(ifelse(is.null(dctSpec$rel),
-                   "*Not specified*",
-                   ifelse(all(c("id", "type") %in% names(dctSpec$rel)),
-                          paste0("- Related to dct:", dctSpec$rel$id, " with relationship of type ",
-                                 dctSpec$rel$type, "\n"),
-                          paste0(unlist(lapply(dctSpec$rel, function(i) {
-                            return(paste0("- Related to dct:", i$id, " with relationship of type ",
-                                          i$type, "\n"));
-                          })), collapse="\n")))),
       "");
+  if ("definition" %in% include) {
+    res <-
+      c(res,
+        paste0(repStr("#", headingLevel+1), " Definition"),
+        "",
+        instrPrepFnc(dctSpec$definition$definition),
+        "",
+      );
+  }
+  if ("measure_dev" %in% include) {
+    res <-
+      c(res,
+        paste0(repStr("#", headingLevel+1), " Instruction for developing measurement instruments"),
+        "",
+        instrPrepFnc(dctSpec$measure_dev$instruction),
+        "");
+  }
+  if ("measure_code" %in% include) {
+    res <-
+      c(res,
+        paste0(repStr("#", headingLevel+1), " Instruction for coding measurement instruments"),
+        "",
+        instrPrepFnc(dctSpec$measure_code$instruction),
+        "");
+  }
+  if ("manipulate_dev" %in% include) {
+    res <-
+      c(res,
+        paste0(repStr("#", headingLevel+1), " Instruction for developing manipulations"),
+        "",
+        instrPrepFnc(dctSpec$manipulate_dev$instruction),
+        "");
+  }
+  if ("manipulate_code" %in% include) {
+    res <-
+      c(res,
+        paste0(repStr("#", headingLevel+1), " Instruction for coding manipulations"),
+        "",
+        instrPrepFnc(dctSpec$manipulate_code$instruction),
+        "");
+  }
+  if ("aspect_dev" %in% include) {
+    res <-
+      c(res,
+        paste0(repStr("#", headingLevel+1), " Instruction for developing aspects"),
+        "",
+        instrPrepFnc(dctSpec$aspect_dev$instruction),
+        "");
+  }
+  if ("aspect_code" %in% include) {
+    res <-
+      c(res,
+        paste0(repStr("#", headingLevel+1), " Instruction for coding aspects"),
+        "",
+        paste0("*When coding aspects, use the following code: **`dct:", dctSpec$id, "`***"),
+        "",
+        instrPrepFnc(dctSpec$aspect_code$instruction),
+        "");
+  }
+  if ("rel" %in% include) {
+    res <-
+      c(res,
+        paste0(repStr("#", headingLevel+1), " Relationships with other constructs"),
+        "",
+        instrPrepFnc(ifelse(is.null(dctSpec$rel),
+                     "*Not specified*",
+                     ifelse(all(c("id", "type") %in% names(dctSpec$rel)),
+                            paste0("- Related to dct:", dctSpec$rel$id, " with relationship of type ",
+                                   dctSpec$rel$type, "\n"),
+                            paste0(unlist(lapply(dctSpec$rel, function(i) {
+                              return(paste0("- Related to dct:", i$id, " with relationship of type ",
+                                            i$type, "\n"));
+                            })), collapse="\n")))),
+        "");
+  }
 
   return(res);
 }
