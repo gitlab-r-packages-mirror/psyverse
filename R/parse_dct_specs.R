@@ -103,9 +103,12 @@ parse_dct_specs <- function(dctSpecs,
                  }
                }
              }
-             if (!is.null(spec$definition) &&
-                 !is.list(spec$definition) &&
-                 is.character(spec$definition)) {
+             if (is.list(spec$definition) &&
+                 "definition" %in% tolower(names(spec$definition))) {
+               spec$definition <- list(definition = spec$definition$definition);
+             } else if (!is.null(spec$definition) &&
+                        !is.list(spec$definition) &&
+                        is.character(spec$definition)) {
                if (length(spec$definition) == 1) {
                  spec$definition <- list(definition = spec$definition);
                } else {
