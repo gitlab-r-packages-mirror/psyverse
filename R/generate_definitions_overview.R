@@ -16,9 +16,9 @@ generate_definitions_overview <- function(dctSpecDf,
                 c(paste0("Unique Construct Identifier (UCID): `", spec['dct_id'], "`"),
                   "");
               res <-
-                ifelse(is.null(spec['definition']) || is.na(spec['definition']) || (nchar(spec['definition'])==0),
+                ifelse(is.null(spec['definition_definition']) || is.na(spec['definition_definition']) || (nchar(spec['definition_definition'])==0),
                        "*(Not specified)*",
-                       spec['definition']);
+                       spec['definition_definition']);
               titleBit <- paste(repStr("#", headingLevel+1), " ",
                                 spec['label']);
 

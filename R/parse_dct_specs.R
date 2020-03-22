@@ -460,7 +460,7 @@ parse_dct_specs <- function(dctSpecs,
 
     node_df$fullInstructions <-
       paste0(node_df$label, "\n",
-             "Definition: ", node_df$def_def, "\n",
+             "Definition: ", node_df$definition_definition, "\n",
              "Measure (dev): ", node_df$measure_dev_instruction, "\n",
              "Change (dev): ", node_df$manipulate_dev_instruction, "\n",
              "Aspect (elicit): ", node_df$manipulate_elicit_instruction, "\n",
@@ -473,7 +473,7 @@ parse_dct_specs <- function(dctSpecs,
 
     node_df$completeness <-
       paste0(node_df$label, "\n",
-             "Definition: ", ifelse(is.null(node_df$def_def) | is.na(node_df$def_def),
+             "Definition: ", ifelse(is.null(node_df$definition_definition) | is.na(node_df$definition_definition),
                                     "-",
                                     "Included"), "\n",
              "Measure (dev): ", ifelse(is.null(node_df$measure_dev_instruction) |
