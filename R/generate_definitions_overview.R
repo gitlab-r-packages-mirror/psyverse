@@ -19,7 +19,8 @@ generate_definitions_overview <- function(dctSpecDf,
                 ifelse(is.null(spec['definition']) || is.na(spec['definition']) || (nchar(spec['definition'])==0),
                        "*(Not specified)*",
                        spec['definition']);
-              titleBit <- paste(repStr("#", headingLevel+1), " ", spec['label']);
+              titleBit <- paste(repStr("#", headingLevel+1), " ",
+                                spec['label']);
 
               ### Replace links to DCTs with hyperlinks
               if (hyperlink_ucids == "Markdown") {

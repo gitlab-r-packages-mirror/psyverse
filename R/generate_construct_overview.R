@@ -93,8 +93,7 @@ generate_construct_overview <- function(dctSpec,
         paste0(repStr("#", headingLevel+1), " Definition"),
         "",
         instrPrepFnc(dctSpec$definition$definition),
-        "",
-      );
+        "");
   }
   if ("measure_dev" %in% include) {
     res <-
