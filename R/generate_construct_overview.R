@@ -114,9 +114,6 @@ generate_construct_overview <- function(dctSpec,
         instrPrepFnc(dctSpec$measure_dev$instruction),
         "</div>",
         "");
-
-    <a class="btn btn-light" style="float:right;" onclick="$(this).next('.toggleable').toggle()">Show / Hide</a>
-
   }
   if ("measure_code" %in% include) {
     res <-
