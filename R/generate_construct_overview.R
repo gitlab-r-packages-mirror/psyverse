@@ -38,6 +38,7 @@ generate_construct_overview <- function(dctSpec,
                                                     "aspect_dev",
                                                     "aspect_code",
                                                     "rel"),
+                                        hideByDefault = NULL,
                                         headingLevel = 3,
                                         hyperlink_ucids = "Markdown",
                                         urlPrefix = "#") {
@@ -58,6 +59,14 @@ generate_construct_overview <- function(dctSpec,
                  );
                }),
         nm = names(dctSpec$intermediate$dctSpec)));
+  }
+
+  defaultDisplay <-
+    stats::setNames(rep("block", length(include)),
+                    nm = include);
+  if (!is.null(hideByDefault)) {
+    defaultDisplay[hideByDefault] <-
+      "none";
   }
 
   instrPrepFnc <- function(x) {
@@ -101,7 +110,7 @@ generate_construct_overview <- function(dctSpec,
         paste0(repStr("#", headingLevel+1), " Definition"),
         "",
         "<div style=\"float:right\" class=\"btn btn-light\" onclick=\"$(this).next('.toggleable').toggle()\">Show / Hide</div>",
-        "<div class='toggleable'>",
+        "<div style='clear: both' class='toggleable'>",
         instrPrepFnc(dctSpec$definition$definition),
         "</div>",
         "");
@@ -111,7 +120,7 @@ generate_construct_overview <- function(dctSpec,
       c(res,
         paste0(repStr("#", headingLevel+1), " Instruction for developing measurement instruments"),
         "<div style=\"float:right\" class=\"btn btn-light\" onclick=\"$(this).next('.toggleable').slideToggle(200)\">Show / Hide</div>",
-        "<div class='toggleable'>",
+        paste0("<div style='clear: both; display=", defaultDisplay['measure_dev'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$measure_dev$instruction),
         "</div>",
         "");
@@ -122,7 +131,7 @@ generate_construct_overview <- function(dctSpec,
         paste0(repStr("#", headingLevel+1), " Instruction for coding measurement instruments"),
         "",
         "<div style=\"float:right\" class=\"btn btn-light\" onclick=\"$(this).next('.toggleable').slideToggle(200)\">Show / Hide</div>",
-        "<div class='toggleable'>",
+        paste0("<div style='clear: both; display=", defaultDisplay['measure_code'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$measure_code$instruction),
         "</div>",
         "");
@@ -132,7 +141,8 @@ generate_construct_overview <- function(dctSpec,
       c(res,
         paste0(repStr("#", headingLevel+1), " Instruction for developing manipulations"),
         "",
-        "<div class='toggleable'>",
+        "<div style=\"float:right\" class=\"btn btn-light\" onclick=\"$(this).next('.toggleable').slideToggle(200)\">Show / Hide</div>",
+        paste0("<div style='clear: both; display=", defaultDisplay['manipulate_dev'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$manipulate_dev$instruction),
         "</div>",
         "");
@@ -142,7 +152,8 @@ generate_construct_overview <- function(dctSpec,
       c(res,
         paste0(repStr("#", headingLevel+1), " Instruction for coding manipulations"),
         "",
-        "<div class='toggleable'>",
+        "<div style=\"float:right\" class=\"btn btn-light\" onclick=\"$(this).next('.toggleable').slideToggle(200)\">Show / Hide</div>",
+        paste0("<div style='clear: both; display=", defaultDisplay['manipulate_code'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$manipulate_code$instruction),
         "</div>",
         "");
@@ -152,7 +163,8 @@ generate_construct_overview <- function(dctSpec,
       c(res,
         paste0(repStr("#", headingLevel+1), " Instruction for developing aspects"),
         "",
-        "<div class='toggleable'>",
+        "<div style=\"float:right\" class=\"btn btn-light\" onclick=\"$(this).next('.toggleable').slideToggle(200)\">Show / Hide</div>",
+        paste0("<div style='clear: both; display=", defaultDisplay['aspect_dev'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$aspect_dev$instruction),
         "</div>",
         "");
@@ -162,7 +174,7 @@ generate_construct_overview <- function(dctSpec,
       c(res,
         paste0(repStr("#", headingLevel+1), " Instruction for coding aspects"),
         "",
-        "<div class='toggleable'>",
+        paste0("<div style='clear: both; display=", defaultDisplay['aspect_code'], "' class='toggleable'>"),
         paste0("*When coding aspects, use the following code: **`dct:", dctSpec$id, "`***"),
         "",
         instrPrepFnc(dctSpec$aspect_code$instruction),
