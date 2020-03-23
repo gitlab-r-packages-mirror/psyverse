@@ -99,23 +99,34 @@ generate_construct_overview <- function(dctSpec,
       c(res,
         paste0(repStr("#", headingLevel+1), " Definition"),
         "",
+        "<a style=\"float:right\" class=\"btn btn-light\" onclick=\"$(this).next('.toggleable').toggle()\">Show / Hide</a>",
+        "<div class='toggleable'>",
         instrPrepFnc(dctSpec$definition$definition),
+        "</div>",
         "");
   }
   if ("measure_dev" %in% include) {
     res <-
       c(res,
         paste0(repStr("#", headingLevel+1), " Instruction for developing measurement instruments"),
-        "",
+        "<a style=\"float:right\" class=\"btn btn-light\" onclick=\"$(this).next('.toggleable').slideToggle(200)\">Show / Hide</a>",
+        "<div class='toggleable'>",
         instrPrepFnc(dctSpec$measure_dev$instruction),
+        "</div>",
         "");
+
+    <a class="btn btn-light" style="float:right;" onclick="$(this).next('.toggleable').toggle()">Show / Hide</a>
+
   }
   if ("measure_code" %in% include) {
     res <-
       c(res,
         paste0(repStr("#", headingLevel+1), " Instruction for coding measurement instruments"),
         "",
+        "<a style=\"float:right\" class=\"btn btn-light\" onclick=\"$(this).next('.toggleable').slideToggle(200)\">Show / Hide</a>",
+        "<div class='toggleable'>",
         instrPrepFnc(dctSpec$measure_code$instruction),
+        "</div>",
         "");
   }
   if ("manipulate_dev" %in% include) {
@@ -123,7 +134,9 @@ generate_construct_overview <- function(dctSpec,
       c(res,
         paste0(repStr("#", headingLevel+1), " Instruction for developing manipulations"),
         "",
+        "<div class='toggleable'>",
         instrPrepFnc(dctSpec$manipulate_dev$instruction),
+        "</div>",
         "");
   }
   if ("manipulate_code" %in% include) {
@@ -131,7 +144,9 @@ generate_construct_overview <- function(dctSpec,
       c(res,
         paste0(repStr("#", headingLevel+1), " Instruction for coding manipulations"),
         "",
+        "<div class='toggleable'>",
         instrPrepFnc(dctSpec$manipulate_code$instruction),
+        "</div>",
         "");
   }
   if ("aspect_dev" %in% include) {
@@ -139,7 +154,9 @@ generate_construct_overview <- function(dctSpec,
       c(res,
         paste0(repStr("#", headingLevel+1), " Instruction for developing aspects"),
         "",
+        "<div class='toggleable'>",
         instrPrepFnc(dctSpec$aspect_dev$instruction),
+        "</div>",
         "");
   }
   if ("aspect_code" %in% include) {
@@ -147,9 +164,11 @@ generate_construct_overview <- function(dctSpec,
       c(res,
         paste0(repStr("#", headingLevel+1), " Instruction for coding aspects"),
         "",
+        "<div class='toggleable'>",
         paste0("*When coding aspects, use the following code: **`dct:", dctSpec$id, "`***"),
         "",
         instrPrepFnc(dctSpec$aspect_code$instruction),
+        "</div>",
         "");
   }
   if ("rel" %in% include) {
