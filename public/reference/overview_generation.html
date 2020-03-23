@@ -125,6 +125,15 @@ construct overview or an instruction overview.</p>
 
     <pre class="usage"><span class='fu'>generate_construct_overview</span>(
   <span class='no'>dctSpec</span>,
+  <span class='kw'>include</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"definition"</span>, <span class='st'>"measure_dev"</span>, <span class='st'>"measure_code"</span>, <span class='st'>"manipulate_dev"</span>,
+    <span class='st'>"manipulate_code"</span>, <span class='st'>"aspect_dev"</span>, <span class='st'>"aspect_code"</span>, <span class='st'>"rel"</span>),
+  <span class='kw'>headingLevel</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>hyperlink_ucids</span> <span class='kw'>=</span> <span class='st'>"Markdown"</span>,
+  <span class='kw'>urlPrefix</span> <span class='kw'>=</span> <span class='st'>"#"</span>
+)
+
+<span class='fu'>generate_definitions_overview</span>(
+  <span class='no'>dctSpecDf</span>,
   <span class='kw'>headingLevel</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>hyperlink_ucids</span> <span class='kw'>=</span> <span class='st'>"Markdown"</span>,
   <span class='kw'>urlPrefix</span> <span class='kw'>=</span> <span class='st'>"#"</span>
@@ -145,6 +154,10 @@ construct overview or an instruction overview.</p>
       <th>dctSpec</th>
       <td><p>The DCT specification, as resulting from a call
 to <code><a href='load_dct_specs.html'>load_dct_specs()</a></code> or <code><a href='load_dct_specs.html'>load_dct_dir()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>include</th>
+      <td><p>Which elements to include in the construct overview.</p></td>
     </tr>
     <tr>
       <th>headingLevel</th>

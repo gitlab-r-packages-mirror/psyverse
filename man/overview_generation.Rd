@@ -35,6 +35,8 @@ generate_instruction_overview(
 \item{dctSpec}{The DCT specification, as resulting from a call
 to \code{\link[=load_dct_specs]{load_dct_specs()}} or \code{\link[=load_dct_dir]{load_dct_dir()}}.}
 
+\item{include}{Which elements to include in the construct overview.}
+
 \item{headingLevel}{The level of the heading in the Markdown output
 that is produces.}
 
