@@ -5,6 +5,7 @@
 #'
 #' @param dctSpec The DCT specification, as resulting from a call
 #' to [load_dct_specs()] or [load_dct_dir()].
+#' @param include Which elements to include in the construct overview.
 #' @param dctSpecDf The DCT specification dataframer, as produced
 #' by a call to [load_dct_specs()] or [load_dct_dir()], and stored within
 #' the resulting object.
