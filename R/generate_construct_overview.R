@@ -101,11 +101,15 @@ generate_construct_overview <- function(dctSpec,
   collapseButtonHTML <-
     function(txt) {
       res <-
-        sprintf(paste0("<div style=\"float:right\" class=\"",
+        sprintf(paste0("<div style=\"float:right;clear:both;",
+                       "margin:2px;",
+                       "border:2px solid #87C3FF;",
+                       "background-color:#c7e3ff;\" class=\"",
                        divClass,
-                       "\" onclick=\"$(this).next('.toggleable').toggle()\">%s</div>"),
+                       "\" onclick=\"$(this).next('.toggleable').",
+                       "toggle()\">%s</div>"),
                 txt);
-      return(as.character(res));
+      return(res);
     }
 
   res <-
