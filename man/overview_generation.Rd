@@ -11,6 +11,8 @@ generate_construct_overview(
   dctSpec,
   include = c("definition", "measure_dev", "measure_code", "manipulate_dev",
     "manipulate_code", "aspect_dev", "aspect_code", "rel"),
+  hideByDefault = NULL,
+  divClass = "btn btn-secondary",
   headingLevel = 3,
   hyperlink_ucids = "Markdown",
   urlPrefix = "#"
@@ -37,6 +39,10 @@ to \code{\link[=load_dct_specs]{load_dct_specs()}} or \code{\link[=load_dct_dir]
 
 \item{include}{Which elements to include in the construct overview.}
 
+\item{hideByDefault}{Which elements to hide by default.}
+
+\item{divClass}{The class of the button to collapse/expand sections.}
+
 \item{headingLevel}{The level of the heading in the Markdown output
 that is produces.}
 
@@ -54,7 +60,9 @@ by a call to \code{\link[=load_dct_specs]{load_dct_specs()}} or \code{\link[=loa
 the resulting object.}
 
 \item{type}{For instruction overviews, the type of instruction
-to generate can be specified: must be}
+to generate can be specified: must be one of "\code{measure_dev}",
+"\code{measure_code}", "\code{manipulate_dev}", "\code{manipulate_code}",
+"\code{aspect_dev}", or "\code{aspect_code}".}
 }
 \value{
 A character string with the overview.
