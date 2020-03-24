@@ -6,11 +6,15 @@
 #' @param dctSpec The DCT specification, as resulting from a call
 #' to [load_dct_specs()] or [load_dct_dir()].
 #' @param include Which elements to include in the construct overview.
+#' @param hideByDefault Which elements to hide by default.
+#' @param divClass The class of the button to collapse/expand sections.
 #' @param dctSpecDf The DCT specification dataframer, as produced
 #' by a call to [load_dct_specs()] or [load_dct_dir()], and stored within
 #' the resulting object.
 #' @param type For instruction overviews, the type of instruction
-#' to generate can be specified: must be
+#' to generate can be specified: must be one of "`measure_dev`",
+#' "`measure_code`", "`manipulate_dev`", "`manipulate_code`",
+#' "`aspect_dev`", or "`aspect_code`".
 #' @param headingLevel The level of the heading in the Markdown output
 #' that is produces.
 #' @param hyperlink_ucids The type of hyperlinks to generate; must be
@@ -39,6 +43,7 @@ generate_construct_overview <- function(dctSpec,
                                                     "aspect_code",
                                                     "rel"),
                                         hideByDefault = NULL,
+                                        divClass = "btn btn-secondary",
                                         headingLevel = 3,
                                         hyperlink_ucids = "Markdown",
                                         urlPrefix = "#") {
@@ -53,6 +58,7 @@ generate_construct_overview <- function(dctSpec,
                      x,
                      include = include,
                      hideByDefault = hideByDefault,
+                     divClass = divClass,
                      headingLevel = headingLevel,
                      hyperlink_ucids = hyperlink_ucids,
                      urlPrefix = urlPrefix
@@ -92,6 +98,11 @@ generate_construct_overview <- function(dctSpec,
     return(res);
   }
 
+  collapseButtonHTML <-
+    paste0("<div style=\"float:right\" class=\"",
+           divClass,
+           "\" onclick=\"$(this).next('.toggleable').toggle()\">Show / Hide</div>");
+
   res <-
     c("",
       paste0(repStr("#", headingLevel), " ", dctSpec$label, " {#", dctSpec$id, "}"),
@@ -109,9 +120,10 @@ generate_construct_overview <- function(dctSpec,
   if ("definition" %in% include) {
     res <-
       c(res,
+        "",
+        collapseButtonHTML,
         paste0(repStr("#", headingLevel+1), " Definition"),
         "",
-        "<div style=\"float:right\" class=\"btn btn-light\" onclick=\"$(this).next('.toggleable').toggle()\">Show / Hide</div>",
         paste0("<div style='clear: both; display: ", defaultDisplay['definition'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$definition$definition),
         "</div>",
@@ -120,9 +132,10 @@ generate_construct_overview <- function(dctSpec,
   if ("measure_dev" %in% include) {
     res <-
       c(res,
+        "",
+        collapseButtonHTML,
         paste0(repStr("#", headingLevel+1), " Instruction for developing measurement instruments"),
         "",
-        "<div style=\"float:right\" class=\"btn btn-light\" onclick=\"$(this).next('.toggleable').slideToggle(200)\">Show / Hide</div>",
         paste0("<div style='clear: both; display: ", defaultDisplay['measure_dev'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$measure_dev$instruction),
         "</div>",
@@ -131,9 +144,10 @@ generate_construct_overview <- function(dctSpec,
   if ("measure_code" %in% include) {
     res <-
       c(res,
+        "",
+        collapseButtonHTML,
         paste0(repStr("#", headingLevel+1), " Instruction for coding measurement instruments"),
         "",
-        "<div style=\"float:right\" class=\"btn btn-light\" onclick=\"$(this).next('.toggleable').slideToggle(200)\">Show / Hide</div>",
         paste0("<div style='clear: both; display: ", defaultDisplay['measure_code'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$measure_code$instruction),
         "</div>",
@@ -142,9 +156,10 @@ generate_construct_overview <- function(dctSpec,
   if ("manipulate_dev" %in% include) {
     res <-
       c(res,
+        "",
+        collapseButtonHTML,
         paste0(repStr("#", headingLevel+1), " Instruction for developing manipulations"),
         "",
-        "<div style=\"float:right\" class=\"btn btn-light\" onclick=\"$(this).next('.toggleable').slideToggle(200)\">Show / Hide</div>",
         paste0("<div style='clear: both; display: ", defaultDisplay['manipulate_dev'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$manipulate_dev$instruction),
         "</div>",
@@ -153,9 +168,10 @@ generate_construct_overview <- function(dctSpec,
   if ("manipulate_code" %in% include) {
     res <-
       c(res,
+        "",
+        collapseButtonHTML,
         paste0(repStr("#", headingLevel+1), " Instruction for coding manipulations"),
         "",
-        "<div style=\"float:right\" class=\"btn btn-light\" onclick=\"$(this).next('.toggleable').slideToggle(200)\">Show / Hide</div>",
         paste0("<div style='clear: both; display: ", defaultDisplay['manipulate_code'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$manipulate_code$instruction),
         "</div>",
@@ -164,9 +180,10 @@ generate_construct_overview <- function(dctSpec,
   if ("aspect_dev" %in% include) {
     res <-
       c(res,
+        "",
+        collapseButtonHTML,
         paste0(repStr("#", headingLevel+1), " Instruction for developing aspects"),
         "",
-        "<div style=\"float:right\" class=\"btn btn-light\" onclick=\"$(this).next('.toggleable').slideToggle(200)\">Show / Hide</div>",
         paste0("<div style='clear: both; display: ", defaultDisplay['aspect_dev'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$aspect_dev$instruction),
         "</div>",
@@ -175,9 +192,10 @@ generate_construct_overview <- function(dctSpec,
   if ("aspect_code" %in% include) {
     res <-
       c(res,
+        "",
+        collapseButtonHTML,
         paste0(repStr("#", headingLevel+1), " Instruction for coding aspects"),
         "",
-        "<div style=\"float:right\" class=\"btn btn-light\" onclick=\"$(this).next('.toggleable').slideToggle(200)\">Show / Hide</div>",
         paste0("<div style='clear: both; display: ", defaultDisplay['aspect_code'], "' class='toggleable'>"),
         paste0("*When coding aspects, use the following code: **`dct:", dctSpec$id, "`***"),
         "",
