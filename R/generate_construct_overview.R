@@ -136,6 +136,7 @@ generate_construct_overview <- function(dctSpec,
         paste0("<div style='clear: both; display: ", defaultDisplay['definition'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$definition$definition),
         "</div>",
+        "<div style='clear:both;height:2px;'></div>",
         "");
   }
   if ("measure_dev" %in% include) {
@@ -148,6 +149,7 @@ generate_construct_overview <- function(dctSpec,
         paste0("<div style='clear: both; display: ", defaultDisplay['measure_dev'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$measure_dev$instruction),
         "</div>",
+        "<div style='clear:both;height:2px;'></div>",
         "");
   }
   if ("measure_code" %in% include) {
@@ -160,6 +162,7 @@ generate_construct_overview <- function(dctSpec,
         paste0("<div style='clear: both; display: ", defaultDisplay['measure_code'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$measure_code$instruction),
         "</div>",
+        "<div style='clear:both;height:2px;'></div>",
         "");
   }
   if ("manipulate_dev" %in% include) {
@@ -172,6 +175,7 @@ generate_construct_overview <- function(dctSpec,
         paste0("<div style='clear: both; display: ", defaultDisplay['manipulate_dev'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$manipulate_dev$instruction),
         "</div>",
+        "<div style='clear:both;height:2px;'></div>",
         "");
   }
   if ("manipulate_code" %in% include) {
@@ -184,6 +188,7 @@ generate_construct_overview <- function(dctSpec,
         paste0("<div style='clear: both; display: ", defaultDisplay['manipulate_code'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$manipulate_code$instruction),
         "</div>",
+        "<div style='clear:both;height:2px;'></div>",
         "");
   }
   if ("aspect_dev" %in% include) {
@@ -196,6 +201,7 @@ generate_construct_overview <- function(dctSpec,
         paste0("<div style='clear: both; display: ", defaultDisplay['aspect_dev'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$aspect_dev$instruction),
         "</div>",
+        "<div style='clear:both;height:2px;'></div>",
         "");
   }
   if ("aspect_code" %in% include) {
@@ -210,6 +216,7 @@ generate_construct_overview <- function(dctSpec,
         "",
         instrPrepFnc(dctSpec$aspect_code$instruction),
         "</div>",
+        "<div style='clear:both;height:2px;'></div>",
         "");
   }
   if ("rel" %in% include) {
