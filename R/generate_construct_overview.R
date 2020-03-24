@@ -52,6 +52,7 @@ generate_construct_overview <- function(dctSpec,
                    generate_construct_overview(
                      x,
                      include = include,
+                     hideByDefault = hideByDefault,
                      headingLevel = headingLevel,
                      hyperlink_ucids = hyperlink_ucids,
                      urlPrefix = urlPrefix
@@ -64,6 +65,7 @@ generate_construct_overview <- function(dctSpec,
   defaultDisplay <-
     stats::setNames(rep("block", length(include)),
                     nm = include);
+
   if (!is.null(hideByDefault)) {
     defaultDisplay[hideByDefault] <-
       "none";
