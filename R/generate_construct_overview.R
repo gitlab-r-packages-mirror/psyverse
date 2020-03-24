@@ -99,9 +99,14 @@ generate_construct_overview <- function(dctSpec,
   }
 
   collapseButtonHTML <-
-    paste0("<div style=\"float:right\" class=\"",
-           divClass,
-           "\" onclick=\"$(this).next('.toggleable').toggle()\">Show / Hide</div>");
+    function(txt) {
+      res <-
+        sprintf(paste0("<div style=\"float:right\" class=\"",
+                       divClass,
+                       "\" onclick=\"$(this).next('.toggleable').toggle()\">%s</div>"),
+                txt);
+      return(res);
+    }
 
   res <-
     c("",
@@ -122,7 +127,7 @@ generate_construct_overview <- function(dctSpec,
       c(res,
         "",
         paste0(repStr("#", headingLevel+1), " Definition"),
-        collapseButtonHTML,
+        collapseButtonHTML(paste0("Show/hide definition")),
         "",
         paste0("<div style='clear: both; display: ", defaultDisplay['definition'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$definition$definition),
@@ -134,7 +139,7 @@ generate_construct_overview <- function(dctSpec,
       c(res,
         "",
         paste0(repStr("#", headingLevel+1), " Instruction for developing measurement instruments"),
-        collapseButtonHTML,
+        collapseButtonHTML(paste0("Show/hide measurement instruction")),
         "",
         paste0("<div style='clear: both; display: ", defaultDisplay['measure_dev'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$measure_dev$instruction),
@@ -146,7 +151,7 @@ generate_construct_overview <- function(dctSpec,
       c(res,
         "",
         paste0(repStr("#", headingLevel+1), " Instruction for coding measurement instruments"),
-        collapseButtonHTML,
+        collapseButtonHTML(paste0("Show/hide coding instruction")),
         "",
         paste0("<div style='clear: both; display: ", defaultDisplay['measure_code'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$measure_code$instruction),
