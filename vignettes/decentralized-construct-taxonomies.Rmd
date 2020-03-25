@@ -118,30 +118,30 @@ An example in progress is available at https://a-bc.gitlab.io/dct-raa/.
 
 ## References
 
-Abraham, C., & Michie, S. (2008). A taxonomy of behavior change techniques used in interventions. *Health Psychology*, 27(3), 379–87. doi: [10.1037/0278-6133.27.3.379](https://doi.org/10.1037/0278-6133.27.3.379)
+Abraham, C., & Michie, S. (2008). A taxonomy of behavior change techniques used in interventions. *Health Psychology*, 27(3), 379–87. https://doi.org/10.1037/0278-6133.27.3.379
 
-Crutzen, R., & Peters, G.-J. Y. (2018). Evolutionary learning processes as the foundation for behaviour change. *Health Psychology Review*, 12(1), 43–57. doi: [10.1080/17437199.2017.1362569](https://doi.org/10.1080/17437199.2017.1362569)
+Crutzen, R., & Peters, G.-J. Y. (2018). Evolutionary learning processes as the foundation for behaviour change. *Health Psychology Review*, 12(1), 43–57. https://doi.org/10.1080/17437199.2017.1362569
 
 Fried, E. I. (2017a). The 52 symptoms of major depression: Lack of content overlap among seven common depression scales. *Journal of Affective Disorders*, 208, 191-197.
 
 Fried, E. I. (2017b). What are psychological constructs? On the nature and statistical modeling of psychological kinds. *Health Psychology Review*, 11, 130-134.
 
-Hussey, I., & Hughes, S. (2019) Hidden invalidity among fifteen commonly used measures in social and personality psychology. *PsyArXiv*. doi: [10.31234/osf.io/7rbfp](https://doi.org/10.31234/osf.io/7rbfp)
+Hussey, I., & Hughes, S. (2019) Hidden invalidity among fifteen commonly used measures in social and personality psychology. *PsyArXiv*. https://doi.org/10.31234/osf.io/7rbfp
 
-Kok, G., Gottlieb, N. H., Peters, G.-J. Y., Mullen, P. D., Parcel, G. S., Ruiter, R. A. C., … Bartholomew, L. K. (2016). A taxonomy of behavior change methods: an Intervention Mapping approach. *Health Psychology Review*, 10(3), 297–312. doi: [10.1080/17437199.2015.1077155](https://doi.org/10.1080/17437199.2015.1077155)
+Kok, G., Gottlieb, N. H., Peters, G.-J. Y., Mullen, P. D., Parcel, G. S., Ruiter, R. A. C., … Bartholomew, L. K. (2016). A taxonomy of behavior change methods: an Intervention Mapping approach. *Health Psychology Review*, 10(3), 297–312. https://doi.org/10.1080/17437199.2015.1077155
 
-Peters, G.-J. Y., & Crutzen, R. (2017a). Pragmatic nihilism: how a Theory of Nothing can help health psychology progress. *Health Psychology Review*, 11(2). doi: [10.1080/17437199.2017.1284015](https://doi.org/10.1080/17437199.2017.1284015)
+Peters, G.-J. Y., & Crutzen, R. (2017a). Pragmatic nihilism: how a Theory of Nothing can help health psychology progress. *Health Psychology Review*, 11(2). https://doi.org/10.1080/17437199.2017.1284015
 
-Peters, G.-J. Y., & Crutzen, R. (2017b). Confidence in constant progress: or how pragmatic nihilism encourages optimism through modesty. *Health Psychology Review,* 11(2), 140–144. doi: [10.1080/17437199.2017.1316674](https://doi.org/10.1080/17437199.2017.1316674)
+Peters, G.-J. Y., & Crutzen, R. (2017b). Confidence in constant progress: or how pragmatic nihilism encourages optimism through modesty. *Health Psychology Review,* 11(2), 140–144. https://doi.org/10.1080/17437199.2017.1316674
 
-Maul, A. (2017). Rethinking Traditional Methods of Survey Validation. *Measurement: Interdisciplinary Research and Perspectives, 15:2*, 51:69. doi: [10.1080/15366367.2017.1348108](https://doi.org/10.1080/15366367.2017.1348108)
+Maul, A. (2017). Rethinking Traditional Methods of Survey Validation. *Measurement: Interdisciplinary Research and Perspectives, 15:2*, 51:69. https://doi.org/10.1080/15366367.2017.1348108
 
-Snippe, M. H. M, Peters, G.-J. Y., & Kok, G. (2019) The Operationalization of Self-Identity in Reasoned Action Models: A Systematic Review of Self-Identity Operationalizations in Three Decades of Research. *PsyArXiv*, doi: [10.31234/osf.io/ygpmw](https://doi.org/10.31234/osf.io/ygpmw)
+Snippe, M. H. M, Peters, G.-J. Y., & Kok, G. (2019) The Operationalization of Self-Identity in Reasoned Action Models: A Systematic Review of Self-Identity Operationalizations in Three Decades of Research. *PsyArXiv*, https://doi.org/10.31234/osf.io/ygpmw
 
 Warnell, K. R., & Redcay, E. (2019). Minimal coherence among varied theory of mind measures in childhood and adulthood. *Cognition*, 191, 103997.
 
 Weidman, A. C., Steckler, C. M., & Tracy, J. L. (2017). The jingle and jangle of emotion assessment: Imprecise measurement, casual scale usage, and conceptual fuzziness in emotion research. *Emotion*, 17(2), 267.
 
-Williams, D. M., & Rhodes, R. E. (2016a). The confounded self-efficacy construct: review, conceptual analysis, and recommendations for future research. *Health Psychology Review*, 10(2), 113–128. doi: [10.1080/17437199.2014.941998](https://doi.org/10.1080/17437199.2014.941998)
+Williams, D. M., & Rhodes, R. E. (2016a). The confounded self-efficacy construct: review, conceptual analysis, and recommendations for future research. *Health Psychology Review*, 10(2), 113–128. https://doi.org/10.1080/17437199.2014.941998
 
-Williams, D. M., & Rhodes, R. E. (2016b). Reviving the critical distinction between perceived capability and motivation: A response to commentaries. *Health Psychology Review*, 7199(April), 1–7. doi: [10.1080/17437199.2016.1171729](https://doi.org/10.1080/17437199.2016.1171729)
+Williams, D. M., & Rhodes, R. E. (2016b). Reviving the critical distinction between perceived capability and motivation: A response to commentaries. *Health Psychology Review*, 7199(April), 1–7. https://doi.org/10.1080/17437199.2016.1171729
