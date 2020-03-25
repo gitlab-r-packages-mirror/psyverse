@@ -27,7 +27,7 @@
 #'
 #' @return A character string with the overview.
 #' @rdname overview_generation
-#' @alias generate_construct_overview
+#' @aliases generate_construct_overview
 #' generate_instruction_overview
 #' generate_definitions_overview
 #' @export

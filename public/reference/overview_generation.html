@@ -93,7 +93,7 @@ construct overview or an instruction overview." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/decentralized-construct-taxonomies.html">Decentralized Construct Taxonomies in the psyverse</a>
+      <a href="../articles/decentralized-construct-taxonomies.html">Decentralized Construct Taxonomies</a>
     </li>
   </ul>
 </li>
@@ -127,6 +127,8 @@ construct overview or an instruction overview.</p>
   <span class='no'>dctSpec</span>,
   <span class='kw'>include</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"definition"</span>, <span class='st'>"measure_dev"</span>, <span class='st'>"measure_code"</span>, <span class='st'>"manipulate_dev"</span>,
     <span class='st'>"manipulate_code"</span>, <span class='st'>"aspect_dev"</span>, <span class='st'>"aspect_code"</span>, <span class='st'>"rel"</span>),
+  <span class='kw'>hideByDefault</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>divClass</span> <span class='kw'>=</span> <span class='st'>"btn btn-secondary"</span>,
   <span class='kw'>headingLevel</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>hyperlink_ucids</span> <span class='kw'>=</span> <span class='st'>"Markdown"</span>,
   <span class='kw'>urlPrefix</span> <span class='kw'>=</span> <span class='st'>"#"</span>
@@ -160,6 +162,14 @@ to <code><a href='load_dct_specs.html'>load_dct_specs()</a></code> or <code><a h
       <td><p>Which elements to include in the construct overview.</p></td>
     </tr>
     <tr>
+      <th>hideByDefault</th>
+      <td><p>Which elements to hide by default.</p></td>
+    </tr>
+    <tr>
+      <th>divClass</th>
+      <td><p>The class of the button to collapse/expand sections.</p></td>
+    </tr>
+    <tr>
       <th>headingLevel</th>
       <td><p>The level of the heading in the Markdown output
 that is produces.</p></td>
@@ -186,7 +196,9 @@ the resulting object.</p></td>
     <tr>
       <th>type</th>
       <td><p>For instruction overviews, the type of instruction
-to generate can be specified: must be</p></td>
+to generate can be specified: must be one of "<code>measure_dev</code>",
+"<code>measure_code</code>", "<code>manipulate_dev</code>", "<code>manipulate_code</code>",
+"<code>aspect_dev</code>", or "<code>aspect_code</code>".</p></td>
     </tr>
     </table>
 

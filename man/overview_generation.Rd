@@ -3,8 +3,8 @@
 %   R/generate_definitions_overview.R, R/generate_instruction_overview.R
 \name{generate_construct_overview}
 \alias{generate_construct_overview}
-\alias{generate_definitions_overview}
 \alias{generate_instruction_overview}
+\alias{generate_definitions_overview}
 \title{Generate construct overviews and instruction overviews}
 \usage{
 generate_construct_overview(
