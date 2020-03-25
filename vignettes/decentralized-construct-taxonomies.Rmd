@@ -1,12 +1,14 @@
 ---
-title: "Decentralized Construct Taxonomies in the psyverse"
+title: "Decentralized Construct Taxonomies"
 author: "Gjalt-Jorn Ygram Peters"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Decentralized Construct Taxonomies in the psyverse}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output:
+  pdf_document
+#  rmarkdown::html_vignette
+#vignette: >
+#  %\VignetteIndexEntry{Decentralized Construct Taxonomies}
+#  %\VignetteEngine{knitr::rmarkdown}
+#  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}
@@ -114,7 +116,6 @@ dct:
 ```
 
 An example in progress is available at https://a-bc.gitlab.io/dct-raa/.
-
 
 
 ## References
