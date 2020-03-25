@@ -18,7 +18,8 @@ Description: The constructs used to study the human psychology have
     and qualitative research based on 'YAML'. This standard facilitates
     systematic unequivocal reference to specific construct definitions
     and corresponding instructions in a decentralized manner (i.e.
-    without requiring central curation).
+    without requiring central curation; Peters (2020)
+    <doi:10.31234/osf.io/xebhn>).
 BugReports: https://gitlab.com/r-packages/psyverse/issues
 URL: https://r-packages.gitlab.io/psyverse
 Encoding: UTF-8
