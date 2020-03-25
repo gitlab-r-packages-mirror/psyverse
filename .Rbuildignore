@@ -11,3 +11,5 @@
 ^docs/
 ^delete/
 ^img/
+^doc$
+^Meta$

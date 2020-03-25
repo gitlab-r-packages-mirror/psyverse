@@ -2,13 +2,11 @@
 title: "Decentralized Construct Taxonomies"
 author: "Gjalt-Jorn Ygram Peters"
 date: "`r Sys.Date()`"
-output:
-  pdf_document
-#  rmarkdown::html_vignette
-#vignette: >
-#  %\VignetteIndexEntry{Decentralized Construct Taxonomies}
-#  %\VignetteEngine{knitr::rmarkdown}
-#  %\VignetteEncoding{UTF-8}
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Decentralized Construct Taxonomies}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}
@@ -124,13 +122,13 @@ Abraham, C., & Michie, S. (2008). A taxonomy of behavior change techniques used 
 
 Crutzen, R., & Peters, G.-J. Y. (2018). Evolutionary learning processes as the foundation for behaviour change. *Health Psychology Review*, 12(1), 43–57. doi: [10.1080/17437199.2017.1362569](https://doi.org/10.1080/17437199.2017.1362569)
 
-Fried, E. I. (2017a). The 52 symptoms of major depression: Lack of content overlap among seven common depression scales. **Journal of Affective Disorders**, 208, 191-197.
+Fried, E. I. (2017a). The 52 symptoms of major depression: Lack of content overlap among seven common depression scales. *Journal of Affective Disorders*, 208, 191-197.
 
-Fried, E. I. (2017b). What are psychological constructs? On the nature and statistical modeling of psychological kinds. **Health Psychology Review**, 11, 130-134.
+Fried, E. I. (2017b). What are psychological constructs? On the nature and statistical modeling of psychological kinds. *Health Psychology Review*, 11, 130-134.
 
 Hussey, I., & Hughes, S. (2019) Hidden invalidity among fifteen commonly used measures in social and personality psychology. *PsyArXiv*. doi:[10.31234/osf.io/7rbfp](https://doi.org/10.31234/osf.io/7rbfp)
 
-Kok, G., Gottlieb, N. H., Peters, G.-J. Y., Mullen, P. D., Parcel, G. S., Ruiter, R. A. C., … Bartholomew, L. K. (2016). A taxonomy of behavior change methods: an Intervention Mapping approach. **Health Psychology Review**, 10(3), 297–312. doi: [10.1080/17437199.2015.1077155](https://doi.org/10.1080/17437199.2015.1077155)
+Kok, G., Gottlieb, N. H., Peters, G.-J. Y., Mullen, P. D., Parcel, G. S., Ruiter, R. A. C., … Bartholomew, L. K. (2016). A taxonomy of behavior change methods: an Intervention Mapping approach. *Health Psychology Review*, 10(3), 297–312. doi: [10.1080/17437199.2015.1077155](https://doi.org/10.1080/17437199.2015.1077155)
 
 Peters, G.-J. Y., & Crutzen, R. (2017a). Pragmatic nihilism: how a Theory of Nothing can help health psychology progress. *Health Psychology Review*, 11(2). doi: [10.1080/17437199.2017.1284015](https://doi.org/10.1080/17437199.2017.1284015)
 
