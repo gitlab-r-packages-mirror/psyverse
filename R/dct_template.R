@@ -102,7 +102,7 @@ can be omitted.
 ---
 dct:
   version: ',
-                utils::packageVersion('dct') ,'
+                utils::packageVersion('psyverse') ,'
 
   ### The identifier (id) is the unique code used to refer to this
   ### Decentralized Construct Taxonomy specification. This id is the
