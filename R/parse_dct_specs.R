@@ -89,8 +89,8 @@ parse_dct_specs <- function(dctSpecs,
              ### specifying an instruction only.
              for (currentCheck in c('measure_dev',
                                     'measure_code',
-                                    'manipulate_dev',
-                                    'manipulate_code',
+                                    # 'manipulate_dev',
+                                    # 'manipulate_code',
                                     'aspect_dev',
                                     'aspect_code')) {
                if (!is.null(spec[[currentCheck]]) &&
@@ -239,7 +239,7 @@ parse_dct_specs <- function(dctSpecs,
 
   edge_df_input <- data.frame();
   for (dctSpec in dctSpecs) {
-    if ('rel' %in% names(dctSpec)) {
+    if (('rel' %in% names(dctSpec)) && (!is.null(dctSpec$rel))) {
       if (is.list(dctSpec)) {
         rel <- dctSpec[['rel']];
         dct_id <- dctSpec[['id']];
