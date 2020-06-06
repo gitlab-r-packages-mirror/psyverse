@@ -49,7 +49,7 @@ dct_sheet_to_dct <- function(dct_sheet) {
   return(
     dct_object(
       version = as.character(packageVersion("psyverse")),
-      id = psyverse::generate_id(prefix=dct$prefix),
+      prefix = dct$prefix,
       label = dct$label,
       date = as.character(Sys.Date()),
       ancestry = "",
