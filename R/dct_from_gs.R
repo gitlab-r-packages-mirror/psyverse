@@ -30,6 +30,12 @@ dct_from_gs <-
         gs,
         verbose = FALSE
       );
+  } else if (is.character(gs) && (nchar(gs) == 44)) {
+    gs <-
+      googlesheets::gs_key(
+        gs,
+        verbose = FALSE
+      );
   } else if (!("googlesheet" %in% class(gs))) {
     stop("As `gs`, pass either a `googlesheets` object, or a Google Sheets URL.");
   }
