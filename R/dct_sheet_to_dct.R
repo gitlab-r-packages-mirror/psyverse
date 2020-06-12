@@ -15,9 +15,8 @@ dct_sheet_to_dct <- function(dct_sheet) {
          "data frame you provided as `dct_sheet`.");
   }
 
-  dctFields <-
+  dctFields_required <-
     c(
-      "prefix",
       "label",
       "definition",
       "measure_dev",
@@ -25,9 +24,15 @@ dct_sheet_to_dct <- function(dct_sheet) {
       "aspect_dev",
       "aspect_code"
     );
+  dctFields_optional <-
+    c(
+      "ancestry",
+      "retires",
+      "rel"
+    );
 
   dct <- lapply(
-    dctFields,
+    dctFields_required,
     function(fieldName) {
       res <- dct_sheet[dct_sheet[, fieldCol] == fieldName, contentCol];
       if (all(is.na(res))) {
@@ -44,12 +49,52 @@ dct_sheet_to_dct <- function(dct_sheet) {
       }
     });
   names(dct) <-
-    dctFields;
+    dctFields_required;
+
+  if ("id" %in% dct_sheet[, fieldCol]) {
+    dct$id <- dct_sheet[dct_sheet[, fieldCol] == "id", contentCol];
+  } else {
+    dct$id <- NULL;
+  }
+  if ("prefix" %in% dct_sheet[, fieldCol]) {
+    dct$prefix <- dct_sheet[dct_sheet[, fieldCol] == "prefix", contentCol];
+  } else {
+    dct$prefix <- NULL;
+  }
+  if ((!is.null(dct$id) & !is.null()dct$prefix) &&
+      (!grepl(dct$prefix, dct$id, fixed=TRUE))) {
+    stop("The DCT sheet contained both a specified full identifier (`id`, `",
+         dct$id, "`) and an identifier prefix (`prefix`, `", dct$prefix,
+         "`), but the prefix is not contained within the identifier!");
+  }
+
+  dct <-
+    c(
+      dct,
+      setNames(
+        lapply(
+          dctFields_optional,
+          function(fieldName) {
+            res <- dct_sheet[dct_sheet[, fieldCol] == fieldName, contentCol];
+            if ((all(is.na(res))) || (length(res) < 1)) {
+              res <- "";
+            } else if (length(res) > 1) {
+              res <- paste0(
+                res,
+                collapse = " ||| "
+              );
+            }
+            return(res);
+          }),
+        nm = dctFields_optional
+      )
+    );
 
   return(
     dct_object(
       version = as.character(packageVersion("psyverse")),
       prefix = dct$prefix,
+      id = dct$id,
       label = dct$label,
       date = as.character(Sys.Date()),
       ancestry = "",

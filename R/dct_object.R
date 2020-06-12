@@ -1,6 +1,7 @@
 dct_object <-
   function(
     version = as.character(packageVersion("psyverse")),
+    id = NULL,
     prefix = paste(sample(letters, 4), collapse=""),
     label = "",
     date = as.character(Sys.Date()),
@@ -14,10 +15,14 @@ dct_object <-
     rel = NULL
   ) {
 
+  if (is.null(id)) {
+    id <- psyverse::generate_id(prefix=prefix);
+  }
+
   res <-
     list(
       version = version,
-      id = psyverse::generate_id(prefix=prefix),
+      id = id,
       label = label,
       date = date,
       ancestry = ancestry,
