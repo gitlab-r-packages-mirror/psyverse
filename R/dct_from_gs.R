@@ -1,6 +1,7 @@
 #' Import a DCT specification from a Google Sheets spreadsheet
 #'
-#' @param gs The URL to the Google Sheets spreadsheet.
+#' @param gs The URL to the Google Sheets spreadsheet, its key, or the
+#' object resulting from a call to [googlesheets4::gs4_get()].
 #' @param sheets `TRUE` to read all worksheets, or a vector with the
 #' indices or names of the worksheets to read.
 #' @param path The path to save the DCT specifications.
@@ -24,24 +25,31 @@ dct_from_gs <-
     encoding = psyverse::opts$get("encoding")
   ) {
 
-  if (is.character(gs) && (length(gs) == 1) && grepl("^http", gs)) {
-    gs <-
-      googlesheets::gs_url(
-        gs,
-        verbose = FALSE
-      );
-  } else if (is.character(gs) && (nchar(gs) == 44)) {
-    gs <-
-      googlesheets::gs_key(
-        gs,
-        verbose = FALSE
-      );
-  } else if (!("googlesheet" %in% class(gs))) {
-    stop("As `gs`, pass either a `googlesheets` object, or a Google Sheets URL.");
+  googlesheets4::gs4_deauth();
+
+  if (!("googlesheets4_spreadsheet" %in% class(gs))) {
+    gs <- googlesheets4::gs4_get(gs);
   }
 
+  # if (is.character(gs) && (length(gs) == 1) && grepl("^http", gs)) {
+  #   gs <-
+  #     googlesheets::gs_url(
+  #       gs,
+  #       verbose = FALSE
+  #     );
+  # } else if (is.character(gs) && (nchar(gs) == 44)) {
+  #   gs <-
+  #     googlesheets4::gs_key(
+  #       gs,
+  #       verbose = FALSE
+  #     );
+  # } else if (!("googlesheet" %in% class(gs))) {
+  #   stop("As `gs`, pass either a `googlesheets` object, or a Google Sheets URL.");
+  # }
+
   if (isTRUE(sheets)) {
-    sheets <- googlesheets::gs_ws_ls(gs);
+    #sheets <- googlesheets::gs_ws_ls(gs);
+    sheets <- googlesheets4::sheet_names(gs);
   }
 
   if (is.null(localBackup)) {
@@ -68,10 +76,14 @@ dct_from_gs <-
     ### Read the worksheet for this language
     res$sheets[[currentSheet]] <-
       as.data.frame(
-        googlesheets::gs_read(
+        # googlesheets::gs_read(
+        #   gs,
+        #   ws = currentSheet,
+        #   verbose = FALSE
+        # ),
+        googlesheets4::read_sheet(
           gs,
-          ws = currentSheet,
-          verbose = FALSE
+          sheet = currentSheet
         ),
         stringsAsFactors = FALSE
       );

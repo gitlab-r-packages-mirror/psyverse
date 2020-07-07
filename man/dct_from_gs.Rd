@@ -14,7 +14,8 @@ dct_from_gs(
 )
 }
 \arguments{
-\item{gs}{The URL to the Google Sheets spreadsheet.}
+\item{gs}{The URL to the Google Sheets spreadsheet, its key, or the
+object resulting from a call to \code{\link[googlesheets4:gs4_get]{googlesheets4::gs4_get()}}.}
 
 \item{sheets}{\code{TRUE} to read all worksheets, or a vector with the
 indices or names of the worksheets to read.}
