@@ -53,7 +53,7 @@ dct_sheet_to_dct <- function(dct_sheet) {
 
   if ("id" %in% dct_sheet[, fieldCol]) {
     dct$id <- dct_sheet[dct_sheet[, fieldCol] == "id", contentCol];
-    if (nchar(trimws(dct$id)) == 0) {
+    if ((is.na(dct$id)) || nchar(trimws(dct$id)) == 0) {
       dct$id <- NULL;
     }
   } else {
