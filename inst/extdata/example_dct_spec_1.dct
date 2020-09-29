@@ -13,17 +13,14 @@ dct:
       source:
         spec: pp. 11-12
     measure_dev:
-      instr: Use semantic differentials with root \"For me, [TARGET BEHAVIOR] is ...\" and a bidimensional scale where the right-most anchor expresses a beneficial or pleasant evaluation and the left-most anchor expresses the opposite undesirable/harmful/unpleasant evaluation.
-    manipulate_dev:
-      instr: persuasive communication
-      source:
-        label: pers comm matrix
-        xdoi: doi of article
+      instr: "Use semantic differentials with root \"For me, [TARGET BEHAVIOR] is ...\" and a bidimensional scale where the right-most anchor expresses a beneficial or pleasant evaluation and the left-most anchor expresses the opposite undesirable/harmful/unpleasant evaluation."
+	measure_ex:
+	  item:
+	    - "For me, exercising for at least twenty minutes, four times a week, is... [very unpleasant|very pleasant]"
+		- "For me, exercising for at least twenty minutes, four times a week, is... [very bad|very good]"
+		- "For me, exercising for at least twenty minutes, four times a week, is... [very unwise|very wise]"
     measure_code:
-      instr: Operationalisations that measure beneficial or pleasant aspects of the latent disposition or tendency to respond favourably versus unfavourably to [target behavior], for example using the semantic differentials good/bad, pleasant/unpleasant, wise/unwise.
-      source: none
-    manipulate_code:
-      instr: Code any presentation of a stimulus asserting that engaging in the target behavior will yield positive or negative consequences.
+      instr: "Operationalisations that measure beneficial or pleasant aspects of the latent disposition or tendency to respond favourably versus unfavourably to [target behavior], for example using the semantic differentials good/bad, pleasant/unpleasant, wise/unwise."
       source: none
     aspect_code:
       instruction: Expressions of any consequences for oneself that one perceives to be caused by engaging in the target behavior.

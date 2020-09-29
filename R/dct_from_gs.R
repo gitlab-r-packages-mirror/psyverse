@@ -111,7 +111,8 @@ dct_from_gs <-
     } else {
       cat("Local backup file '", localBackup,
           "' exists, and preventOverwriting ",
-          "is not set to TRUE, so did not store local backup.");
+          "is set to TRUE, so did not store local backup (use ",
+          "'preventOverwriting=FALSE' to no longer prevent overwriting).");
     }
   }
 

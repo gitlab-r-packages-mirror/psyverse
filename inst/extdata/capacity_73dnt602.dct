@@ -29,21 +29,8 @@ dct:
   measure_code: 
     instruction: "Questions or questionnaires that measure the perceived degree to which [target behavior] or [contrast behavior] is something [target population] are confident they can successfully perform. If perceived control over the behavior is also measured, code this as dct:perceivedBehavioralControl_71w8sfdk. For example, the items suggested in the book are: 'I am confident that if I want to, I can [TARGET BEHAVIOR].' with anchors 'No confidence at all' vs 'A lot of confidence' and 'If I really wanted to, I could [TARGET BEHAVIOR].' with anchors 'Unlikely' vs 'Likely'."
     
-    source: none
-    
-################################################################################
-
-  manipulate_dev:
-    instruction: These instructions still have to be extracted from pages 336-359 of the book.
-      
-    source:
-      spec: "p. 336-359"
-      
-################################################################################
-
-  manipulate_code:
-    instruction:
-    
+    source: none  
+  
 ################################################################################
 
   aspect_dev:
