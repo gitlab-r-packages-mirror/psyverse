@@ -102,7 +102,10 @@ opts$defaults <-
 
     ### Column names for DCT spreadsheets
     dct_sheet_fieldCol = "field",
-    dct_sheet_contentCol = "content"
+    dct_sheet_contentCol = "content",
+
+    ### Throttling for google spreasheets
+    throttleSeconds = 10,
 
   )
 

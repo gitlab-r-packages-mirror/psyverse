@@ -21,6 +21,7 @@ dct_from_gs <-
     sheets = TRUE,
     path = NULL,
     localBackup = NULL,
+    throttleSeconds = psyverse::opts$get("throttleSeconds"),
     preventOverwriting = psyverse::opts$get("preventOverwriting"),
     encoding = psyverse::opts$get("encoding")
   ) {
@@ -98,6 +99,9 @@ dct_from_gs <-
                           startCol = "A",
                           startRow = 1);
     }
+
+    Sys.sleep(throttleSeconds);
+
   }
 
   if (makeBackup) {
