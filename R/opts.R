@@ -105,7 +105,7 @@ opts$defaults <-
     dct_sheet_contentCol = "content",
 
     ### Throttling for google spreasheets
-    throttleSeconds = 10,
+    throttleSeconds = 10
 
   )
 
