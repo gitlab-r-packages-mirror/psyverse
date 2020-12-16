@@ -90,11 +90,15 @@ dct_from_gs <-
       );
 
     if (makeBackup) {
+      currentSheetName <-
+        ifelse(nchar(currentSheet) < 30,
+               currentSheet,
+               substring(currentSheet, 1, 30));
       ### Create worksheet and add data
       openxlsx::addWorksheet(wb,
-                             sheetName = currentSheet);
+                             sheetName = currentSheetName);
       openxlsx::writeData(wb,
-                          sheet = currentSheet,
+                          sheet = currentSheetName,
                           x = res$sheets[[currentSheet]],
                           startCol = "A",
                           startRow = 1);

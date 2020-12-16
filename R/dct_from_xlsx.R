@@ -1,31 +1,17 @@
 dct_from_xlsx <-
   function(
     xlsx,
-    sheets = TRUE,
     path = NULL,
     preventOverwriting = psyverse::opts$get("preventOverwriting"),
     encoding = psyverse::opts$get("encoding")
   ) {
 
-  if (isTRUE(sheets)) {
-    sheets <- googlesheets::gs_ws_ls(gs);
+  if (!file.exists(xlsx)) {
+    stop("File `", xlsx, "` does not exist!");
   }
 
-  if (dir.exists(dirname(localBackup))) {
-    backupPath <- dirname(localBackup);
-    makeBackup <- TRUE;
-  } else {
-    makeBackup <- FALSE;
-  }
-
-  if (makeBackup) {
-    ### Create workbook to back this up to an .xlsx file
-    wb <- openxlsx::createWorkbook(creator = paste0("psyverse ",
-                                                    packageVersion("psyverse")),
-                                   title = "DCT specifications",
-                                   subject = NULL,
-                                   category = NULL);
-  }
+  wb <- openxlsx::loadWorkbook(xlsx);
+  sheets <- openxlsx::sheets(wb);
 
   res <- list(sheets = list());
   for (currentSheet in sheets) {
@@ -33,39 +19,13 @@ dct_from_xlsx <-
     ### Read the worksheet for this language
     res$sheets[[currentSheet]] <-
       as.data.frame(
-        googlesheets::gs_read(
-          gs,
-          ws = currentSheet,
-          verbose = FALSE
+        openxlsx::read.xlsx(
+          wb,
+          sheet = currentSheet
         ),
         stringsAsFactors = FALSE
       );
 
-    if (makeBackup) {
-      ### Create worksheet and add data
-      openxlsx::addWorksheet(wb,
-                             sheetName = currentSheet);
-      openxlsx::writeData(wb,
-                          sheet = currentSheet,
-                          x = res$sheets[[currentSheet]],
-                          startCol = "A",
-                          startRow = 1);
-    }
-  }
-
-  if (makeBackup) {
-    if ((!file.exists(localBackup)) || preventOverwriting) {
-      ### Write workbook to disk
-      openxlsx::saveWorkbook(
-        wb,
-        file = localBackup,
-        overwrite = TRUE
-      );
-    } else {
-      cat("Local backup file '", localBackup,
-          "' exists, and preventOverwriting ",
-          "is not set to TRUE, so did not store local backup.");
-    }
   }
 
   res$dcts <-
@@ -73,6 +33,16 @@ dct_from_xlsx <-
       res$sheets,
       dct_sheet_to_dct
     );
+
+  if ((!is.null(path)) && (dir.exists(path))) {
+    for (i in res$dcts) {
+      save_to_yaml(x = i,
+                   file = file.path(path,
+                                    paste0(i$id, ".dct")),
+                   preventOverwriting = preventOverwriting,
+                   encoding = encoding);
+    }
+  }
 
   return(invisible(res));
 
