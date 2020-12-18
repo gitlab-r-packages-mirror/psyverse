@@ -14,7 +14,8 @@ dct_from_xlsx <-
     xlsx,
     path = NULL,
     preventOverwriting = psyverse::opts$get("preventOverwriting"),
-    encoding = psyverse::opts$get("encoding")
+    encoding = psyverse::opts$get("encoding"),
+    silent = psyverse::opts$get("silent")
   ) {
 
   if (!file.exists(xlsx)) {
@@ -41,8 +42,13 @@ dct_from_xlsx <-
 
   res$dcts <-
     lapply(
-      res$sheets,
-      dct_sheet_to_dct
+      names(res$sheets),
+      function(sheet) {
+        if (!silent) {
+          cat0("Converting DCT sheet '", sheet, "' to a DCT object.\n");
+        }
+        return(dct_sheet_to_dct(res$sheets[[sheet]]));
+      }
     );
 
   if ((!is.null(path)) && (dir.exists(path))) {

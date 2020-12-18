@@ -1,3 +1,11 @@
+#' Create a DCT object from a DCT sheet
+#'
+#' @param dct_sheet A dataframe containing a DCT specification.
+#'
+#' @return A DCT created by [dct_object()].
+#' @export
+#'
+#' @examples
 dct_sheet_to_dct <- function(dct_sheet) {
 
   if (!("data.frame" %in% class(dct_sheet))) {
