@@ -16,7 +16,7 @@ parse_dct_specs <- function(dctSpecs,
                             headingLevel = 2,
                             hyperlink_ucids = "Markdown",
                             urlPrefix = "#",
-                            sortDecreasing=sortDecreasing) {
+                            sortDecreasing=FALSE) {
 
   res <- list(input = as.list(environment()));
 
