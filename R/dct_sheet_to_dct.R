@@ -93,7 +93,10 @@ dct_sheet_to_dct <- function(dct_sheet) {
       )
     );
 
-  return(
+  dct$id <-
+    gsub("\\s", "", dct$id);
+
+  res <-
     dct_object(
       version = as.character(packageVersion("psyverse")),
       prefix = dct$prefix,
@@ -107,7 +110,10 @@ dct_sheet_to_dct <- function(dct_sheet) {
       measure_code = list(instruction = dct$measure_code),
       aspect_dev = list(instruction = dct$aspect_dev),
       aspect_code = list(instruction = dct$aspect_code)
-    )
+    );
+
+  return(
+    res
   );
 
 }
