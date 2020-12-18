@@ -104,6 +104,11 @@ dct_sheet_to_dct <- function(dct_sheet) {
   dct$id <-
     gsub("\\s", "", dct$id);
 
+  dct$label <-
+    gsub("^(\\s)", "", dct$label);
+  dct$label <-
+    gsub("(\\s)$", "", dct$label);
+
   res <-
     dct_object(
       version = as.character(packageVersion("psyverse")),

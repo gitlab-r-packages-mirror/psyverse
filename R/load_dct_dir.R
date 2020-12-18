@@ -9,6 +9,7 @@ load_dct_dir <- function(path,
                          delimiterRegEx = "^---$",
                          ignoreOddDelimiters = FALSE,
                          encoding="UTF-8",
+                         sortDecreasing = FALSE,
                          silent=TRUE) {
 
   if (!dir.exists(path)) {
@@ -48,7 +49,8 @@ load_dct_dir <- function(path,
 
   res <-
     parse_dct_specs(dctSpecs,
-                    headingLevel=headingLevel);
+                    headingLevel=headingLevel,
+                    sortDecreasing=sortDecreasing);
 
   return(res);
 

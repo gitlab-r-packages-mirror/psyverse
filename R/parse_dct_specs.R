@@ -15,7 +15,8 @@
 parse_dct_specs <- function(dctSpecs,
                             headingLevel = 2,
                             hyperlink_ucids = "Markdown",
-                            urlPrefix = "#") {
+                            urlPrefix = "#",
+                            sortDecreasing=sortDecreasing) {
 
   res <- list(input = as.list(environment()));
 
@@ -560,7 +561,8 @@ parse_dct_specs <- function(dctSpecs,
     generate_definitions_overview(node_df,
                                   headingLevel=headingLevel,
                                   hyperlink_ucids = hyperlink_ucids,
-                                  urlPrefix = urlPrefix);
+                                  urlPrefix = urlPrefix,
+                                  sortDecreasing = sortDecreasing);
 
   ###--------------------------------------------------------------------------
   ### Overviews with instructions for developing measurement instruments, for
@@ -573,42 +575,48 @@ parse_dct_specs <- function(dctSpecs,
                                   type="measure_dev",
                                   headingLevel=headingLevel,
                                   hyperlink_ucids = hyperlink_ucids,
-                                  urlPrefix = urlPrefix);
+                                  urlPrefix = urlPrefix,
+                                  sortDecreasing = sortDecreasing);
 
   measure_code <-
     generate_instruction_overview(node_df,
                                   type="measure_code",
                                   headingLevel=headingLevel,
                                   hyperlink_ucids = hyperlink_ucids,
-                                  urlPrefix = urlPrefix);
-
-  manipulate_dev <-
-    generate_instruction_overview(node_df,
-                                  type="manipulate_dev",
-                                  headingLevel=headingLevel,
-                                  hyperlink_ucids = hyperlink_ucids,
-                                  urlPrefix = urlPrefix);
-
-  manipulate_code <-
-    generate_instruction_overview(node_df,
-                                  type="manipulate_code",
-                                  headingLevel=headingLevel,
-                                  hyperlink_ucids = hyperlink_ucids,
-                                  urlPrefix = urlPrefix);
+                                  urlPrefix = urlPrefix,
+                                  sortDecreasing = sortDecreasing);
+#
+#   manipulate_dev <-
+#     generate_instruction_overview(node_df,
+#                                   type="manipulate_dev",
+#                                   headingLevel=headingLevel,
+#                                   hyperlink_ucids = hyperlink_ucids,
+#                                   urlPrefix = urlPrefix,
+#                                   sortDecreasing = sortDecreasing);
+#
+#   manipulate_code <-
+#     generate_instruction_overview(node_df,
+#                                   type="manipulate_code",
+#                                   headingLevel=headingLevel,
+#                                   hyperlink_ucids = hyperlink_ucids,
+#                                   urlPrefix = urlPrefix,
+#                                   sortDecreasing = sortDecreasing);
 
   aspect_dev <-
     generate_instruction_overview(node_df,
                                   type="aspect_dev",
                                   headingLevel=headingLevel,
                                   hyperlink_ucids = hyperlink_ucids,
-                                  urlPrefix = urlPrefix);
+                                  urlPrefix = urlPrefix,
+                                  sortDecreasing = sortDecreasing);
 
   aspect_code <-
     generate_instruction_overview(node_df,
                                   type="aspect_code",
                                   headingLevel=headingLevel,
                                   hyperlink_ucids = hyperlink_ucids,
-                                  urlPrefix = urlPrefix);
+                                  urlPrefix = urlPrefix,
+                                  sortDecreasing = sortDecreasing);
 
   ###--------------------------------------------------------------------------
   ### Overviews per construct, basically a neatly formatted version of the DCT
@@ -620,7 +628,8 @@ parse_dct_specs <- function(dctSpecs,
            generate_construct_overview,
            headingLevel=headingLevel,
            hyperlink_ucids = hyperlink_ucids,
-           urlPrefix = urlPrefix);
+           urlPrefix = urlPrefix,
+           sortDecreasing = sortDecreasing);
 
   ###--------------------------------------------------------------------------
   ### Return result
@@ -636,8 +645,8 @@ parse_dct_specs <- function(dctSpecs,
                      defs = definition_overview,
                      instr = list(measure_dev = measure_dev,
                                   measure_code = measure_code,
-                                  manipulate_dev = manipulate_dev,
-                                  manipulate_code = manipulate_code,
+                                  # manipulate_dev = manipulate_dev,
+                                  # manipulate_code = manipulate_code,
                                   aspect_dev = aspect_dev,
                                   aspect_code = aspect_code));
 

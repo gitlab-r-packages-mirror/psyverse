@@ -46,10 +46,14 @@ generate_construct_overview <- function(dctSpec,
                                         divClass = "btn btn-secondary",
                                         headingLevel = 3,
                                         hyperlink_ucids = "Markdown",
-                                        urlPrefix = "#") {
+                                        urlPrefix = "#",
+                                        sortDecreasing = FALSE) {
 
   if ("dct_specs" %in% class(dctSpec)) {
     return(
+
+      ### Check sortDecreasing and maybe sort
+
       stats::setNames(
         lapply(dctSpec$intermediate$dctSpec,
                function(x) {
