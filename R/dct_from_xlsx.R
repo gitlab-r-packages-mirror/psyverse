@@ -1,3 +1,14 @@
+#' Title
+#'
+#' @param xlsx
+#' @param path
+#' @param preventOverwriting
+#' @param encoding
+#'
+#' @return
+#' @export
+#'
+#' @examples
 dct_from_xlsx <-
   function(
     xlsx,

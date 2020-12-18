@@ -9,6 +9,7 @@ dct_from_gs(
   sheets = TRUE,
   path = NULL,
   localBackup = NULL,
+  throttleSeconds = psyverse::opts$get("throttleSeconds"),
   preventOverwriting = psyverse::opts$get("preventOverwriting"),
   encoding = psyverse::opts$get("encoding")
 )
