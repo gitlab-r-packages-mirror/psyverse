@@ -13,8 +13,6 @@
 #'
 #' @return Invisibly, an object with the worksheets and the DCT objects.
 #' @export
-#'
-#' @examples
 dct_from_gs <-
   function(
     gs,

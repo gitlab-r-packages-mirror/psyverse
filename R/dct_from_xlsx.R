@@ -1,14 +1,13 @@
-#' Title
+#' Import a DCT specification from an Excel (.xlsx) spreadsheet
 #'
-#' @param xlsx
-#' @param path
-#' @param preventOverwriting
-#' @param encoding
+#' @param xlsx The path to the spreadsheet, its key)].
+#' @param path The path to save the DCT specifications.
+#' @param preventOverwriting Whether to prevent overwriting.
+#' @param encoding The encoding to use.
+#' @param silent Whether to be silent or chatty.
 #'
-#' @return
+#' @return Invisibly, an object with the worksheets and the DCT objects.
 #' @export
-#'
-#' @examples
 dct_from_xlsx <-
   function(
     xlsx,

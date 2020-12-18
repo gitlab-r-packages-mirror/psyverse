@@ -3,9 +3,8 @@
 #' @param dctObject The DCT object
 #'
 #' @return A character vector.
-#' @export
 #'
-#' @examples
+#' @export
 dct_object_to_yaml <- function(dctObject) {
 
   if (!class(dctObject) == "psyverse_dct") {

@@ -3,7 +3,8 @@
 generate_definitions_overview <- function(dctSpecDf,
                                           headingLevel = 3,
                                           hyperlink_ucids = "Markdown",
-                                          urlPrefix = "#") {
+                                          urlPrefix = "#",
+                                          sortDecreasing = FALSE) {
 
   res <-
     c(paste0(repStr("#", headingLevel), " Construct definitions"),

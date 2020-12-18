@@ -15,14 +15,16 @@ generate_construct_overview(
   divClass = "btn btn-secondary",
   headingLevel = 3,
   hyperlink_ucids = "Markdown",
-  urlPrefix = "#"
+  urlPrefix = "#",
+  sortDecreasing = FALSE
 )
 
 generate_definitions_overview(
   dctSpecDf,
   headingLevel = 3,
   hyperlink_ucids = "Markdown",
-  urlPrefix = "#"
+  urlPrefix = "#",
+  sortDecreasing = FALSE
 )
 
 generate_instruction_overview(
@@ -30,7 +32,8 @@ generate_instruction_overview(
   type,
   headingLevel = 3,
   hyperlink_ucids = "Markdown",
-  urlPrefix = "#"
+  urlPrefix = "#",
+  sortDecreasing = FALSE
 )
 }
 \arguments{

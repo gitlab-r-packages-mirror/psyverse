@@ -12,9 +12,8 @@
 #' be used.
 #'
 #' @return The character vector that was written to the file.
-#' @export
 #'
-#' @examples
+#' @export
 save_to_yaml <-
   function(
     x,

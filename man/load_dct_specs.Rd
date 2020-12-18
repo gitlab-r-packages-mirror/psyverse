@@ -17,6 +17,7 @@ load_dct_dir(
   delimiterRegEx = "^---$",
   ignoreOddDelimiters = FALSE,
   encoding = "UTF-8",
+  sortDecreasing = FALSE,
   silent = TRUE
 )
 

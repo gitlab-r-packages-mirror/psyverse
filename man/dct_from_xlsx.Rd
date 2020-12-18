@@ -2,21 +2,30 @@
 % Please edit documentation in R/dct_from_xlsx.R
 \name{dct_from_xlsx}
 \alias{dct_from_xlsx}
-\title{Title}
+\title{Import a DCT specification from an Excel (.xlsx) spreadsheet}
 \usage{
 dct_from_xlsx(
   xlsx,
   path = NULL,
   preventOverwriting = psyverse::opts$get("preventOverwriting"),
-  encoding = psyverse::opts$get("encoding")
+  encoding = psyverse::opts$get("encoding"),
+  silent = psyverse::opts$get("silent")
 )
 }
 \arguments{
-\item{encoding}{}
+\item{xlsx}{The path to the spreadsheet, its key)].}
+
+\item{path}{The path to save the DCT specifications.}
+
+\item{preventOverwriting}{Whether to prevent overwriting.}
+
+\item{encoding}{The encoding to use.}
+
+\item{silent}{Whether to be silent or chatty.}
 }
 \value{
-
+Invisibly, an object with the worksheets and the DCT objects.
 }
 \description{
-Title
+Import a DCT specification from an Excel (.xlsx) spreadsheet
 }

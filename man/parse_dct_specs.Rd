@@ -8,7 +8,8 @@ parse_dct_specs(
   dctSpecs,
   headingLevel = 2,
   hyperlink_ucids = "Markdown",
-  urlPrefix = "#"
+  urlPrefix = "#",
+  sortDecreasing = FALSE
 )
 }
 \arguments{

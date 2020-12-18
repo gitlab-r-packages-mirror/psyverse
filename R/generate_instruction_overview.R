@@ -4,7 +4,9 @@ generate_instruction_overview <- function(dctSpecDf,
                                           type,
                                           headingLevel = 3,
                                           hyperlink_ucids = "Markdown",
-                                          urlPrefix = "#") {
+                                          urlPrefix = "#",
+                                          sortDecreasing = FALSE) {
+
   typeInstr <- paste0(type, "_instruction");
 
   ### Switch order of type and activity
