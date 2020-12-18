@@ -29,9 +29,9 @@ generate_instruction_overview <- function(dctSpecDf,
       apply(dctSpecDf[order(dctSpecDf$label), ],
             1,
             function(spec) {
-              if (type == "aspect_code") {
+              if (grepl("aspect_code", type)) {
                 extraInfo <-
-                  c(paste0("*When coding aspects, use the following code: **`dct:", spec['dct_id'], "`***"),
+                  c(paste0("*Use the following code: **`dct:", spec['dct_id'], "`***"),
                     "");
               } else {
                 extraInfo <-
