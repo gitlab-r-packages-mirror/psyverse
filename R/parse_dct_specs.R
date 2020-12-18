@@ -225,6 +225,9 @@ parse_dct_specs <- function(dctSpecs,
            node_df$id,
            node_df$label);
 
+  ### Trim whitespace
+  node_df$label <- trimws(node_df$label);
+
   ### Ensure column order is correct
   node_df <- node_df[, c('id',
                          'type',
