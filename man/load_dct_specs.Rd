@@ -66,6 +66,9 @@ encountered.}
 \item{encoding}{The encoding to use when calling \code{\link[=readLines]{readLines()}}. Set to
 NULL to let \code{\link[=readLines]{readLines()}} guess.}
 
+\item{sortDecreasing}{Whether to sort the constructs in decreasing order
+(\code{TRUE}), in increasing order (\code{FALSE}), or not at all (\code{NULL}).}
+
 \item{silent}{Whether to be silent (TRUE) or informative (FALSE).}
 
 \item{text, file}{As \code{text} or \code{file}, you can specify a \code{file} to read with

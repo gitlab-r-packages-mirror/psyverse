@@ -58,6 +58,9 @@ hyperlinks in the corresponding formats are produced, and if it is
 hyperlink. The default, "\verb{#}", results in a link to an
 anchor (an HTML \code{a} element) on the current page.}
 
+\item{sortDecreasing}{Whether to sort the constructs in decreasing order
+(\code{TRUE}), in increasing order (\code{FALSE}), or not at all (\code{NULL}).}
+
 \item{dctSpecDf}{The DCT specification dataframer, as produced
 by a call to \code{\link[=load_dct_specs]{load_dct_specs()}} or \code{\link[=load_dct_dir]{load_dct_dir()}}, and stored within
 the resulting object.}

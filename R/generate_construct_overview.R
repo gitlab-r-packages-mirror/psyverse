@@ -24,7 +24,8 @@
 #' @param urlPrefix The prefix to insert before the URL in the produced
 #' hyperlink. The default, "`#`", results in a link to an
 #' anchor (an HTML `a` element) on the current page.
-#'
+#' @param sortDecreasing Whether to sort the constructs in decreasing order
+#' (`TRUE`), in increasing order (`FALSE`), or not at all (`NULL`).
 #' @return A character string with the overview.
 #' @rdname overview_generation
 #' @aliases generate_construct_overview

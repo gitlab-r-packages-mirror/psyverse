@@ -27,6 +27,9 @@ indices or names of the worksheets to read.}
 the spreadsheet will be saved as \code{xlsx} file using
 the \link[openxlsx:openxlsx]{openxlsx::openxlsx} package.}
 
+\item{throttleSeconds}{The number of seconds to wait between calls to the
+Google Sheets API (to prevent being locked out).}
+
 \item{preventOverwriting}{Whether to prevent overwriting.}
 
 \item{encoding}{The encoding to use.}

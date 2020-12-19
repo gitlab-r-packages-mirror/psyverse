@@ -20,6 +20,9 @@ parse_dct_specs(
 \item{hyperlink_ucids, urlPrefix}{Passed on to the
 \code{\link[=generate_instruction_overview]{generate_instruction_overview()}} and \code{\link[=generate_construct_overview]{generate_construct_overview()}}
 functions.}
+
+\item{sortDecreasing}{Whether to sort the constructs in decreasing order
+(\code{TRUE}), in increasing order (\code{FALSE}), or not at all (\code{NULL}).}
 }
 \value{
 The object of parsed DCT specifications.

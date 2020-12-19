@@ -46,6 +46,8 @@
 #' encountered.
 #' @param encoding The encoding to use when calling [readLines()]. Set to
 #' NULL to let [readLines()] guess.
+#' @param sortDecreasing Whether to sort the constructs in decreasing order
+#' (`TRUE`), in increasing order (`FALSE`), or not at all (`NULL`).
 #' @param silent Whether to be silent (TRUE) or informative (FALSE).
 #' @param x The parsed `parsed_dct` object.
 #' @param ... Any other arguments are passed to the print command.

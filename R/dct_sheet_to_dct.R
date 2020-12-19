@@ -2,7 +2,7 @@
 #'
 #' @param dct_sheet A dataframe containing a DCT specification.
 #'
-#' @return A DCT created by [dct_object()].
+#' @return A DCT created by [psyverse::dct_object()].
 #'
 #' @export
 dct_sheet_to_dct <- function(dct_sheet) {
@@ -81,7 +81,7 @@ dct_sheet_to_dct <- function(dct_sheet) {
   dct <-
     c(
       dct,
-      setNames(
+      stats::setNames(
         lapply(
           dctFields_optional,
           function(fieldName) {
@@ -110,7 +110,7 @@ dct_sheet_to_dct <- function(dct_sheet) {
 
   res <-
     dct_object(
-      version = as.character(packageVersion("psyverse")),
+      version = as.character(utils::packageVersion("psyverse")),
       prefix = dct$prefix,
       id = dct$id,
       label = dct$label,

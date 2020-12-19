@@ -1,6 +1,45 @@
+#' Create a DCT object
+#'
+#' @param version The version of the DCT specifications (normally the version
+#' of the `psyverse` package).
+#' @param id The Unique Construct Identifier (UCID); if not provided,
+#' this is created using the `prefix`.
+#' @param prefix The prefix to use to construct the Unique Construct Identifier
+#' (UCID); ignored i `id` is provided.
+#' @param label The human-readable label for the construct.
+#' @param date The date at which the construct was created.
+#' @param ancestry The DCT specification or specifications that this DCT was
+#' based on.
+#' @param retires The DCT specification or specifications that this DCT renders
+#' obsolete (note that this doesn't mean anything in itself; `psyverse` does not
+#' enforce this automatically, nor does PsyCoRe, without configuration).
+#' @param definition The definition of the construct. This has to be comprehensive,
+#' detailed, accurate, and clearly delineate the relevant aspects of the human
+#' psychology.
+#' @param measure_dev Instructions for developing measurement instruments that
+#' measure this construct.
+#' @param measure_code Instructions for coding measurement instruments (e.g. in
+#' systematic reviews) as measurement instruments that measure this construct.
+#' Note that explicitly defining boundary conditions often helps, for example by
+#' explaining the features that coders should look for to distinguish this
+#' construct from closely related constructs (ideally linking to those other
+#' constructs using the `dct::UCID` notations).
+#' @param aspect_dev Instructions for eliciting construct content. Note that
+#' this is not sensible for all constructs; some may be defined at a very
+#' general level, rendering their content insufficiently specific to discuss
+#' or describe.
+#' @param aspect_code Instructions for coding construct content (i.e. aspects).
+#' Note that explicitly defining boundary conditions often helps, for example by
+#' explaining the features that coders should look for to distinguish this
+#' construct from closely related constructs (ideally linking to those other
+#' constructs using the `dct::UCID` notations).
+#' @param rel Relationships with other constructs.
+#'
+#' @return The DCT object.
+#' @export
 dct_object <-
   function(
-    version = as.character(packageVersion("psyverse")),
+    version = as.character(utils::packageVersion("psyverse")),
     id = NULL,
     prefix = paste(sample(letters, 4), collapse=""),
     label = "",

@@ -14,11 +14,11 @@ dct:
         spec: pp. 11-12
     measure_dev:
       instr: "Use semantic differentials with root \"For me, [TARGET BEHAVIOR] is ...\" and a bidimensional scale where the right-most anchor expresses a beneficial or pleasant evaluation and the left-most anchor expresses the opposite undesirable/harmful/unpleasant evaluation."
-	measure_ex:
-	  item:
-	    - "For me, exercising for at least twenty minutes, four times a week, is... [very unpleasant|very pleasant]"
-		- "For me, exercising for at least twenty minutes, four times a week, is... [very bad|very good]"
-		- "For me, exercising for at least twenty minutes, four times a week, is... [very unwise|very wise]"
+    measure_ex:
+      item:
+        - "For me, exercising for at least twenty minutes, four times a week, is... [very unpleasant|very pleasant]"
+        - "For me, exercising for at least twenty minutes, four times a week, is... [very bad|very good]"
+        - "For me, exercising for at least twenty minutes, four times a week, is... [very unwise|very wise]"
     measure_code:
       instr: "Operationalisations that measure beneficial or pleasant aspects of the latent disposition or tendency to respond favourably versus unfavourably to [target behavior], for example using the semantic differentials good/bad, pleasant/unpleasant, wise/unwise."
       source: none

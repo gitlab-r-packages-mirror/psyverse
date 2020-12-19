@@ -9,6 +9,8 @@
 #' @param hyperlink_ucids,urlPrefix Passed on to the
 #' [generate_instruction_overview()] and [generate_construct_overview()]
 #' functions.
+#' @param sortDecreasing Whether to sort the constructs in decreasing order
+#' (`TRUE`), in increasing order (`FALSE`), or not at all (`NULL`).
 #'
 #' @return The object of parsed DCT specifications.
 #' @export
@@ -150,12 +152,21 @@ parse_dct_specs <- function(dctSpecs,
         }
         ### The fields are named
         if (length(dctSpec[[element]]) == 1) {
-          ### Just one field; simply set it with its name
-          node_df[id2row[dctSpec$id],
-                  paste0(element,
-                         "_",
-                         names(dctSpec[[element]]))] <-
-            dctSpec[[element]][[1]] %||% "";
+          if (!is.null(dctSpec[[element]][["item"]])) {
+            ### One or more items, e.g. examples
+            node_df[id2row[dctSpec$id],
+                    paste0(element,
+                           "_",
+                           names(dctSpec[[element]]))] <-
+              vecTxtQ(dctSpec[[element]][["item"]]);
+          } else {
+            ### Just one field; simply set it with its name
+            node_df[id2row[dctSpec$id],
+                    paste0(element,
+                           "_",
+                           names(dctSpec[[element]]))] <-
+              dctSpec[[element]][[1]] %||% "";
+          }
         } else {
           # ### Multiple named fields; check whether they're all single values
           # if (all(unlist(lapply(dctSpec[[element]], length))==1)) {

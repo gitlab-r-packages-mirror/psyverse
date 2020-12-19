@@ -17,6 +17,13 @@ dct_from_xlsx <-
     silent = psyverse::opts$get("silent")
   ) {
 
+  if (!requireNamespace('openxlsx')) {
+    stop("To import DCT specifications from an Excel spreadsheet, you ",
+         "need to have the {openxlsx} package installed. You ",
+         "can install it with:\n\n  ",
+         "install.packages('openxlsx');\n");
+  }
+
   if (!file.exists(xlsx)) {
     stop("File `", xlsx, "` does not exist!");
   }

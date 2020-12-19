@@ -5,6 +5,8 @@
 #' @param sheets `TRUE` to read all worksheets, or a vector with the
 #' indices or names of the worksheets to read.
 #' @param path The path to save the DCT specifications.
+#' @param throttleSeconds The number of seconds to wait between calls to the
+#' Google Sheets API (to prevent being locked out).
 #' @param localBackup If pointing to a filename in an existing path,
 #' the spreadsheet will be saved as `xlsx` file using
 #' the [openxlsx::openxlsx] package.
@@ -23,6 +25,13 @@ dct_from_gs <-
     preventOverwriting = psyverse::opts$get("preventOverwriting"),
     encoding = psyverse::opts$get("encoding")
   ) {
+
+  if (!requireNamespace('googlesheets4')) {
+    stop("To import DCT specifications from Google Sheets, you ",
+         "need to have the {googlesheets4} package installed. You ",
+         "can install it with:\n\n  ",
+         "install.packages('googlesheets4');\n");
+  }
 
   googlesheets4::gs4_deauth();
 
@@ -61,9 +70,17 @@ dct_from_gs <-
   }
 
   if (makeBackup) {
+
+    if (!requireNamespace('openxlsx')) {
+      stop("To import DCT specifications from an Excel spreadsheet, you ",
+           "need to have the {openxlsx} package installed. You ",
+           "can install it with:\n\n  ",
+           "install.packages('openxlsx');\n");
+    }
+
     ### Create workbook to back this up to an .xlsx file
     wb <- openxlsx::createWorkbook(creator = paste0("psyverse ",
-                                                    packageVersion("psyverse")),
+                                                    utils::packageVersion("psyverse")),
                                    title = "DCT specifications",
                                    subject = NULL,
                                    category = NULL);
