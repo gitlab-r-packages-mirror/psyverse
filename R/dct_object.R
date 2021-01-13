@@ -54,7 +54,11 @@ dct_object <-
     rel = NULL
   ) {
 
-  if (is.null(id)) {
+  if (is.null(id) || is.na(id) || (nchar(id) < 5)) {
+    if (nchar(id) > 0) {
+      warning(cat("An id of too few characters (", nchar(id),
+                  ") was passed and will be overwritten!", sep=""));
+    }
     id <- psyverse::generate_id(prefix=prefix);
   }
 
