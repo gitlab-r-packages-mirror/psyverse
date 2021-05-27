@@ -72,6 +72,7 @@ dct_sheet_to_dct <- function(dct_sheet) {
     dct$prefix <- NULL;
   }
   if ((!is.null(dct$id) & !is.null(dct$prefix)) &&
+      (!is.na(dct$id) & !is.na(dct$prefix)) &&
       (!grepl(dct$prefix, dct$id, fixed=TRUE))) {
     stop("The DCT sheet contained both a specified full identifier (`id` = `",
          dct$id, "`) and an identifier prefix (`prefix` = `", dct$prefix,
