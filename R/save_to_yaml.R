@@ -1,6 +1,6 @@
 #' Save a psyverse object or YAML character vector to a file
 #'
-#' Pretty much what it says on the box. But check the but about encoding.
+#' Pretty much what it says on the box. But check the bit about encoding.
 #'
 #' @param x The object to save.
 #' @param file The file to save to.

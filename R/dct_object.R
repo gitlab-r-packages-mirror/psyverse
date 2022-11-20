@@ -1,6 +1,6 @@
 #' Create a DCT object
 #'
-#' @param version The version of the DCT specifications (normally the version
+#' @param version The version of the DCT specification format (normally the version
 #' of the `psyverse` package).
 #' @param id The Unique Construct Identifier (UCID); if not provided,
 #' this is created using the `prefix`.
@@ -8,6 +8,8 @@
 #' (UCID); ignored i `id` is provided.
 #' @param label The human-readable label for the construct.
 #' @param date The date at which the construct was created.
+#' @param dct_version The version of the DCT specification. This can optionally
+#' be used to manage consecutive DCT versions.
 #' @param ancestry The DCT specification or specifications that this DCT was
 #' based on.
 #' @param retires The DCT specification or specifications that this DCT renders
@@ -44,6 +46,7 @@ dct_object <-
     prefix = paste(sample(letters, 4), collapse=""),
     label = "",
     date = as.character(Sys.Date()),
+    dct_version = "1",
     ancestry = "",
     retires = "",
     definition = "",
@@ -74,6 +77,7 @@ dct_object <-
       id = id,
       label = label,
       date = date,
+      dct_version = dct_version,
       ancestry = ancestry,
       retires = retires,
       definition = nest_in_list(definition,  nestIn = "definition"),

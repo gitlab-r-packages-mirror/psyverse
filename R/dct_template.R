@@ -237,7 +237,7 @@ spaces and line breaks.
     res <- paste0('---
 dct:
   version: ',
-                  utils::packageVersion('dct') ,'
+                  utils::packageVersion('psyverse') ,'
   id: ',
                   dctId, '
   label: ""
