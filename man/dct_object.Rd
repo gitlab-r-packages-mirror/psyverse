@@ -10,6 +10,7 @@ dct_object(
   prefix = paste(sample(letters, 4), collapse = ""),
   label = "",
   date = as.character(Sys.Date()),
+  dct_version = "1",
   ancestry = "",
   retires = "",
   definition = "",
@@ -21,7 +22,7 @@ dct_object(
 )
 }
 \arguments{
-\item{version}{The version of the DCT specifications (normally the version
+\item{version}{The version of the DCT specification format (normally the version
 of the \code{psyverse} package).}
 
 \item{id}{The Unique Construct Identifier (UCID); if not provided,
@@ -33,6 +34,9 @@ this is created using the \code{prefix}.}
 \item{label}{The human-readable label for the construct.}
 
 \item{date}{The date at which the construct was created.}
+
+\item{dct_version}{The version of the DCT specification. This can optionally
+be used to manage consecutive DCT versions.}
 
 \item{ancestry}{The DCT specification or specifications that this DCT was
 based on.}
@@ -73,4 +77,13 @@ The DCT object.
 }
 \description{
 Create a DCT object
+}
+\examples{
+exampleDCT <-
+  psyverse::dct_object(
+    prefix = "exampleConstruct",
+    label = "An example construct",
+    definition = "The definition goes here",
+    measure_dev = "Here you can explain how to measure the construct"
+  );
 }

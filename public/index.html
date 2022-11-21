@@ -31,6 +31,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -43,23 +45,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">psyverse</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -73,8 +69,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://gitlab.com/r-packages/psyverse/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://gitlab.com/r-packages/psyverse/" class="external-link">
+    <span class="fab fa-gitlab fa-lg"></span>
      
   </a>
 </li>
@@ -92,11 +88,12 @@
   <div class="contents col-md-9">
 
 
-<div id="-psyverse-" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#-psyverse-" class="anchor"></a><img src="img/hex-logo.png" align="right" height="200"> psyverse 📦</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="id_-psyverse-">
+<img src="reference/figures/hex-logo.png" style="float:right;width:200px"> psyverse 📦<a class="anchor" aria-label="anchor" href="#id_-psyverse-"></a>
+</h1></div>
 <p>psyverse: Decentralized Unequivocality in Psychological Science</p>
-<p>The pkgdown website for this project is located at <a href="https://r-packages.gitlab.io/psyverse" class="uri">https://r-packages.gitlab.io/psyverse</a>.</p>
+<p>The pkgdown website for this project is located at <a href="https://psyverse.one" class="external-link uri">https://psyverse.one</a>.</p>
 <!--------------------------------------------->
 <!-- Start of a custom bit for every package -->
 <!--------------------------------------------->
@@ -104,25 +101,27 @@
 <p>For more background information on the concept underlying the Decentralized Construct Taxonomies, see the reasoning set out in Peters &amp; Crutzen (2017a, 2017b) and Crutzen &amp; Peters (2018). In brief, in those papers the following premises are postulated:</p>
 <ul>
 <li>Psychological constructs do not exist as such, but instead are useful metaphors that enable communication about, and measurement and manipulation of, aspects of the human psychology.</li>
-<li>These constructs have verying degrees of specificity and levels of aggregation, and are therefore often represented in theories as influencing or causing one another.</li>
+<li>These constructs have varying degrees of specificity and levels of aggregation, and are therefore often represented in theories as influencing or causing one another.</li>
 </ul>
 <p>From these premises it follows that is is not feasible (or desirable) to develop one ‘final’ taxonomy of psychological constructs or of manipulations of psychological constructs. Instead, multiple taxonomies exist, each of which has different uses. For example, in behavior change research, one taxonomy has been developed that is well-suited for describing intervention content but that is not useful when developing interventions (Abraham &amp; Michie, 2008), and another that is well-suited for developing interventions, but is in its present form less useful for coding interventions (Kok et al., 2016).</p>
 <p>Similarly, different theories that explain behavior postulate different psychological variables as important predictors of behavior. These variables generally overlap with each other: usually between theories, but also within the same theory. For example, the main three determinants in the Reasoned Action Approach are postulated to correlate (Fishbein &amp; Ajzen, 2010), correlations that are empirically almost impossible to distinguish from structural composition (Peters &amp; Crutzen, 2017a). Where different theories contain the same construct, they often contain slightly different definitions and have different operationalisational implications.</p>
 <p>However, given that psychological constructs do not correspond to natural kinds (Peters &amp; Crutzen, 2017; also see e.g. Fried, 2017b), there is no way to settle on ‘the best’ definitions or operationalisations. Expert consensus is no sensible instrument, because the opinions and preferences of experienced researchers reflect, to an unknown degree, their training; and therefore, convictions from decades ago (which does not necessarily make them wrong; but at the same time does nothing to make it likely that they are right). Neither can this problem be solved statistically. For example, correlation strengths also reflect artefacts such as correlated measurement error that render the assumption that correlation strengths can be used to infer ‘the best’ definitions or operationalisations circumspect (e.g. nonsense items obtain equally high internal consistencies as items that appear sensible at face value; Maul, 2017).</p>
-<p>Perhaps then, it is no surprise that in practice, operationalisations often vary between studies, with studies often using a wide array of items, not to mention the variation in languages, target behaviors, and cultures. For example, a recent review of self-identity operationalisations identified hundreds of different items purportedly measuring the same construct (Snippe, Peters &amp; Kok, 2019). These different measurement instruments purporting to measure the same construct turn out to measure different things when this claim is tested (see Fried, 2017 for depression; Weidman, Steckler &amp; Tracy, 2017, for emotions; Warnell &amp; Redcay, 2019, for theory of mind; and Williams &amp; Rhodes, 2016a, for self-efficacy; a crowd-sourced list is available at <a href="https://docs.google.com/document/d/1vaq0U3_U2PEgouPLteUjab15aVxyEv2IVdbOxTErkHM" class="uri">https://docs.google.com/document/d/1vaq0U3_U2PEgouPLteUjab15aVxyEv2IVdbOxTErkHM</a>). And when put to the test, many commonly used measurement instruments turn out to be invalid in themselves (Hussey &amp; Hughes, 2019). As a consequence of this pluriformity and lack of validity, research syntheses suffer, and in communication about research results, a lot is lost in translation.</p>
+<p>Perhaps then, it is no surprise that in practice, operationalisations often vary between studies, with studies often using a wide array of items, not to mention the variation in languages, target behaviors, and cultures. For example, a recent review of self-identity operationalisations identified hundreds of different items purportedly measuring the same construct (Snippe, Peters &amp; Kok, 2019). These different measurement instruments purporting to measure the same construct turn out to measure different things when this claim is tested (see Fried, 2017 for depression; Weidman, Steckler &amp; Tracy, 2017, for emotions; Warnell &amp; Redcay, 2019, for theory of mind; and Williams &amp; Rhodes, 2016a, for self-efficacy; a crowd-sourced list is available at <a href="https://docs.google.com/document/d/1vaq0U3_U2PEgouPLteUjab15aVxyEv2IVdbOxTErkHM" class="external-link uri">https://docs.google.com/document/d/1vaq0U3_U2PEgouPLteUjab15aVxyEv2IVdbOxTErkHM</a>). And when put to the test, many commonly used measurement instruments turn out to be invalid in themselves (Hussey &amp; Hughes, 2019). As a consequence of this pluriformity and lack of validity, research syntheses suffer, and in communication about research results, a lot is lost in translation.</p>
 <p>However, this variation observed in practice is hard to reconcile with the need for consistency in communication. How can this be realised given that there’s no scientifically justifiable way to identify ‘the best’ definitions or operationalisations?</p>
 <p>This is the problem Decentralized Construct Taxonomies (DCTs) aim to solve.</p>
 <!--------------------------------------------->
 <!--  End of a custom bit for every package  -->
 <!--------------------------------------------->
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of <code>psyverse</code> from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">'psyverse'</span>);</pre></div>
-<p>You can install the development version of <code>psyverse</code> from <a href="https://gitlab.com">GitLab</a> with:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_gitlab</a></span>(<span class="st">'r-packages/psyverse'</span>);</pre></div>
-<p>(assuming you have <code>devtools</code> installed; otherwise, install that first using the <code>install.packages</code> function)</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install the released version of <code>psyverse</code> from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'psyverse'</span><span class="op">)</span>;</span></code></pre></div>
+<p>You can install the development version of <code>psyverse</code> from <a href="https://gitlab.com" class="external-link">GitLab</a> with:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_gitlab.html" class="external-link">install_gitlab</a></span><span class="op">(</span><span class="st">'r-packages/psyverse'</span><span class="op">)</span>;</span></code></pre></div>
+<p>(assuming you have <code>remotes</code> installed; otherwise, install that first using the <code>install.packages</code> function)</p>
 </div>
 </div>
 
@@ -130,49 +129,60 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=psyverse">https://​cloud.r-project.org/​package=psyverse</a>
-</li>
-<li>Browse source code at <br><a href="https://gitlab.com/r-packages/psyverse/">https://​gitlab.com/​r-packages/​psyverse/​</a>
-</li>
-<li>Report a bug at <br><a href="https://gitlab.com/r-packages/psyverse/issues">https://​gitlab.com/​r-packages/​psyverse/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=psyverse" class="external-link">View on CRAN</a></li>
+<li><a href="https://gitlab.com/r-packages/psyverse/" class="external-link">Browse source code</a></li>
+<li><a href="https://gitlab.com/r-packages/psyverse/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>GPL (&gt;= 3)</li>
 </ul>
 </div>
-<div class="developers">
-<h2>Developers</h2>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li>Gjalt-Jorn Peters <br><small class="roles"> Author, maintainer, contributor </small> <a href="https://orcid.org/0000-0002-0336-9589" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html#citation">Citing psyverse</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li><a href="https://gitlab.com/r-packages/psyverse/commits/master"><img src="https://gitlab.com/r-packages/psyverse/badges/master/pipeline.svg" alt="Pipeline status"></a></li>
-<li><a href="https://codecov.io/gl/r-packages/psyverse?branch=master"><img src="https://codecov.io/gl/r-packages/psyverse/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
-<li><a href="https://cran.r-project.org/package=psyverse"><img src="https://www.r-pkg.org/badges/version/psyverse?color=brightgreen" alt="Version on CRAN"></a></li>
-<li><a href="https://cran.r-project.org/package=psyverse"><img src="https://cranlogs.r-pkg.org/badges/last-month/psyverse?color=brightgreen" alt="Version on CRAN"></a></li>
-<li><a href="https://cran.r-project.org/package=psyverse"><img src="https://cranlogs.r-pkg.org/badges/grand-total/psyverse?color=brightgreen" alt="Version on CRAN"></a></li>
+<li>Gjalt-Jorn Peters <br><small class="roles"> Author, maintainer, contributor </small> <a href="https://orcid.org/0000-0002-0336-9589" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://gitlab.com/r-packages/psyverse/commits/master" class="external-link"><img src="https://gitlab.com/r-packages/psyverse/badges/master/pipeline.svg" alt="Pipeline status"></a></li>
+<li><a href="https://codecov.io/gl/r-packages/psyverse?branch=master" class="external-link"><img src="https://codecov.io/gl/r-packages/psyverse/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
+<li><a href="https://cran.r-project.org/package=psyverse" class="external-link"><img src="https://www.r-pkg.org/badges/version/psyverse?color=brightgreen" alt="Version on CRAN"></a></li>
+<li><a href="https://cran.r-project.org/package=psyverse" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/last-month/psyverse?color=brightgreen" alt="Version on CRAN"></a></li>
+<li><a href="https://cran.r-project.org/package=psyverse" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/psyverse?color=brightgreen" alt="Version on CRAN"></a></li>
+</ul>
 </div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Gjalt-Jorn Peters.</p>
+  <p></p>
+<p>Developed by Gjalt-Jorn Peters.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -180,6 +190,8 @@
 
   
 
+
+  
 
   </body>
 </html>

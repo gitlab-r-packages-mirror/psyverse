@@ -47,10 +47,12 @@ dct_sheet_to_dct <- function(dct_sheet) {
       }
       if (length(res) < 1) {
         stop("The contents of field `", fieldName, "` have length ",
-             length(res), "!");
+             length(res), "! Specifically, the contents are ",
+             vecTxtQ(res), ".");
       } else if (length(res) > 1) {
         stop("The contents of field `", fieldName, "` have length ",
-             length(res), "!");
+             length(res), "! Specifically, the contents are ",
+             vecTxtQ(res), ".");
       } else {
         return(res);
       }

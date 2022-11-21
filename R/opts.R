@@ -100,12 +100,25 @@ opts$defaults <-
     encoding = "UTF-8",
     preventOverwriting = TRUE,
 
+    ### Whether to be silent or chatty
+    silent = TRUE,
+
     ### Column names for DCT spreadsheets
     dct_sheet_fieldCol = "field",
     dct_sheet_contentCol = "content",
 
+    ### Regular expressions for Google Sheets
+    gSheetId_extractionRegex =
+      "^https://docs\\.google\\.com/spreadsheets/d/([a-zA-Z0-9_-]*)(/.*)?$",
+
+    gSheetId_to_exportLink =
+      "https://docs.google.com/spreadsheets/d/%s/export?format=xlsx",
+
     ### Throttling for google spreasheets
-    throttleSeconds = 10
+    throttleSeconds = 10,
+
+    ### color to use for the background when exporting to html
+    exportHTMLbackground = "white"
 
   )
 

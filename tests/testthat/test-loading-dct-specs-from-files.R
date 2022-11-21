@@ -11,7 +11,7 @@ testthat::test_that("a dct specification from a file with a single dct specifica
               "extdata");
 
   res <- load_dct_specs(file.path(exampleDir,
-                                  'intention_73dnt604.dct'));
+                                  'intention_73dnt604.dct.yaml'));
 
   testthat::expect_equal(res$output$completeness_graph$last_node, 1);
 

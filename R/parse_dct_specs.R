@@ -6,7 +6,7 @@
 #'
 #' @param dctSpecs The DCT specifications (a list).
 #' @param headingLevel The heading level for Markdown output.
-#' @param hyperlink_ucids,urlPrefix Passed on to the
+#' @param hyperlink_UCIDs,urlPrefix,HTMLoutput Passed on to the
 #' [generate_instruction_overview()] and [generate_construct_overview()]
 #' functions.
 #' @param sortDecreasing Whether to sort the constructs in decreasing order
@@ -16,8 +16,9 @@
 #' @export
 parse_dct_specs <- function(dctSpecs,
                             headingLevel = 2,
-                            hyperlink_ucids = "Markdown",
+                            hyperlink_UCIDs = TRUE,
                             urlPrefix = "#",
+                            HTMLoutput = FALSE,
                             sortDecreasing=FALSE) {
 
   res <- list(input = as.list(environment()));
@@ -571,12 +572,19 @@ parse_dct_specs <- function(dctSpecs,
   ### Overview with all definitions
   ###--------------------------------------------------------------------------
 
+
   definition_overview <-
-    generate_definitions_overview(node_df,
-                                  headingLevel=headingLevel,
-                                  hyperlink_ucids = hyperlink_ucids,
-                                  urlPrefix = urlPrefix,
-                                  sortDecreasing = sortDecreasing);
+    generate_definitions_overview(
+      node_df,
+      headingLevel = headingLevel,
+      hyperlink_UCIDs = ifelse(
+        hyperlink_UCIDs,
+        "Markdown",
+        FALSE
+      ),
+      urlPrefix = urlPrefix,
+      sortDecreasing = sortDecreasing
+    );
 
   ###--------------------------------------------------------------------------
   ### Overviews with instructions for developing measurement instruments, for
@@ -585,52 +593,60 @@ parse_dct_specs <- function(dctSpecs,
   ###--------------------------------------------------------------------------
 
   measure_dev <-
-    generate_instruction_overview(node_df,
-                                  type="measure_dev",
-                                  headingLevel=headingLevel,
-                                  hyperlink_ucids = hyperlink_ucids,
-                                  urlPrefix = urlPrefix,
-                                  sortDecreasing = sortDecreasing);
+    generate_instruction_overview(
+      node_df,
+      type = "measure_dev",
+      headingLevel = headingLevel,
+      hyperlink_UCIDs = ifelse(
+        hyperlink_UCIDs,
+        "Markdown",
+        FALSE
+      ),
+      urlPrefix = urlPrefix,
+      sortDecreasing = sortDecreasing
+    );
 
   measure_code <-
-    generate_instruction_overview(node_df,
-                                  type="measure_code",
-                                  headingLevel=headingLevel,
-                                  hyperlink_ucids = hyperlink_ucids,
-                                  urlPrefix = urlPrefix,
-                                  sortDecreasing = sortDecreasing);
-#
-#   manipulate_dev <-
-#     generate_instruction_overview(node_df,
-#                                   type="manipulate_dev",
-#                                   headingLevel=headingLevel,
-#                                   hyperlink_ucids = hyperlink_ucids,
-#                                   urlPrefix = urlPrefix,
-#                                   sortDecreasing = sortDecreasing);
-#
-#   manipulate_code <-
-#     generate_instruction_overview(node_df,
-#                                   type="manipulate_code",
-#                                   headingLevel=headingLevel,
-#                                   hyperlink_ucids = hyperlink_ucids,
-#                                   urlPrefix = urlPrefix,
-#                                   sortDecreasing = sortDecreasing);
+    generate_instruction_overview(
+      node_df,
+      type = "measure_code",
+      headingLevel = headingLevel,
+      hyperlink_UCIDs = ifelse(
+        hyperlink_UCIDs,
+        "Markdown",
+        FALSE
+      ),
+      urlPrefix = urlPrefix,
+      sortDecreasing = sortDecreasing
+    );
 
   aspect_dev <-
-    generate_instruction_overview(node_df,
-                                  type="aspect_dev",
-                                  headingLevel=headingLevel,
-                                  hyperlink_ucids = hyperlink_ucids,
-                                  urlPrefix = urlPrefix,
-                                  sortDecreasing = sortDecreasing);
+    generate_instruction_overview(
+      node_df,
+      type = "aspect_dev",
+      headingLevel = headingLevel,
+      hyperlink_UCIDs = ifelse(
+        hyperlink_UCIDs,
+        "Markdown",
+        FALSE
+      ),
+      urlPrefix = urlPrefix,
+      sortDecreasing = sortDecreasing
+    );
 
   aspect_code <-
-    generate_instruction_overview(node_df,
-                                  type="aspect_code",
-                                  headingLevel=headingLevel,
-                                  hyperlink_ucids = hyperlink_ucids,
-                                  urlPrefix = urlPrefix,
-                                  sortDecreasing = sortDecreasing);
+    generate_instruction_overview(
+      node_df,
+      type="aspect_code",
+      headingLevel=headingLevel,
+      hyperlink_UCIDs = ifelse(
+        hyperlink_UCIDs,
+        "Markdown",
+        FALSE
+      ),
+      urlPrefix = urlPrefix,
+      sortDecreasing = sortDecreasing
+    );
 
   ###--------------------------------------------------------------------------
   ### Overviews per construct, basically a neatly formatted version of the DCT
@@ -641,7 +657,8 @@ parse_dct_specs <- function(dctSpecs,
     lapply(dctSpecs,
            generate_construct_overview,
            headingLevel=headingLevel,
-           hyperlink_ucids = hyperlink_ucids,
+           hyperlink_UCIDs = hyperlink_UCIDs,
+           HTMLoutput = HTMLoutput,
            urlPrefix = urlPrefix,
            sortDecreasing = sortDecreasing);
 

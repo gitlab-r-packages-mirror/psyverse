@@ -17,10 +17,10 @@
 #' "`aspect_dev`", or "`aspect_code`".
 #' @param headingLevel The level of the heading in the Markdown output
 #' that is produces.
-#' @param hyperlink_ucids The type of hyperlinks to generate; must be
-#' a valid string. Currently, if the value is"`Markdown`" or "`HTML`",
-#' hyperlinks in the corresponding formats are produced, and if it is
-#' "`none`" (or, actually any other string value), nothing is produced.
+#' @param HTMLoutput Whether to output to Markdown (`FALSE`) or HTML (`TRUE`).
+#' @param collapseButtons Whether to include buttons to show/hide the definition
+#' and instructions.
+#' @param hyperlink_UCIDs Whether to create hyperlinks to UCIDs.
 #' @param urlPrefix The prefix to insert before the URL in the produced
 #' hyperlink. The default, "`#`", results in a link to an
 #' anchor (an HTML `a` element) on the current page.
@@ -33,7 +33,14 @@
 #' generate_definitions_overview
 #' @export
 #'
-#' @examples ### Add example
+#' @examples exampleDCT <-
+#'   psyverse::dct_object(
+#'     prefix = "exampleConstruct",
+#'     label = "An example construct",
+#'     definition = "The definition goes here",
+#'     measure_dev = "Here you can explain how to measure the construct"
+#'   );
+#' generate_construct_overview(exampleDCT);
 generate_construct_overview <- function(dctSpec,
                                         include = c("definition",
                                                     "measure_dev",
@@ -46,11 +53,13 @@ generate_construct_overview <- function(dctSpec,
                                         hideByDefault = NULL,
                                         divClass = "btn btn-secondary",
                                         headingLevel = 3,
-                                        hyperlink_ucids = "Markdown",
+                                        collapseButtons = TRUE,
+                                        hyperlink_UCIDs = TRUE,
+                                        HTMLoutput = FALSE,
                                         urlPrefix = "#",
                                         sortDecreasing = FALSE) {
 
-  if ("dct_specs" %in% class(dctSpec)) {
+  if (inherits(dctSpec, "dct_specs")) {
     return(
 
       ### Check sortDecreasing and maybe sort
@@ -65,7 +74,8 @@ generate_construct_overview <- function(dctSpec,
                      hideByDefault = hideByDefault,
                      divClass = divClass,
                      headingLevel = headingLevel,
-                     hyperlink_ucids = hyperlink_ucids,
+                     hyperlink_UCIDs = hyperlink_UCIDs,
+                     HTMLoutput = HTMLoutput,
                      urlPrefix = urlPrefix
                    )
                  );
@@ -82,63 +92,153 @@ generate_construct_overview <- function(dctSpec,
       "none";
   }
 
+  javaScriptBit <-
+    "<script>function toggleVisibility(elementId) {
+  var x = document.getElementById(elementId);
+  if (x.style.display === \"none\") {
+    x.style.display = \"block\";
+  } else {
+    x.style.display = \"none\";
+  }
+}</script>";
+
   instrPrepFnc <- function(x) {
     if (is.null(x)) {
-      res <- "*Not specified*";
-    } else {
-      res <-
-        gsub("\\n", "\n\n", x);
-      ### Replace links to DCTs with hyperlinks
-      if (hyperlink_ucids == "Markdown") {
-        res <- hyperlink_ucids(res,
-                               urlPrefix = urlPrefix);
-      } else if (hyperlink_ucids == "HTML") {
-        res <- hyperlink_ucids(res,
-                               replacement = paste0('<a href="',
-                                                    urlPrefix,
-                                                    '\\1">dct:\\1</a>'));
+      if (HTMLoutput) {
+        res <- "<em>Not specified</em>";
+      } else {
+        res <- "*Not specified*";
       }
-
+    } else {
+      if (HTMLoutput) {
+        res <-
+          gsub("\\n", "<br /><br />", x);
+      } else {
+        res <-
+          gsub("\\n", "\n\n", x);
+      }
+      ### Replace links to DCTs with hyperlinks
+      if (hyperlink_UCIDs) {
+        if (HTMLoutput) {
+          res <- hyperlink_ucids(res,
+                                 replacement = paste0('<a href="',
+                                                      urlPrefix,
+                                                      '\\1">dct:\\1</a>'));
+        } else {
+          res <- hyperlink_ucids(res,
+                                 urlPrefix = urlPrefix);
+        }
+      }
     }
     return(res);
   }
 
-  collapseButtonHTML <-
-    function(txt) {
-      res <-
-        sprintf(paste0("<div style=\"float:right;clear:both;",
-                       "margin:2px;",
-                       "border:2px solid #87C3FF;",
-                       "background-color:#c7e3ff;\" class=\"",
-                       divClass,
-                       "\" onclick=\"$(this).next('.toggleable').",
-                       "toggle()\">%s</div>"),
-                txt);
-      return(res);
+  if (collapseButtons) {
+    collapseButtonHTML <- function(txt, id) {
+        res <-
+          sprintf(paste0("<div style=\"float:right;clear:both;",
+                         "margin:2px;",
+                         "border:2px solid #87C3FF;",
+                         "background-color:#c7e3ff;\" class=\"",
+                         divClass,
+                         "\" onclick=\"toggleVisibility('", id, "');\">%s</div>"),
+                  txt);
+        return(res);
+      }
+  } else {
+    collapseButtonHTML <- function(txt, id) {
+      return("");
     }
+  }
 
-  res <-
-    c("",
-      paste0(repStr("#", headingLevel), " ", dctSpec$label, " {#", dctSpec$id, "}"),
-      "",
-      format(Sys.time(), '*This overview was generated on %Y-%m-%d at %H:%M:%S %Z (GMT%z)*'),
-      "",
+  timeBit <-
+    format(Sys.time(), 'This overview was generated on %Y-%m-%d at %H:%M:%S %Z (GMT%z)');
+
+  if (HTMLoutput) {
+    headingBit <-
+      paste0("<a id=", dctSpec$id,"><h", headingLevel, ">",
+             dctSpec$label, "</a></h", headingLevel, ">");
+    subHeadingFunc <- function(x) {
+      return(paste0("<h", headingLevel+1, ">", x,
+                    "</h", headingLevel+1, ">"));
+    }
+    emFunc <- function(x) {
+      return(paste0("<em>", x, "</em>"));
+    }
+    timeBit <- paste0("<div><em>", timeBit, "</em></div>");
+    dateBit <-
+      paste0("<div>This Decentralized Construct Taxonomy specification was authored at ",
+             ifelse(is.null(dctSpec$date),
+                    "an unknown date (i.e. this was not specified in the DCT specification)",
+                    dctSpec$date),
+             ".</div>");
+    ucidBit <- paste0("<div>Unique Construct Identifier (UCID): <pre style=\"display:inline;\">", dctSpec$id,
+                      "</pre></div>");
+    codingInstrBit <-
+      emFunc(
+        paste0(
+          "<p>When coding aspects, use the following code: ",
+          "<strong><pre style=\"display:inline;\">", dctSpec$id, "</pre></strong></p>"
+        )
+      );
+  } else {
+
+    headingBit <-
+      paste0(repStr("#", headingLevel), " ", dctSpec$label,
+             " {#", dctSpec$id, "}");
+    subHeadingFunc <- function(x) {
+      return(paste0(repStr("#", headingLevel+1), " ", x));
+    }
+    emFunc <- function(x) {
+      return(paste0("*", x, "*"));
+    }
+    timeBit <- emFunc(timeBit);
+    dateBit <-
       paste0("This Decentralized Construct Taxonomy specification was authored at ",
              ifelse(is.null(dctSpec$date),
                     "an unknown date (i.e. this was not specified in the DCT specification)",
                     dctSpec$date),
-             "."),
+             ".");
+    ucidBit <- paste0("Unique Construct Identifier (UCID): `", dctSpec$id,
+                      "`");
+    codingInstrBit <-
+      emFunc(
+        paste0(
+          "When coding aspects, use the following code: **`dct:", dctSpec$id, "`**\n\n"
+        )
+      );
+
+  }
+
+  res <-
+    c("",
+      javaScriptBit,
       "",
-      paste0("Unique Construct Identifier (UCID): ", dctSpec$id),
+      headingBit,
+      "",
+      timeBit,
+      "",
+      dateBit,
+      "",
+      ucidBit,
       "");
+
+  defId <- paste0(dctSpec$id, "_definition");
+  measureDevId <- paste0(dctSpec$id, "_measure_dev");
+  measureCodeId <- paste0(dctSpec$id, "_measure_code");
+  aspectDevId <- paste0(dctSpec$id, "_aspect_dev");
+  aspectCodeId <- paste0(dctSpec$id, "_measure_code");
+
   if ("definition" %in% include) {
     res <-
       c(res,
         "",
-        paste0(repStr("#", headingLevel+1), " Definition"),
-        collapseButtonHTML("Show/hide definition"),
+        subHeadingFunc("Definition"),
+        collapseButtonHTML("Show/hide definition",
+                           id=defId),
         "",
-        paste0("<div style='clear: both; display: ", defaultDisplay['definition'], "' class='toggleable'>"),
+        paste0("<div id=\"", defId, "\", style='clear: both; display: ",
+               defaultDisplay['definition'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$definition$definition),
         "</div>",
         "<div style='clear:both;height:2px;'></div>",
@@ -148,10 +248,13 @@ generate_construct_overview <- function(dctSpec,
     res <-
       c(res,
         "",
-        paste0(repStr("#", headingLevel+1), " Instruction for developing measurement instruments"),
-        collapseButtonHTML("Show/hide measurement instruction"),
+        subHeadingFunc("Instruction for developing measurement instruments"),
+        collapseButtonHTML("Show/hide measurement instruction",
+                           id = measureDevId),
         "",
-        paste0("<div style='clear: both; display: ", defaultDisplay['measure_dev'], "' class='toggleable'>"),
+        paste0("<div id=\"",
+               measureDevId,
+               "\" style='clear: both; display: ", defaultDisplay['measure_dev'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$measure_dev$instruction),
         "</div>",
         "<div style='clear:both;height:2px;'></div>",
@@ -161,37 +264,14 @@ generate_construct_overview <- function(dctSpec,
     res <-
       c(res,
         "",
-        paste0(repStr("#", headingLevel+1), " Instruction for coding measurement instruments"),
-        collapseButtonHTML(paste0("Show/hide measurement coding instruction")),
+        subHeadingFunc("Instruction for coding measurement instruments"),
+        collapseButtonHTML("Show/hide measurement coding instruction",
+                           id = measureCodeId),
         "",
-        paste0("<div style='clear: both; display: ", defaultDisplay['measure_code'], "' class='toggleable'>"),
+        paste0("<div id=\"",
+               measureCodeId,
+               "\" style='clear: both; display: ", defaultDisplay['measure_code'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$measure_code$instruction),
-        "</div>",
-        "<div style='clear:both;height:2px;'></div>",
-        "");
-  }
-  if ("manipulate_dev" %in% include) {
-    res <-
-      c(res,
-        "",
-        paste0(repStr("#", headingLevel+1), " Instruction for developing manipulations"),
-        collapseButtonHTML("Show/hide manipulation instruction"),
-        "",
-        paste0("<div style='clear: both; display: ", defaultDisplay['manipulate_dev'], "' class='toggleable'>"),
-        instrPrepFnc(dctSpec$manipulate_dev$instruction),
-        "</div>",
-        "<div style='clear:both;height:2px;'></div>",
-        "");
-  }
-  if ("manipulate_code" %in% include) {
-    res <-
-      c(res,
-        "",
-        paste0(repStr("#", headingLevel+1), " Instruction for coding manipulations"),
-        collapseButtonHTML("Show/hide manipulation coding instruction"),
-        "",
-        paste0("<div style='clear: both; display: ", defaultDisplay['manipulate_code'], "' class='toggleable'>"),
-        instrPrepFnc(dctSpec$manipulate_code$instruction),
         "</div>",
         "<div style='clear:both;height:2px;'></div>",
         "");
@@ -200,10 +280,13 @@ generate_construct_overview <- function(dctSpec,
     res <-
       c(res,
         "",
-        paste0(repStr("#", headingLevel+1), " Instruction for developing aspects"),
-        collapseButtonHTML("Show/hide aspect elicitation instruction"),
+        subHeadingFunc("Instruction for developing aspects"),
+        collapseButtonHTML("Show/hide aspect elicitation instruction",
+                           id = aspectDevId),
         "",
-        paste0("<div style='clear: both; display: ", defaultDisplay['aspect_dev'], "' class='toggleable'>"),
+        paste0("<div id=\"",
+               aspectDevId,
+               "\" style='clear: both; display: ", defaultDisplay['aspect_dev'], "' class='toggleable'>"),
         instrPrepFnc(dctSpec$aspect_dev$instruction),
         "</div>",
         "<div style='clear:both;height:2px;'></div>",
@@ -213,11 +296,14 @@ generate_construct_overview <- function(dctSpec,
     res <-
       c(res,
         "",
-        paste0(repStr("#", headingLevel+1), " Instruction for coding aspects"),
-        collapseButtonHTML("Show/hide aspect coding instruction"),
+        subHeadingFunc("Instruction for coding aspects"),
+        collapseButtonHTML("Show/hide aspect coding instruction",
+                           id = aspectCodeId),
         "",
-        paste0("<div style='clear: both; display: ", defaultDisplay['aspect_code'], "' class='toggleable'>"),
-        paste0("*When coding aspects, use the following code: **`dct:", dctSpec$id, "`***"),
+        paste0("<div id=\"",
+               aspectCodeId,
+               "\" style='clear: both; display: ", defaultDisplay['aspect_code'], "' class='toggleable'>"),
+        codingInstrBit,
         "",
         instrPrepFnc(dctSpec$aspect_code$instruction),
         "</div>",
@@ -227,10 +313,10 @@ generate_construct_overview <- function(dctSpec,
   if ("rel" %in% include) {
     res <-
       c(res,
-        paste0(repStr("#", headingLevel+1), " Relationships with other constructs"),
+        subHeadingFunc("Relationships with other constructs"),
         "",
         instrPrepFnc(ifelse(is.null(dctSpec$rel),
-                     "*Not specified*",
+                            emFunc("Not specified"),
                      ifelse(all(c("id", "type") %in% names(dctSpec$rel)),
                             paste0("- Related to dct:", dctSpec$rel$id, " with relationship of type ",
                                    dctSpec$rel$type, "\n"),

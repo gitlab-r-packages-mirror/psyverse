@@ -24,8 +24,8 @@ codecov_badge <-
 codecov_url <-
   paste0("https://codecov.io/gl/r-packages/", packagename, "?branch=master");
 
-pkgdown_url <-
-  paste0("https://r-packages.gitlab.io/", packagename);
+pkgdown_url <- "https://psyverse.one";
+  #paste0("https://r-packages.gitlab.io/", packagename);
 
 cran_url <-
   paste0("https://cran.r-project.org/package=", packagename);
@@ -45,7 +45,7 @@ cranTotal_badge <-
 [![Version on CRAN](`r cranTotal_badge`)](`r cran_url`)
 <!-- badges: end -->
  
-# <img src='img/hex-logo.png' align="right" height="200" /> `r paste(packagename, "\U1F4E6")`
+# <img src='man/figures/hex-logo.png' style="float:right;width:200px" /> `r paste(packagename, "\U1F4E6")`
 
 `r packagename`: `r packageSubtitle`
 
@@ -60,7 +60,7 @@ In psychology, many different guidelines exist for developing measurement instru
 For more background information on the concept underlying the Decentralized Construct Taxonomies, see the reasoning set out in Peters & Crutzen (2017a, 2017b) and Crutzen & Peters (2018). In brief, in those papers the following premises are postulated:
 
 - Psychological constructs do not exist as such, but instead are useful metaphors that enable communication about, and measurement and manipulation of, aspects of the human psychology.
-- These constructs have verying degrees of specificity and levels of aggregation, and are therefore often represented in theories as influencing or causing one another.
+- These constructs have varying degrees of specificity and levels of aggregation, and are therefore often represented in theories as influencing or causing one another.
 
 From these premises it follows that is is not feasible (or desirable) to develop one 'final' taxonomy of psychological constructs or of manipulations of psychological constructs. Instead, multiple taxonomies exist, each of which has different uses. For example, in behavior change research, one taxonomy has been developed that is well-suited for describing intervention content but that is not useful when developing interventions (Abraham & Michie, 2008), and another that is well-suited for developing interventions, but is in its present form less useful for coding interventions (Kok et al., 2016).
 
@@ -92,8 +92,8 @@ You can install the development version of ``r packagename`` from [GitLab](https
 
 ```{r echo=FALSE, comment="", results="asis"}
 cat(paste0("``` r
-devtools::install_gitlab('r-packages/", packagename, "');
+remotes::install_gitlab('r-packages/", packagename, "');
 ```"));
 ```
 
-(assuming you have `devtools` installed; otherwise, install that first using the `install.packages` function)
+(assuming you have `remotes` installed; otherwise, install that first using the `install.packages` function)

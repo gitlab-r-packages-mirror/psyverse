@@ -39,6 +39,13 @@
 #'
 #' @return The DCT object.
 #' @export
+#' @examples exampleDCT <-
+#'   psyverse::dct_object(
+#'     prefix = "exampleConstruct",
+#'     label = "An example construct",
+#'     definition = "The definition goes here",
+#'     measure_dev = "Here you can explain how to measure the construct"
+#'   );
 dct_object <-
   function(
     version = as.character(utils::packageVersion("psyverse")),

@@ -22,7 +22,7 @@ save_to_yaml <-
     encoding = psyverse::opts$get("encoding")
   ) {
 
-  if (class(x) == "psyverse_dct") {
+  if (inherits(x, "psyverse_dct")) {
     x <- dct_object_to_yaml(x);
   }
 

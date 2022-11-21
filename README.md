@@ -13,17 +13,15 @@ CRAN](https://cranlogs.r-pkg.org/badges/last-month/psyverse?color=brightgreen)](
 CRAN](https://cranlogs.r-pkg.org/badges/grand-total/psyverse?color=brightgreen)](https://cran.r-project.org/package=psyverse)
 <!-- badges: end -->
 
-# <img src='img/hex-logo.png' align="right" height="200" /> psyverse 📦
+# <img src='man/figures/hex-logo.png' style="float:right;width:200px" /> psyverse 📦
 
 psyverse: Decentralized Unequivocality in Psychological Science
 
 The pkgdown website for this project is located at
-<https://r-packages.gitlab.io/psyverse>.
+<https://psyverse.one>.
 
 <!--------------------------------------------->
-
 <!-- Start of a custom bit for every package -->
-
 <!--------------------------------------------->
 
 In psychology, many different guidelines exist for developing
@@ -35,20 +33,20 @@ consensus exists regarding how any construct must be measured or
 manipulated. Therefore, developing one ‘final’ authoritative list or
 taxonomy is not feasible or even desirable. At the same time, it is
 important that people clearly communicate their ‘study-specific
-taxonomy’. The `psyverse` package makes it possible to combine these
-two goals.
+taxonomy’. The `psyverse` package makes it possible to combine these two
+goals.
 
 For more background information on the concept underlying the
 Decentralized Construct Taxonomies, see the reasoning set out in Peters
 & Crutzen (2017a, 2017b) and Crutzen & Peters (2018). In brief, in those
 papers the following premises are postulated:
 
-  - Psychological constructs do not exist as such, but instead are
-    useful metaphors that enable communication about, and measurement
-    and manipulation of, aspects of the human psychology.
-  - These constructs have verying degrees of specificity and levels of
-    aggregation, and are therefore often represented in theories as
-    influencing or causing one another.
+- Psychological constructs do not exist as such, but instead are useful
+  metaphors that enable communication about, and measurement and
+  manipulation of, aspects of the human psychology.
+- These constructs have varying degrees of specificity and levels of
+  aggregation, and are therefore often represented in theories as
+  influencing or causing one another.
 
 From these premises it follows that is is not feasible (or desirable) to
 develop one ‘final’ taxonomy of psychological constructs or of
@@ -113,9 +111,7 @@ This is the problem Decentralized Construct Taxonomies (DCTs) aim to
 solve.
 
 <!--------------------------------------------->
-
 <!--  End of a custom bit for every package  -->
-
 <!--------------------------------------------->
 
 ## Installation
@@ -131,8 +127,8 @@ You can install the development version of `psyverse` from
 [GitLab](https://gitlab.com) with:
 
 ``` r
-devtools::install_gitlab('r-packages/psyverse');
+remotes::install_gitlab('r-packages/psyverse');
 ```
 
-(assuming you have `devtools` installed; otherwise, install that first
+(assuming you have `remotes` installed; otherwise, install that first
 using the `install.packages` function)

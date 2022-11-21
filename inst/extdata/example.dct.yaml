@@ -1,0 +1,116 @@
+---
+dct:
+  version: 0.1.0
+  id: instrAttitude_expectation_73dnt5z6
+  label: "Instrumental attitude belief expectation"
+  date: ""
+  source:
+    id: "raa_book"
+
+################################################################################
+
+  definition:
+    definition: "An instrumental attitude belief expectation is the expectation of how probable (i.e. unlikely versus likely) it is that engaging in the target behavior will cause one specific instrumental potential consequence to come about. The instrumental nature of this consequence denotes that instrumental attitude belief expectations must concern consequences that facilitate or hinder achieving one or more longer term goals.
+
+
+Each instrumental attitude belief expectation covers one specific long-term consequence, disconnected from acute hedonic consequences the target behavior may have. Instrumental attitude belief expectations always refer to consequences that cause a behavior to contribute more or less to goals an individual has. Expectations about experiencing the consequences of a behavior, for example expectations relating to experiences and sensations, are captured in experiential attitude belief expectations (see dct:expAttitude_expectation_73dnt5z1).
+
+
+According to the Reasoned Action Approach, instrumental attitude belief expectations combine multiplicatively with instrumental attitude belief evaluations (see dct:instrAttitude_evaluation_73dnt5z7) into instrumental attitude beliefs (see dct:instrAttitude_belief_73dnt5z8).
+
+
+Examples of instrumental attitude belief expectations are: the expectation that taking the bus to the city centre will save time, which contributes to the goal of being punctual; the expectation that walking to the city centre will allow one to exercise, which contributes to the goal of being healthy; the expectation that eating a pizza will prevent one from starving, which contributes to the goal of surviving; the expectation that going for a run will burn calories, which contributes to one's goal of losing weight; and the expectation that having sex without a condom is more likely to lead to conception, which is required to achieve one's goal of producing offspring."
+
+    source:
+      spec: ""
+
+################################################################################
+
+  measure_dev:
+    instruction: "Instrumental attitude belief expectations are measured using questions in a questionnaire that are referred to as 'items'. To measure an instrumental attitude belief expectation, first, identify exactly which potential instrumental consequence of the target behavior (e.g. a specific benefit or advantage) you want to measure. Then, establish whether accurately describing the spectrum of possibilities regarding this instrumental consequence requires a unidimensional scale or a bidimensional scale. Most potential consequences of a target behavior can be perceived either to *increase* or *decrease* upon performance of the target behavior, requiring a bidimensional scale. For example, some people might expect that drinking four cups of coffee every day contributes to their goal of being healthy, whether others might expect that that is unhealthy instead, expecting that not consuming any coffee at all is more healthy. However, in rare cases, one of the two dimensions can be excluded a priori, in which case a unidimensional scale suffices. For example, the degree to which people will expect that exercising regularly for a month will increase their health may vary; but is it excessively unlikely that somebody might expect that if they exercise regularly for a month, their health will *decrease*. Therefore, in that case, one might want to choose a unidimensional scale. In general, a rule of thumb is that if the 'default state' of this instrumental consequence resembles absence of the potential consequence, and therefore, engaging in the target behavior can only have an effect in one direction, a unidimensional scale can be used. However, when engaging in the target behavior can conceivably increase *or* decrease this instrumental consequence, a bidimensional scale is required.
+
+
+Once it is clear whether a bidimensional or unidimensional scale should be used, the construction of the item stem and the two anchors can start. Make sure to formulate the item stem such that it makes clear that you are asking people about *their* expectation (not what they think holds more generally).
+
+
+For unidimensional scales, create an item stem that explicitly lists the single dimension that expresses the instrumental consequence (e.g. exercising regularly for a month leading to increased health). As anchors, always use 'Very unlikely' and 'Very likely'. An example item would be: 'If I exercise regularly for a month, it is ... that my health will increase. [Very unlikely|Very likely]'. However, as explained above, unidimensional scales can rarely be used in most circumstances, so bidimensional scales are usually required.
+
+
+For bidimensional scales, the item stem cannot explicitly list only one of the two dimensions (e.g. 'become much less healthy' or 'become much more healthy'). This is because this would create a unidimensional or ambiguous response scale. People who would score low on the unidimensional scale might mean either that they don't think that consequence will occur, or that they think that the opposite consequence will occur. For example, when creating an item 'If I drink four cups of coffee every day, I will become much more healthy. [Very unlikely|Very likely]', people who respond 'Very unlikely' can mean either that they expect to feel much less healthy, or that they expect that drinking four cups of coffee every day will have no effect on their health.
+
+
+Therefore, capturing the full potential breadth of the beliefs of your target population requires asking what they expect exactly. To do this, create an item stem that contains the target behavior, and anchors that express the extremes of the bidimensional scale. For example, 'Drinking four cups of coffee every day leads to me being ... [much less healthy|much more healthy]'. Sometimes, the two extremes of the dimension you want to measure can be expressed in two antonyms, such as 'Drinking four cups of coffee makes me ... [very idle|very productive]'.
+
+
+Once the item stem and the two anchors have been determined, decide which response scale to use. For bidimensional scales, seven-point scales are preferred, as these leave three degrees of expression in each dimension (the mid-point representing the expectation that the behavior does not have a consequence regarding this specific instrumental attitude belief). For unidimensional scales, five-point scales suffice. Try to always be consistent in the scale valence; in languages that are read from left to right, always place the most passive/low/less/weak/unlikely scale extreme (anchor) on the left, and the most active/high/more/strong/likely scale extreme (anchor) on the right. Do not reverse this order for one or more items.
+
+
+When combining multiple items in one measurement instrument, if both evaluations of unidimensional consequences and evaluations of bidimensional consequences are measured, either use two matrices or combine them in one that uses seven-point scales for all items. 
+
+
+The item or set of items should be accompanied by an instruction that makes clear that you are asking people about *their* expectation (not what they think holds more generally)."
+
+    source:
+      spec: ""
+
+################################################################################
+
+  measure_code:
+    instruction: "Instrumental attitude belief expectations are measured using questions in a questionnaire (these are referred to as 'items'). Items can be coded as measuring an instrumental attitude belief expectation if they measure participants' expectation of how probable (i.e. unlikely versus likely) it is that engaging in the target behavior will cause one specific instrumental potential consequence to come about. The instrumental nature of this consequence denotes that instrumental attitude belief expectations must concern consequences that facilitate or hinder achieving one or more longer term goals.
+
+
+These instrumental attitude belief expectations cover long-term consequences, disconnected from acute hedonic consequences the target behavior may have. Instrumental attitude belief expectations always refer to consequences that cause a behavior to contribute more or less to goals an individual has.
+
+
+The question should include, either in its stem or in its anchors, the specific expectation being measured.
+
+
+Note that items concerning experiencing the consequences of a behavior, for example expectations relating to experiences and sensations, are captured in experiential attitude belief expectations (see dct:expAttitude_expectation_73dnt5z1)."
+
+    source:
+      spec: ""
+
+################################################################################
+
+  manipulate_dev:
+    instruction: ""
+    source:
+      spec: ""
+
+################################################################################
+
+  manipulate_code:
+    instruction: ""
+    source:
+      spec: ""
+
+################################################################################
+
+  aspect_dev:
+    instruction: "Conduct a qualitative study where participants are interviewed, and the interviews are either recorded and transcribed, or notes are kept. These sources (i.e. transcripts or notes) are then coded using the instruction for aspect coding. In this qualitative study, use these questions: 'What do you see as the advantages of you engaging in [target behavior]?', 'What do you see as the disadvantages of you engaging in [target behavior]?', and 'What else comes to mind when you think about [target behavior]?'."
+
+    source:
+      spec: ""
+
+################################################################################
+
+  aspect_code:
+    instruction: "Expressions of expectations of how probable (i.e. unlikely versus likely) it is that engaging in the target behavior will cause an instrumental potential consequence to come about. The instrumental nature of this expectation means that these expected consequences must concern facilitation or obstruction of achieving one or more longer term goals. These instrumental attitude belief expectations cover expectations of potential long-term consequences, disconnected from acute hedonic consequences the target behavior may have. Instrumental attitude belief expectations always refer to assumed benefits or costs of a behavior.
+    
+	
+Note that expressions of expectations of consequences that render the target behavior less or more desirable where the immediate experiential effects of the behavior play a role are captured in experiential attitude belief expectations (see dct:expAttitude_expectation_73dnt5z1).
+
+
+One's evaluation in terms of valence (i.e. positive versus negative) of the consequence should be coded as dct:instrAttitude_evaluation_73dnt5z7."
+    source:
+      spec: ""
+
+################################################################################
+
+  rel:
+    id: "instrAttitude_belief_73dnt5z8"
+    type: "causal_influences_product"
+
+################################################################################
+---
+
