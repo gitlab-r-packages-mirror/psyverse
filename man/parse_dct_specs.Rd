@@ -7,8 +7,9 @@
 parse_dct_specs(
   dctSpecs,
   headingLevel = 2,
-  hyperlink_ucids = "Markdown",
+  hyperlink_UCIDs = TRUE,
   urlPrefix = "#",
+  HTMLoutput = FALSE,
   sortDecreasing = FALSE
 )
 }
@@ -17,7 +18,7 @@ parse_dct_specs(
 
 \item{headingLevel}{The heading level for Markdown output.}
 
-\item{hyperlink_ucids, urlPrefix}{Passed on to the
+\item{hyperlink_UCIDs, urlPrefix, HTMLoutput}{Passed on to the
 \code{\link[=generate_instruction_overview]{generate_instruction_overview()}} and \code{\link[=generate_construct_overview]{generate_construct_overview()}}
 functions.}
 

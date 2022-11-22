@@ -28,5 +28,5 @@ be used.}
 The character vector that was written to the file.
 }
 \description{
-Pretty much what it says on the box. But check the but about encoding.
+Pretty much what it says on the box. But check the bit about encoding.
 }

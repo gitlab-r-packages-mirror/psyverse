@@ -10,7 +10,7 @@
 load_dct_dir(
   path,
   recursive = TRUE,
-  extension = "rock|dct",
+  extension = "\\\\.rock|\\\\.dct\\\\.yaml|\\\\.yaml|\\\\.yml",
   regex,
   dctContainer = "dct",
   headingLevel = 2,
@@ -112,11 +112,10 @@ manipulations, or aspects of a construct.
 }
 \examples{
 exampleSpec <-
-  system.file("inst",
-              "extdata",
-              "example_dct_spec_1.dct",
+  system.file("extdata",
+              "example.dct.yaml",
               package="psyverse");
-load_dct_specs(exampleSpec);
+dctObject <- load_dct_specs(exampleSpec);
 
 \dontrun{
 psyverse::load_dct_dir(path="A:/some/path");

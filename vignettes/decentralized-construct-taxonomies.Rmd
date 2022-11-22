@@ -16,6 +16,10 @@ knitr::opts_chunk$set(
 )
 ```
 
+## Preprint
+
+There is now a preprint discussing the background of this package in detail. That preprint, "Knowing What We're Talking About: Facilitating Decentralized, Unequivocal Publication of and Reference to Psychological Construct Definitions and Instructions" is available at [https://psyarxiv.com/8tpcv/](https://psyarxiv.com/8tpcv/). The original vignette contents are retained below.
+
 ## Background
 
 In psychology, many different guidelines exist for developing measurement instruments and manipulations of constructs. When conducting empirical research or secondary research, therefore, it is important to have a clear idea, and clearly communicate, which guidelines are followed. However, these guidelines are fragmented, and no universal consensus exists regarding how any construct must be measured or manipulated. Therefore, developing one 'final' authoritative list or taxonomy is not feasible or even desirable. At the same time, it is important that people clearly communicate their 'study-specific taxonomy'. The `psyverse` package makes it possible to combine these two goals.
@@ -111,7 +115,6 @@ dct:
 ```
 
 An example in progress is available at https://a-bc.gitlab.io/dct-raa/.
-
 
 ## References
 

@@ -1,0 +1,1 @@
+This is a relatively small update, but it includes some enhancements of the DCT standard and functions to import from spreadsheets. It also added a number of suggested packages to work with spreadsheets.

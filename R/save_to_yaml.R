@@ -1,6 +1,6 @@
 #' Save a psyverse object or YAML character vector to a file
 #'
-#' Pretty much what it says on the box. But check the but about encoding.
+#' Pretty much what it says on the box. But check the bit about encoding.
 #'
 #' @param x The object to save.
 #' @param file The file to save to.
@@ -22,7 +22,7 @@ save_to_yaml <-
     encoding = psyverse::opts$get("encoding")
   ) {
 
-  if (class(x) == "psyverse_dct") {
+  if (inherits(x, "psyverse_dct")) {
     x <- dct_object_to_yaml(x);
   }
 

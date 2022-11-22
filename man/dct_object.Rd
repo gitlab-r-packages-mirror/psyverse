@@ -10,6 +10,7 @@ dct_object(
   prefix = paste(sample(letters, 4), collapse = ""),
   label = "",
   date = as.character(Sys.Date()),
+  dct_version = "1",
   ancestry = "",
   retires = "",
   definition = "",
@@ -17,11 +18,12 @@ dct_object(
   measure_code = "",
   aspect_dev = "",
   aspect_code = "",
+  comments = "",
   rel = NULL
 )
 }
 \arguments{
-\item{version}{The version of the DCT specifications (normally the version
+\item{version}{The version of the DCT specification format (normally the version
 of the \code{psyverse} package).}
 
 \item{id}{The Unique Construct Identifier (UCID); if not provided,
@@ -33,6 +35,9 @@ this is created using the \code{prefix}.}
 \item{label}{The human-readable label for the construct.}
 
 \item{date}{The date at which the construct was created.}
+
+\item{dct_version}{The version of the DCT specification. This can optionally
+be used to manage consecutive DCT versions.}
 
 \item{ancestry}{The DCT specification or specifications that this DCT was
 based on.}
@@ -53,7 +58,7 @@ systematic reviews) as measurement instruments that measure this construct.
 Note that explicitly defining boundary conditions often helps, for example by
 explaining the features that coders should look for to distinguish this
 construct from closely related constructs (ideally linking to those other
-constructs using the \code{dct::UCID} notations).}
+constructs using the \code{dct:UCID} notations).}
 
 \item{aspect_dev}{Instructions for eliciting construct content. Note that
 this is not sensible for all constructs; some may be defined at a very
@@ -64,7 +69,9 @@ or describe.}
 Note that explicitly defining boundary conditions often helps, for example by
 explaining the features that coders should look for to distinguish this
 construct from closely related constructs (ideally linking to those other
-constructs using the \code{dct::UCID} notations).}
+constructs using the \code{dct:UCID} notations).}
+
+\item{comments}{Any additional comments.}
 
 \item{rel}{Relationships with other constructs.}
 }
@@ -73,4 +80,13 @@ The DCT object.
 }
 \description{
 Create a DCT object
+}
+\examples{
+exampleDCT <-
+  psyverse::dct_object(
+    prefix = "exampleConstruct",
+    label = "An example construct",
+    definition = "The definition goes here",
+    measure_dev = "Here you can explain how to measure the construct"
+  );
 }

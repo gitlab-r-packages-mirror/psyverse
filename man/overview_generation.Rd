@@ -14,7 +14,9 @@ generate_construct_overview(
   hideByDefault = NULL,
   divClass = "btn btn-secondary",
   headingLevel = 3,
-  hyperlink_ucids = "Markdown",
+  collapseButtons = TRUE,
+  hyperlink_UCIDs = TRUE,
+  HTMLoutput = FALSE,
   urlPrefix = "#",
   sortDecreasing = FALSE
 )
@@ -22,7 +24,7 @@ generate_construct_overview(
 generate_definitions_overview(
   dctSpecDf,
   headingLevel = 3,
-  hyperlink_ucids = "Markdown",
+  hyperlink_UCIDs = "Markdown",
   urlPrefix = "#",
   sortDecreasing = FALSE
 )
@@ -31,7 +33,7 @@ generate_instruction_overview(
   dctSpecDf,
   type,
   headingLevel = 3,
-  hyperlink_ucids = "Markdown",
+  hyperlink_UCIDs = "Markdown",
   urlPrefix = "#",
   sortDecreasing = FALSE
 )
@@ -49,10 +51,12 @@ to \code{\link[=load_dct_specs]{load_dct_specs()}} or \code{\link[=load_dct_dir]
 \item{headingLevel}{The level of the heading in the Markdown output
 that is produces.}
 
-\item{hyperlink_ucids}{The type of hyperlinks to generate; must be
-a valid string. Currently, if the value is"\code{Markdown}" or "\code{HTML}",
-hyperlinks in the corresponding formats are produced, and if it is
-"\code{none}" (or, actually any other string value), nothing is produced.}
+\item{collapseButtons}{Whether to include buttons to show/hide the definition
+and instructions.}
+
+\item{hyperlink_UCIDs}{Whether to create hyperlinks to UCIDs.}
+
+\item{HTMLoutput}{Whether to output to Markdown (\code{FALSE}) or HTML (\code{TRUE}).}
 
 \item{urlPrefix}{The prefix to insert before the URL in the produced
 hyperlink. The default, "\verb{#}", results in a link to an
@@ -78,5 +82,12 @@ These functions use a DCT specification to generate a
 construct overview or an instruction overview.
 }
 \examples{
-### Add example
+exampleDCT <-
+  psyverse::dct_object(
+    prefix = "exampleConstruct",
+    label = "An example construct",
+    definition = "The definition goes here",
+    measure_dev = "Here you can explain how to measure the construct"
+  );
+generate_construct_overview(exampleDCT);
 }

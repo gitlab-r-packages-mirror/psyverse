@@ -7,7 +7,7 @@
 #' @export
 dct_object_to_yaml <- function(dctObject) {
 
-  if (!class(dctObject) == "psyverse_dct") {
+  if (!inherits(dctObject, "psyverse_dct")) {
     stop("Object dctObject must have class `psyverse_dct`, but has class ",
          vecTxtQ(class(dctObject)),
          ".");
