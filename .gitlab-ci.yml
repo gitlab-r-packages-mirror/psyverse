@@ -15,7 +15,7 @@ pages:
     paths:
     - public
   only:
-  - master
+  - main
 
 devtools-check:
   before_script:
@@ -40,7 +40,7 @@ coverage:
   image: rocker/tidyverse
   when: on_success
   only:
-    - master
+    - main
   script:
     - install2.r covr
     - R -e 'install.packages(c("DiagrammeR", "yaml", "data.tree"))'
