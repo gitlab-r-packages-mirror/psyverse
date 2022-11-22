@@ -45,5 +45,9 @@ exampleDCT <-
     definition = "The definition goes here",
     measure_dev = "Here you can explain how to measure the construct"
   );
-dct_object_to_html(exampleDCT);
+### Only run this in an interactive R session,
+### as it shows the HTML in the viewer.
+if (interactive()) {
+  dct_object_to_html(exampleDCT);
+}
 }

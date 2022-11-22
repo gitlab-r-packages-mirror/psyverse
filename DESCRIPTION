@@ -1,7 +1,7 @@
 Package: psyverse
 Type: Package
 Title: Decentralized Unequivocality in Psychological Science
-Version: 0.2.2
+Version: 0.2.4
 Authors@R: c(person("Gjalt-Jorn", "Peters",
                     email = "gjalt-jorn@behaviorchange.eu",
                     role = c("aut", "cre", "ctb"),

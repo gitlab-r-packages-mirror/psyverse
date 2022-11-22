@@ -10,7 +10,11 @@
 #' @return Invisibly, `x`, with the extra HTML bits added.
 #' @export
 #'
-#' @examples psyverse::viewHTML("<strong>Hello world!</strong>");
+#' @examples ### Only run this example in an interactive R session,
+#' ### as it shows the HTML in the viewer.
+#' if (interactive()) {
+#'   psyverse::viewHTML("<strong>Hello world!</strong>");
+#' }
 viewHTML <- function(x,
                      title = "Psyverse",
                      css = "body {font-size: 16px;}") {

@@ -21,5 +21,9 @@ This function displays HTML in the viewer, adding \verb{<body>} and \verb{<head>
 tags (which should therefore not be included in the fragment).
 }
 \examples{
-psyverse::viewHTML("<strong>Hello world!</strong>");
+### Only run this example in an interactive R session,
+### as it shows the HTML in the viewer.
+if (interactive()) {
+  psyverse::viewHTML("<strong>Hello world!</strong>");
+}
 }
