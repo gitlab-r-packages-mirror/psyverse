@@ -7,6 +7,7 @@
 dct_from_spreadsheet(
   x,
   path = NULL,
+  sheet = NULL,
   localBackup = NULL,
   exportGoogleSheet = TRUE,
   xlsxPkg = c("rw_xl", "openxlsx", "XLConnect"),
@@ -19,6 +20,8 @@ dct_from_spreadsheet(
 \item{x}{The URL or path to a file.}
 
 \item{path}{The path to save the DCT specifications.}
+
+\item{sheet}{Optionally, the name(s) of the worksheet(s) to select.}
 
 \item{localBackup}{If not \code{NULL}, a valid filename to write a local
 backup to.}

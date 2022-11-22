@@ -35,7 +35,8 @@ dct_sheet_to_dct <- function(dct_sheet) {
     c(
       "ancestry",
       "retires",
-      "rel"
+      "rel",
+      "comments"
     );
 
   dct <- lapply(
@@ -111,6 +112,9 @@ dct_sheet_to_dct <- function(dct_sheet) {
   dct$label <-
     gsub("(\\s)$", "", dct$label);
 
+  dct$comments <-
+    gsub("(\\s)$", "", dct$comments);
+
   res <-
     dct_object(
       version = as.character(utils::packageVersion("psyverse")),
@@ -124,7 +128,8 @@ dct_sheet_to_dct <- function(dct_sheet) {
       measure_dev = list(instruction = dct$measure_dev),
       measure_code = list(instruction = dct$measure_code),
       aspect_dev = list(instruction = dct$aspect_dev),
-      aspect_code = list(instruction = dct$aspect_code)
+      aspect_code = list(instruction = dct$aspect_code),
+      comments = dct$comments
     );
 
   return(

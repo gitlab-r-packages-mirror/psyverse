@@ -37,7 +37,7 @@ construct overview or an instruction overview."><!-- mathjax --><script src="htt
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://gitlab.com/r-packages/psyverse/" class="external-link">
+  <a href="https://gitlab.com/r-packages/psyverse/-/" class="external-link">
     <span class="fab fa-gitlab fa-lg"></span>
      
   </a>
@@ -52,7 +52,7 @@ construct overview or an instruction overview."><!-- mathjax --><script src="htt
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Generate construct overviews and instruction overviews</h1>
-    <small class="dont-index">Source: <a href="https://gitlab.com/r-packages/psyverse/blob/HEAD/R/generate_construct_overview.R" class="external-link"><code>R/generate_construct_overview.R</code></a>, <a href="https://gitlab.com/r-packages/psyverse/blob/HEAD/R/generate_definitions_overview.R" class="external-link"><code>R/generate_definitions_overview.R</code></a>, <a href="https://gitlab.com/r-packages/psyverse/blob/HEAD/R/generate_instruction_overview.R" class="external-link"><code>R/generate_instruction_overview.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://gitlab.com/r-packages/psyverse/-/blob/HEAD/R/generate_construct_overview.R" class="external-link"><code>R/generate_construct_overview.R</code></a>, <a href="https://gitlab.com/r-packages/psyverse/-/blob/HEAD/R/generate_definitions_overview.R" class="external-link"><code>R/generate_definitions_overview.R</code></a>, <a href="https://gitlab.com/r-packages/psyverse/-/blob/HEAD/R/generate_instruction_overview.R" class="external-link"><code>R/generate_instruction_overview.R</code></a></small>
     <div class="hidden name"><code>overview_generation.Rd</code></div>
     </div>
 
@@ -69,7 +69,9 @@ construct overview or an instruction overview.</p>
 <span>  hideByDefault <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  divClass <span class="op">=</span> <span class="st">"btn btn-secondary"</span>,</span>
 <span>  headingLevel <span class="op">=</span> <span class="fl">3</span>,</span>
-<span>  hyperlink_ucids <span class="op">=</span> <span class="st">"Markdown"</span>,</span>
+<span>  collapseButtons <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  hyperlink_UCIDs <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  HTMLoutput <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  urlPrefix <span class="op">=</span> <span class="st">"#"</span>,</span>
 <span>  sortDecreasing <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span>
@@ -77,7 +79,7 @@ construct overview or an instruction overview.</p>
 <span><span class="fu">generate_definitions_overview</span><span class="op">(</span></span>
 <span>  <span class="va">dctSpecDf</span>,</span>
 <span>  headingLevel <span class="op">=</span> <span class="fl">3</span>,</span>
-<span>  hyperlink_ucids <span class="op">=</span> <span class="st">"Markdown"</span>,</span>
+<span>  hyperlink_UCIDs <span class="op">=</span> <span class="st">"Markdown"</span>,</span>
 <span>  urlPrefix <span class="op">=</span> <span class="st">"#"</span>,</span>
 <span>  sortDecreasing <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span>
@@ -86,7 +88,7 @@ construct overview or an instruction overview.</p>
 <span>  <span class="va">dctSpecDf</span>,</span>
 <span>  <span class="va">type</span>,</span>
 <span>  headingLevel <span class="op">=</span> <span class="fl">3</span>,</span>
-<span>  hyperlink_ucids <span class="op">=</span> <span class="st">"Markdown"</span>,</span>
+<span>  hyperlink_UCIDs <span class="op">=</span> <span class="st">"Markdown"</span>,</span>
 <span>  urlPrefix <span class="op">=</span> <span class="st">"#"</span>,</span>
 <span>  sortDecreasing <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -116,11 +118,17 @@ to <code><a href="load_dct_specs.html">load_dct_specs()</a></code> or <code><a h
 that is produces.</p></dd>
 
 
-<dt>hyperlink_ucids</dt>
-<dd><p>The type of hyperlinks to generate; must be
-a valid string. Currently, if the value is"<code>Markdown</code>" or "<code>HTML</code>",
-hyperlinks in the corresponding formats are produced, and if it is
-"<code>none</code>" (or, actually any other string value), nothing is produced.</p></dd>
+<dt>collapseButtons</dt>
+<dd><p>Whether to include buttons to show/hide the definition
+and instructions.</p></dd>
+
+
+<dt>hyperlink_UCIDs</dt>
+<dd><p>Whether to create hyperlinks to UCIDs.</p></dd>
+
+
+<dt>HTMLoutput</dt>
+<dd><p>Whether to output to Markdown (<code>FALSE</code>) or HTML (<code>TRUE</code>).</p></dd>
 
 
 <dt>urlPrefix</dt>
@@ -156,8 +164,92 @@ to generate can be specified: must be one of "<code>measure_dev</code>",
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">### Add example</span></span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">exampleDCT</span> <span class="op">&lt;-</span></span></span>
+<span class="r-in"><span>  <span class="fu">psyverse</span><span class="fu">::</span><span class="fu"><a href="dct_object.html">dct_object</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    prefix <span class="op">=</span> <span class="st">"exampleConstruct"</span>,</span></span>
+<span class="r-in"><span>    label <span class="op">=</span> <span class="st">"An example construct"</span>,</span></span>
+<span class="r-in"><span>    definition <span class="op">=</span> <span class="st">"The definition goes here"</span>,</span></span>
+<span class="r-in"><span>    measure_dev <span class="op">=</span> <span class="st">"Here you can explain how to measure the construct"</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span>;</span></span>
+<span class="r-in"><span><span class="fu">generate_construct_overview</span><span class="op">(</span><span class="va">exampleDCT</span><span class="op">)</span>;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "### An example construct {#exampleConstruct_7lyrwg97}"                                                                                                                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "*This overview was generated on 2022-11-22 at 12:44:08 CET (GMT+0100)*"                                                                                                                                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "This Decentralized Construct Taxonomy specification was authored at 2022-11-22."                                                                                                                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "Unique Construct Identifier (UCID): exampleConstruct_7lyrwg97"                                                                                                                                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "#### Definition"                                                                                                                                                                                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [12] "&lt;div style=\"float:right;clear:both;margin:2px;border:2px solid #87C3FF;background-color:#c7e3ff;\" class=\"btn btn-secondary\" onclick=\"$(this).next('.toggleable').toggle()\"&gt;Show/hide definition&lt;/div&gt;"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [14] "&lt;div style='clear: both; display: block' class='toggleable'&gt;"                                                                                                                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "The definition goes here"                                                                                                                                                                                                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "&lt;/div&gt;"                                                                                                                                                                                                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "&lt;div style='clear:both;height:2px;'&gt;&lt;/div&gt;"                                                                                                                                                                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [18] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [20] "#### Instruction for developing measurement instruments"                                                                                                                                                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "&lt;div style=\"float:right;clear:both;margin:2px;border:2px solid #87C3FF;background-color:#c7e3ff;\" class=\"btn btn-secondary\" onclick=\"$(this).next('.toggleable').toggle()\"&gt;Show/hide measurement instruction&lt;/div&gt;"        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [22] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [23] "&lt;div style='clear: both; display: block' class='toggleable'&gt;"                                                                                                                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [24] "Here you can explain how to measure the construct"                                                                                                                                                                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "&lt;/div&gt;"                                                                                                                                                                                                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [26] "&lt;div style='clear:both;height:2px;'&gt;&lt;/div&gt;"                                                                                                                                                                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [27] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [28] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [29] "#### Instruction for coding measurement instruments"                                                                                                                                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [30] "&lt;div style=\"float:right;clear:both;margin:2px;border:2px solid #87C3FF;background-color:#c7e3ff;\" class=\"btn btn-secondary\" onclick=\"$(this).next('.toggleable').toggle()\"&gt;Show/hide measurement coding instruction&lt;/div&gt;" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [31] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [32] "&lt;div style='clear: both; display: block' class='toggleable'&gt;"                                                                                                                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [33] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [34] "&lt;/div&gt;"                                                                                                                                                                                                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [35] "&lt;div style='clear:both;height:2px;'&gt;&lt;/div&gt;"                                                                                                                                                                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [36] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [37] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [38] "#### Instruction for developing manipulations"                                                                                                                                                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [39] "&lt;div style=\"float:right;clear:both;margin:2px;border:2px solid #87C3FF;background-color:#c7e3ff;\" class=\"btn btn-secondary\" onclick=\"$(this).next('.toggleable').toggle()\"&gt;Show/hide manipulation instruction&lt;/div&gt;"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [40] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [41] "&lt;div style='clear: both; display: block' class='toggleable'&gt;"                                                                                                                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [42] "*Not specified*"                                                                                                                                                                                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [43] "&lt;/div&gt;"                                                                                                                                                                                                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [44] "&lt;div style='clear:both;height:2px;'&gt;&lt;/div&gt;"                                                                                                                                                                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [45] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [46] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [47] "#### Instruction for coding manipulations"                                                                                                                                                                                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [48] "&lt;div style=\"float:right;clear:both;margin:2px;border:2px solid #87C3FF;background-color:#c7e3ff;\" class=\"btn btn-secondary\" onclick=\"$(this).next('.toggleable').toggle()\"&gt;Show/hide manipulation coding instruction&lt;/div&gt;"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [49] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [50] "&lt;div style='clear: both; display: block' class='toggleable'&gt;"                                                                                                                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [51] "*Not specified*"                                                                                                                                                                                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [52] "&lt;/div&gt;"                                                                                                                                                                                                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [53] "&lt;div style='clear:both;height:2px;'&gt;&lt;/div&gt;"                                                                                                                                                                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [54] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [55] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [56] "#### Instruction for developing aspects"                                                                                                                                                                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [57] "&lt;div style=\"float:right;clear:both;margin:2px;border:2px solid #87C3FF;background-color:#c7e3ff;\" class=\"btn btn-secondary\" onclick=\"$(this).next('.toggleable').toggle()\"&gt;Show/hide aspect elicitation instruction&lt;/div&gt;" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [58] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [59] "&lt;div style='clear: both; display: block' class='toggleable'&gt;"                                                                                                                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [60] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [61] "&lt;/div&gt;"                                                                                                                                                                                                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [62] "&lt;div style='clear:both;height:2px;'&gt;&lt;/div&gt;"                                                                                                                                                                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [63] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [64] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [65] "#### Instruction for coding aspects"                                                                                                                                                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [66] "&lt;div style=\"float:right;clear:both;margin:2px;border:2px solid #87C3FF;background-color:#c7e3ff;\" class=\"btn btn-secondary\" onclick=\"$(this).next('.toggleable').toggle()\"&gt;Show/hide aspect coding instruction&lt;/div&gt;"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [67] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [68] "&lt;div style='clear: both; display: block' class='toggleable'&gt;"                                                                                                                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [69] "*When coding aspects, use the following code: **`dct:exampleConstruct_7lyrwg97`***"                                                                                                                                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [70] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [71] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [72] "&lt;/div&gt;"                                                                                                                                                                                                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [73] "&lt;div style='clear:both;height:2px;'&gt;&lt;/div&gt;"                                                                                                                                                                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [74] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [75] "#### Relationships with other constructs"                                                                                                                                                                                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [76] ""                                                                                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [77] "*Not specified*"                                                                                                                                                                                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [78] ""                                                                                                                                                                                                                                </span>
 </code></pre></div>
     </div>
   </div>

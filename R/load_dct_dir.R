@@ -45,7 +45,7 @@ load_dct_dir <- function(path,
   dctSpecs <- lapply(
     dctSpecs,
     function(x) {
-      class(x$dct) <- c("psyverse_dct", class(x$dct));
+      class(x) <- c("psyverse_dct", class(x));
       return(x);
     }
   );

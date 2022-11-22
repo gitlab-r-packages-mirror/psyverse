@@ -18,6 +18,7 @@ dct_object(
   measure_code = "",
   aspect_dev = "",
   aspect_code = "",
+  comments = "",
   rel = NULL
 )
 }
@@ -57,7 +58,7 @@ systematic reviews) as measurement instruments that measure this construct.
 Note that explicitly defining boundary conditions often helps, for example by
 explaining the features that coders should look for to distinguish this
 construct from closely related constructs (ideally linking to those other
-constructs using the \code{dct::UCID} notations).}
+constructs using the \code{dct:UCID} notations).}
 
 \item{aspect_dev}{Instructions for eliciting construct content. Note that
 this is not sensible for all constructs; some may be defined at a very
@@ -68,7 +69,9 @@ or describe.}
 Note that explicitly defining boundary conditions often helps, for example by
 explaining the features that coders should look for to distinguish this
 construct from closely related constructs (ideally linking to those other
-constructs using the \code{dct::UCID} notations).}
+constructs using the \code{dct:UCID} notations).}
+
+\item{comments}{Any additional comments.}
 
 \item{rel}{Relationships with other constructs.}
 }

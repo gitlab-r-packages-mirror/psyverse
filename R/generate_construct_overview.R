@@ -175,11 +175,15 @@ generate_construct_overview <- function(dctSpec,
     ucidBit <- paste0("<div>Unique Construct Identifier (UCID): <pre style=\"display:inline;\">", dctSpec$id,
                       "</pre></div>");
     codingInstrBit <-
-      emFunc(
-        paste0(
-          "<p>When coding aspects, use the following code: ",
-          "<strong><pre style=\"display:inline;\">", dctSpec$id, "</pre></strong></p>"
-        )
+      paste0(
+        "<p<",
+        emFunc(
+          paste0(
+            "When coding aspects, use the following code: ",
+            "<strong><pre style=\"display:inline;\">", dctSpec$id, "</pre></strong>"
+          )
+        ),
+        "</p>"
       );
   } else {
 

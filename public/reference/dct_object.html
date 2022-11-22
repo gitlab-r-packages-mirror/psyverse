@@ -36,7 +36,7 @@
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://gitlab.com/r-packages/psyverse/" class="external-link">
+  <a href="https://gitlab.com/r-packages/psyverse/-/" class="external-link">
     <span class="fab fa-gitlab fa-lg"></span>
      
   </a>
@@ -51,7 +51,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create a DCT object</h1>
-    <small class="dont-index">Source: <a href="https://gitlab.com/r-packages/psyverse/blob/HEAD/R/dct_object.R" class="external-link"><code>R/dct_object.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://gitlab.com/r-packages/psyverse/-/blob/HEAD/R/dct_object.R" class="external-link"><code>R/dct_object.R</code></a></small>
     <div class="hidden name"><code>dct_object.Rd</code></div>
     </div>
 
@@ -74,6 +74,7 @@
 <span>  measure_code <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  aspect_dev <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  aspect_code <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  comments <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  rel <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -136,7 +137,7 @@ systematic reviews) as measurement instruments that measure this construct.
 Note that explicitly defining boundary conditions often helps, for example by
 explaining the features that coders should look for to distinguish this
 construct from closely related constructs (ideally linking to those other
-constructs using the <code>dct::UCID</code> notations).</p></dd>
+constructs using the <code>dct:UCID</code> notations).</p></dd>
 
 
 <dt>aspect_dev</dt>
@@ -151,7 +152,11 @@ or describe.</p></dd>
 Note that explicitly defining boundary conditions often helps, for example by
 explaining the features that coders should look for to distinguish this
 construct from closely related constructs (ideally linking to those other
-constructs using the <code>dct::UCID</code> notations).</p></dd>
+constructs using the <code>dct:UCID</code> notations).</p></dd>
+
+
+<dt>comments</dt>
+<dd><p>Any additional comments.</p></dd>
 
 
 <dt>rel</dt>
@@ -165,6 +170,17 @@ constructs using the <code>dct::UCID</code> notations).</p></dd>
 <p>The DCT object.</p>
     </div>
 
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">exampleDCT</span> <span class="op">&lt;-</span></span></span>
+<span class="r-in"><span>  <span class="fu">psyverse</span><span class="fu">::</span><span class="fu">dct_object</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    prefix <span class="op">=</span> <span class="st">"exampleConstruct"</span>,</span></span>
+<span class="r-in"><span>    label <span class="op">=</span> <span class="st">"An example construct"</span>,</span></span>
+<span class="r-in"><span>    definition <span class="op">=</span> <span class="st">"The definition goes here"</span>,</span></span>
+<span class="r-in"><span>    measure_dev <span class="op">=</span> <span class="st">"Here you can explain how to measure the construct"</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span>;</span></span>
+</code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>

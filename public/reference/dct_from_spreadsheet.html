@@ -38,7 +38,7 @@ in it."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/math
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
-  <a href="https://gitlab.com/r-packages/psyverse/" class="external-link">
+  <a href="https://gitlab.com/r-packages/psyverse/-/" class="external-link">
     <span class="fab fa-gitlab fa-lg"></span>
      
   </a>
@@ -53,7 +53,7 @@ in it."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/math
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Import a DCT specification from a spreadsheet</h1>
-    <small class="dont-index">Source: <a href="https://gitlab.com/r-packages/psyverse/blob/HEAD/R/dct_from_spreadsheet.R" class="external-link"><code>R/dct_from_spreadsheet.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://gitlab.com/r-packages/psyverse/-/blob/HEAD/R/dct_from_spreadsheet.R" class="external-link"><code>R/dct_from_spreadsheet.R</code></a></small>
     <div class="hidden name"><code>dct_from_spreadsheet.Rd</code></div>
     </div>
 
@@ -67,6 +67,7 @@ in it.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dct_from_spreadsheet</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
 <span>  path <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  sheet <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  localBackup <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  exportGoogleSheet <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  xlsxPkg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rw_xl"</span>, <span class="st">"openxlsx"</span>, <span class="st">"XLConnect"</span><span class="op">)</span>,</span>
@@ -84,6 +85,10 @@ in it.</p>
 
 <dt>path</dt>
 <dd><p>The path to save the DCT specifications.</p></dd>
+
+
+<dt>sheet</dt>
+<dd><p>Optionally, the name(s) of the worksheet(s) to select.</p></dd>
 
 
 <dt>localBackup</dt>
