@@ -3,7 +3,7 @@ Type: Package
 Title: Decentralized Unequivocality in Psychological Science
 Version: 0.2.6
 Authors@R: c(person("Gjalt-Jorn", "Peters",
-                    email = "gjalt-jorn@behaviorchange.eu",
+                    email = "psyverse@opens.science",
                     role = c("aut", "cre", "ctb"),
                     comment = c(ORCID = "0000-0002-0336-9589")),
              person(given = "Rik",
@@ -11,7 +11,7 @@ Authors@R: c(person("Gjalt-Jorn", "Peters",
                     role = c("ctb"),
                     email = "rik.crutzen@maastrichtuniversity.nl",
                     comment = c(ORCID = "0000-0002-3731-6610")))
-Maintainer: Gjalt-Jorn Peters <gjalt-jorn@behaviorchange.eu>
+Maintainer: Gjalt-Jorn Peters <psyverse@opens.science>
 License: GPL (>= 3)
 Description: The constructs used to study the human psychology have
     many definitions and corresponding instructions for eliciting
