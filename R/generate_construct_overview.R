@@ -112,11 +112,12 @@ generate_construct_overview <- function(dctSpec,
     } else {
       if (HTMLoutput) {
         res <-
-          gsub("\\n", "<br /><br />", x);
-      } else {
-        res <-
-          gsub("\\n", "\n\n", x);
-      }
+          gsub("\\n\\n", "<br /><br />", x);
+          #gsub("\\n", "<br /><br />", x);
+      }# else {
+      #   res <-
+      #     gsub("\\n", "\n\n", x);
+      # }
       ### Replace links to DCTs with hyperlinks
       if (hyperlink_UCIDs) {
         if (HTMLoutput) {
