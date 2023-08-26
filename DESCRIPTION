@@ -1,7 +1,7 @@
 Package: psyverse
 Type: Package
 Title: Decentralized Unequivocality in Psychological Science
-Version: 0.2.6
+Version: 0.2.7
 Authors@R: c(person("Gjalt-Jorn", "Peters",
                     email = "psyverse@opens.science",
                     role = c("aut", "cre", "ctb"),
@@ -27,7 +27,7 @@ Description: The constructs used to study the human psychology have
     without requiring central curation; Peters (2020)
     <doi:10.31234/osf.io/xebhn>).
 BugReports: https://gitlab.com/r-packages/psyverse/-/issues
-URL: https://psyverse.one
+URL: https://psyverse.opens.science
 Encoding: UTF-8
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
