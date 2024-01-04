@@ -118,7 +118,97 @@ opts$defaults <-
     throttleSeconds = 10,
 
     ### color to use for the background when exporting to html
-    exportHTMLbackground = "white"
+    exportHTMLbackground = "white",
+
+
+
+    ### Cognitive Interview: Narrative Response Models
+    nrm_wsNames = list(
+      metadata = "metadata",
+      instrument = "instrument",
+      probes = "probes",
+      stimuli = "stimuli",
+      operationalizations = "operationalizations",
+      responsemodel_prototype = "responsemodel_prototype",
+      responsemodels= "responsemodels",
+      response_options = "response_options"
+    ),
+
+    nrm_colNames = list(
+      metadata = c(
+        metadata_field = 'metadata_field',
+        metadata_content = 'metadata_content'
+      ),
+      instrument = c(
+        item_sequence = 'item_sequence',
+        item_id = 'item_id',
+        item_template_nrm = 'item_template_nrm'
+      ),
+      probes = c(
+        item_id = 'item_id',
+        responsemodel_id = 'responsemodel_id',
+        stimulus_id = 'stimulus_id',
+        probe_id = 'probe_id',
+        probe_target = 'probe_target',
+        probe_ci_category = 'probe_ci_category',
+        probe_ambiguity = 'probe_ambiguity',
+        probe_label = 'probe_label'
+      ),
+      stimuli = c(
+        item_id = 'item_id',
+        stimulus_id = 'stimulus_id',
+        stimulus_content = 'stimulus_content',
+        stimulus_language = 'stimulus_language',
+        stimulus_function = 'stimulus_function',
+        stimulus_alias = 'stimulus_alias'
+      ),
+      operationalizations = c(
+        item_id = 'item_id',
+        operationalization_label = 'operationalization_label',
+        operationalization_description = 'operationalization_construct',
+        operationalization_comments = 'operationalization_comments'
+      ),
+      responsemodel_prototype = c(
+        responsemodel_id = 'responsemodel_id',
+        responsemodel_sequence = "responsemodel_sequence",
+        responsemodel_label = 'responsemodel_label',
+        responsemodel_comments = 'responsemodel_comments'
+      ),
+      responsemodels = c(
+        item_id = 'item_id',
+        responsemodel_sequence = "responsemodel_sequence",
+        responsemodel_id = 'responsemodel_id',
+        responsemodel_label = 'responsemodel_label',
+        responsemodel_comments = 'responsemodel_comments'
+      ),
+      response_options = c(
+        item_id = "item_id",
+        response_option_template = "response_option_template",
+        response_option_sequence = "response_option_sequence",
+        response_option_value = "response_option_value"
+      )
+    ),
+
+    ### For CI template replacements
+    ci_template_replacementDelimiters = c("<<", ">>"),
+    rpe_mq_idName = "prbid",
+    nrm_probe_idName = "prbid",
+
+    uiid_idName = "uiid",
+    rpe_iterId = "iterId",
+    rpe_batchId = "batchId",
+    rpe_popId = "popId",
+    rpe_mq_idName = "prbid",
+    coderId_name = "coderId",
+    caseId_name = "caseId",
+
+    rpe_itemEval_template = "### Coder evaluation
+
+[[eval|| ]]
+
+[[comment||none]]
+"
+
 
   )
 
