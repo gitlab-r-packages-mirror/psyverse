@@ -155,6 +155,17 @@ generate_construct_overview <- function(dctSpec,
   timeBit <-
     format(Sys.time(), 'This overview was generated on %Y-%m-%d at %H:%M:%S %Z (GMT%z)');
 
+  if ((!is.null(dctSpec$author)) && (!all(is.na(dctSpec$author))) &&
+      (length(dctSpec$author) > 0) && (all(nchar(dctSpec$author) > 0))) {
+    if (length(dctSpec$author) > 1) {
+      authors <- paste0(" by ", vecTxt(dctSpec$author));
+    } else {
+      authors <- paste0(" by ", dctSpec$author);
+    }
+  } else {
+    authors <- "";
+  }
+
   if (HTMLoutput) {
     headingBit <-
       paste0("<a id=", dctSpec$id,"><h", headingLevel, ">",
@@ -167,8 +178,10 @@ generate_construct_overview <- function(dctSpec,
       return(paste0("<em>", x, "</em>"));
     }
     timeBit <- paste0("<div><em>", timeBit, "</em></div>");
+
     dateBit <-
-      paste0("<div>This Decentralized Construct Taxonomy specification was authored at ",
+      paste0("<div>This Decentralized Construct Taxonomy specification was authored",
+             authors, " at ",
              ifelse(is.null(dctSpec$date),
                     "an unknown date (i.e. this was not specified in the DCT specification)",
                     dctSpec$date),
@@ -199,7 +212,8 @@ generate_construct_overview <- function(dctSpec,
     }
     timeBit <- emFunc(timeBit);
     dateBit <-
-      paste0("This Decentralized Construct Taxonomy specification was authored at ",
+      paste0("This Decentralized Construct Taxonomy specification was authored",
+             authors, " at ",
              ifelse(is.null(dctSpec$date),
                     "an unknown date (i.e. this was not specified in the DCT specification)",
                     dctSpec$date),
