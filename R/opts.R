@@ -142,7 +142,8 @@ opts$defaults <-
       instrument = c(
         item_sequence = 'item_sequence',
         item_id = 'item_id',
-        item_template_nrm = 'item_template_nrm'
+        item_template_nrm = 'item_template_nrm',
+        item_question_text = 'question_text'
       ),
       probes = c(
         item_id = 'item_id',
