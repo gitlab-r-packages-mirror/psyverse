@@ -30,7 +30,8 @@ generate_id <- function(prefix = paste(sample(letters, 4), collapse=""),
                         stopOnIllegalChars=stopOnIllegalChars));
   }
 
-  if ((!grepl("^[a-zA-Z_][a-zA-Z0-9_]*",
+  if ((nchar(prefix) > 0) &&
+       (!grepl("^[a-zA-Z_][a-zA-Z0-9_]*",
              prefix))) {
     if (stopOnIllegalChars) {
       stop("The specified prefix contains illegal characters, and argument ",

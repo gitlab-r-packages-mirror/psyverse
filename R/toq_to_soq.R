@@ -2,23 +2,26 @@
 #'
 #' Import a Tabulated Open Questionnaire specification (e.g. in a
 #' spreadsheet) and convert it into a Serialized Open Questionnaire
-#' specification (in YAML format).
+#' specification (as an R object or in YAML format).
 #'
 #' @param x The path to a spreadheet file or the URL to a google sheet that
 #' is publicly accessible.
+#' @param returnYAML Whether to return an R object (`FALSE`) or YAML (`TRUE`).
 #'
 #' @return A character vector holding the YAML.
 #' @export
 #'
 #' @examples
 #' soq <-
-#'   toq_to_soq(
+#'   psyverse::toq_to_soq(
 #'     paste0(
 #'       "https://docs.google.com/spreadsheets/d/",
 #'       "1temqfgkUqWypzjsvvLKMkjR707An1Vt-jzK96WBUsPQ"
-#'     )
+#'     ),
+#'     returnYAML = TRUE
 #'   );
-toq_to_soq <- function(x) {
+toq_to_soq <- function(x,
+                       returnYAML = FALSE) {
 
   toq <- psyverse::read_spreadsheet(x);
 
@@ -57,6 +60,14 @@ toq_to_soq <- function(x) {
       psyverse::generate_id(res$metadata$uqid_prefix);
   }
 
-  return(res);
+  if (returnYAML) {
+    return(
+      yaml::as.yaml(
+        res
+      )
+    );
+  } else {
+    return(res);
+  }
 
 }
