@@ -20,7 +20,7 @@ specification (in YAML format).
 }
 \examples{
 soq <-
-  toq_to_soq(
+  psyverse::toq_to_soq(
     paste0(
       "https://docs.google.com/spreadsheets/d/",
       "1temqfgkUqWypzjsvvLKMkjR707An1Vt-jzK96WBUsPQ"
