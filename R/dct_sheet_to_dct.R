@@ -33,9 +33,12 @@ dct_sheet_to_dct <- function(dct_sheet) {
     );
   dctFields_optional <-
     c(
+      "date",
+      "author",
       "ancestry",
       "retires",
       "rel",
+      "dct_version",
       "comments"
     );
 
@@ -115,15 +118,33 @@ dct_sheet_to_dct <- function(dct_sheet) {
   dct$comments <-
     gsub("(\\s)$", "", dct$comments);
 
+  if (is.null(dct$date)) {
+    dct$date <- as.character(Sys.Date());
+  }
+
+  if (is.null(dct$ancestry)) {
+    dct$ancestry <- "";
+  }
+
+  if (is.null(dct$retires)) {
+    dct$retires <- "";
+  }
+
+  if (is.null(dct$dct_version)) {
+    dct$dct_version <- "1";
+  }
+
+
   res <-
     dct_object(
       version = as.character(utils::packageVersion("psyverse")),
       prefix = dct$prefix,
       id = dct$id,
       label = dct$label,
-      date = as.character(Sys.Date()),
-      ancestry = "",
-      retires = "",
+      date = dct$date,
+      ancestry = dct$ancestry,
+      retires = dct$retires,
+      dct_version = dct$dct_version,
       definition = list(definition = dct$definition),
       measure_dev = list(instruction = dct$measure_dev),
       measure_code = list(instruction = dct$measure_code),

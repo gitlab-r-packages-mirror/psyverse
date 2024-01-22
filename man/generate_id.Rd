@@ -7,7 +7,8 @@
 \usage{
 generate_id(
   prefix = paste(sample(letters, 4), collapse = ""),
-  stopOnIllegalChars = FALSE
+  stopOnIllegalChars = FALSE,
+  origin = Sys.time()
 )
 
 generate_ids(x, stopOnIllegalChars = FALSE)
@@ -18,6 +19,8 @@ generate_ids(x, stopOnIllegalChars = FALSE)
 \item{stopOnIllegalChars}{Whether to \code{\link[base:stop]{base::stop()}} or produce a \code{\link[base:warning]{base::warning()}}
 when encountering illegal characters (i.e. anything other than a letter or
 underscore).}
+
+\item{origin}{The time and date to use to generate the identifier.}
 
 \item{x}{A vector of identifier prefixes.}
 }

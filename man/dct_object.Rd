@@ -10,6 +10,7 @@ dct_object(
   prefix = paste(sample(letters, 4), collapse = ""),
   label = "",
   date = as.character(Sys.Date()),
+  author = "",
   dct_version = "1",
   ancestry = "",
   retires = "",
@@ -35,6 +36,8 @@ this is created using the \code{prefix}.}
 \item{label}{The human-readable label for the construct.}
 
 \item{date}{The date at which the construct was created.}
+
+\item{author}{The author(s) of the DCT specification.}
 
 \item{dct_version}{The version of the DCT specification. This can optionally
 be used to manage consecutive DCT versions.}

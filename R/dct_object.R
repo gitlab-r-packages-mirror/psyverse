@@ -8,6 +8,7 @@
 #' (UCID); ignored i `id` is provided.
 #' @param label The human-readable label for the construct.
 #' @param date The date at which the construct was created.
+#' @param author The author(s) of the DCT specification.
 #' @param dct_version The version of the DCT specification. This can optionally
 #' be used to manage consecutive DCT versions.
 #' @param ancestry The DCT specification or specifications that this DCT was
@@ -54,6 +55,7 @@ dct_object <-
     prefix = paste(sample(letters, 4), collapse=""),
     label = "",
     date = as.character(Sys.Date()),
+    author = "",
     dct_version = "1",
     ancestry = "",
     retires = "",
@@ -86,6 +88,7 @@ dct_object <-
       id = id,
       label = label,
       date = date,
+      author = author,
       dct_version = dct_version,
       ancestry = ancestry,
       retires = retires,
