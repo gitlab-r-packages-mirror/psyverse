@@ -23,7 +23,7 @@ toq_to_soq <- function(x) {
   toq <- psyverse::read_spreadsheet(x);
 
   missing_UIIDs <-
-    if.na(toq$items$uiid) |
+    is.na(toq$items$uiid) |
     (nchar(toq$items$uiid)< 3);
 
   toq$items$uiid[missing_UIIDs] <-
