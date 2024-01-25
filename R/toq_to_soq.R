@@ -59,7 +59,7 @@ toq_to_soq <- function(x,
           ];
         tmpDf <- tmpDf[, setdiff(names(tmpDf), "template_id")];
         tmpDf <-
-          responseRegistrationTemplateIds(tmpDf);
+          serialize_df(tmpDf);
         return(tmpDf);
       }
     );
