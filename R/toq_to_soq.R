@@ -46,11 +46,31 @@ toq_to_soq <- function(x,
 
   }
 
+  responseRegistrationTemplateIds <-
+    unique(toq$response_registration_templates$template_id);
+
+  responseRegistrationTemplates <-
+    lapply(
+      responseRegistrationTemplateIds,
+      function(rrTid) {
+        tmpDf <-
+          toq$response_registration_templates[
+            toq$response_registration_templates$template_id == rrTid,
+          ];
+        tmpDf <- tmpDf[, setdiff(names(tmpDf), "template_id")];
+        tmpDf <-
+          responseRegistrationTemplateIds(tmpDf);
+        return(tmpDf);
+      }
+    );
+  names(responseRegistrationTemplates) <-
+    responseRegistrationTemplateIds;
+
   res <-
     list(metadata = stats::setNames(as.list(toq$metadata$metadata_content),
                                     nm = toq$metadata$metadata_field),
          items = serialize_df(toq$items),
-         response_registration_templates = serialize_df(toq$response_registration_templates),
+         response_registration_templates = responseRegistrationTemplates,
          flanking_content = serialize_df(toq$flanking_content),
          content_types = serialize_df(toq$content_types));
 
