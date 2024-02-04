@@ -11,7 +11,7 @@
 #' @return A character vector holding the YAML.
 #' @export
 #'
-#' @examples
+#' @examples \donttest{
 #' soq <-
 #'   psyverse::toq_to_soq(
 #'     paste0(
@@ -20,10 +20,23 @@
 #'     ),
 #'     returnYAML = TRUE
 #'   );
+#' }
+#'
 toq_to_soq <- function(x,
                        returnYAML = FALSE) {
 
   toq <- psyverse::read_spreadsheet(x);
+
+  standardSheetNames <- c("metadata",
+                          "items",
+                          "response_registration_templates",
+                          "adapters",
+                          "flanking_content",
+                          "content_types");
+
+  allSheetNames <- names(toq);
+
+  otherSheetNames <- setdiff(allSheetNames, standardSheetNames);
 
   missing_UIIDs <-
     is.na(toq$items$uiid) |
@@ -35,11 +48,7 @@ toq_to_soq <- function(x,
            psyverse::generate_ids(sum(missing_UIIDs)));
 
 
-  if (!all(c("metadata",
-             "items",
-             "response_registration_templates",
-             "flanking_content",
-             "content_types") %in% names(toq))) {
+  if (!all(standardSheetNames %in% allSheetNames)) {
 
     stop("Not all required worksheets exist in the spreadsheet ",
          "you loaded that should contain the TOQ!");
@@ -71,8 +80,19 @@ toq_to_soq <- function(x,
                                     nm = toq$metadata$metadata_field),
          items = serialize_df(toq$items),
          response_registration_templates = responseRegistrationTemplates,
+         adapters = serialize_df(toq$adapters),
          flanking_content = serialize_df(toq$flanking_content),
          content_types = serialize_df(toq$content_types));
+
+  if (length(otherSheetNames) > 0) {
+    res <- c(
+      res,
+      lapply(
+        toq[otherSheetNames],
+        serialize_df
+      )
+    );
+  }
 
   if (is.null(res$metadata$uqid) || is.na(res$metadata$uqid) ||
       (nchar(res$metadata$uqid) < 3)) {
