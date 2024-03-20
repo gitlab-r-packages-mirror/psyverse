@@ -75,9 +75,17 @@ toq_to_soq <- function(x,
   names(responseRegistrationTemplates) <-
     responseRegistrationTemplateIds;
 
+  metadata <- list();
+  metadataFields <- unique(toq$metadata$metadata_field);
+  metadata <- lapply(
+    metadataFields,
+    \(x) toq$metadata$metadata_content[toq$metadata$metadata_field == x]
+  );
+  names(metadata) <- metadataFields;
+
   res <-
-    list(metadata = stats::setNames(as.list(toq$metadata$metadata_content),
-                                    nm = toq$metadata$metadata_field),
+    list(metadata = metadata, #stats::setNames(as.list(toq$metadata$metadata_content),
+                               #     nm = toq$metadata$metadata_field),
          items = serialize_df(toq$items),
          response_registration_templates = responseRegistrationTemplates,
          adapters = serialize_df(toq$adapters),

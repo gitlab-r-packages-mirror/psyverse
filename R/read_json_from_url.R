@@ -70,13 +70,12 @@ read_json_from_url <- function(url,
 }
 
 
- # test1 <-
+# test1 <-
 # read_json_from_url("https://operationalizations.com/questionnaires/json",
 #                    elementId="operationalizations-com-data-bfi44eng_7rrlcsyp",
 #                    attribute = "data-operationalizations-com")
 #
 # test2 <-
-#
 #   read_json_from_url("https://operationalizations.com/questionnaires/json",
 #                    elementClass = "operationalizations-com-json",
 #                    attribute = "data-operationalizations-com")

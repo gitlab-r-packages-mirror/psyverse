@@ -1,6 +1,6 @@
 Dear CRAN maintainers,
 
-In response to your email, we hereby submit an update! Also, I changed the e-mail address of the maintainer.
+Here's an update that allows importing a questionnaire from an online repo (see https://operationalizations.com for the work in progress).
 
 Thank you very much for your work on CRAN!
 

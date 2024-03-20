@@ -24,6 +24,6 @@ Tabulated Open Item specification and Serialized Open Item Specifications.
   
 Tabulated Open Questionnaire specification and Serialized Open Questionnaire Specifications.
 
-: TOMM and SOMM specifications
+: TOM and SOM specifications
   
-Tabulated Open Minimal Metadata specification and Serialized Open Minimal Metadata Specifications (or, if you want, it can stand for Measure Metadata or Manipulation Metadata)
+Tabulated Open Minimal / Metadata / Measure / Manipulation specification and Serialized Open Minimal / Metadata / Measure / Manipulation Specifications
