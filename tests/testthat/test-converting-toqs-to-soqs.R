@@ -6,6 +6,10 @@ context("converting TOQs to SOQs")
 
 testthat::test_that("A TOQ spec can be converted to a SOQ spec", {
 
+  ###
+  ### EQ-60
+  ###
+
   tmpFile <- tempfile(pattern = "eq60eng_7rs8g3bd_",
                       fileext = ".yml");
 
@@ -26,6 +30,10 @@ testthat::test_that("A TOQ spec can be converted to a SOQ spec", {
   cat(tmpFile);
 
   testthat::expect_equal(file.exists(tmpFile), TRUE);
+
+  ###
+  ### BFI-10
+  ###
 
   tmpFile <- tempfile(pattern = "bfi10eng_7sp9mjx3_",
                       fileext = ".yml");
