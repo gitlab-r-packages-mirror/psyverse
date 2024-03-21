@@ -40,6 +40,7 @@ Suggests:
     DiagrammeR (>= 1.0.0),
     haven,
     googlesheets4,
+    ISOcodes (>= 2024.02),
     knitr,
     openxlsx,
     psyverse (>= 0.2),
