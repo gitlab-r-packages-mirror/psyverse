@@ -8,6 +8,11 @@
 #' @examples \donttest{
 #' UQID <- "eq60eng_7rs8g3bd";
 #'
+#' tmpFile <- tempfile(
+#'   pattern = paste0(UQID, "_"),
+#'   fileext = ".lsg"
+#' );
+#'
 #' all_soq_specs <-
 #'   psyverse::read_SOQs_from_url();
 #'
@@ -15,11 +20,17 @@
 #'
 #' lsgContent <-
 #'   psyverse::soq_adapter_limonaid(
-#'     selected_soq
+#'     selected_soq,
+#'     file = tmpFile
 #'   );
+#'
+#' ### You can now import this file as a LimeSurvey group:
+#' cat(tmpFile);
+#'
 #' }
 #'
 soq_adapter_limonaid <- function(soq,
+                                 file = NULL,
                                  silent = psyverse::opts$get("silent")) {
 
   if (!requireNamespace("limonaid", quietly = TRUE)) {
@@ -54,36 +65,157 @@ soq_adapter_limonaid <- function(soq,
          "') is not valid!");
   }
 
+  ### Preparing item data frame
+
+  itemDf <- soq$items;
+
+  itemDf$sequence <-
+    tryCatch(
+      as.numeric(itemDf$sequence),
+      error = \(x) stop("Could not convert the `sequence` values to numeric values!")
+    );
+
+  itemDf <- itemDf[order(itemDf$sequence), ];
+  row.names(itemDf) <- itemDf$uiid;
+
+  ### Reading adapter information
+
   adapterInfo <- soq$adapters[soq$adapters$target_format == "limonaid", ];
+
+  ### Question types
 
   if ("questionType" %in% adapterInfo$field) {
     questionTypeFields <- adapterInfo[adapterInfo$field == "questionType", c("uiid", "content")];
     questionTypeFields <- stats::setNames(questionTypeFields$content,
                                           nm = questionTypeFields$uiid);
     if ("*" %in% names(questionTypeFields)) {
-      lsType_per_item <- rep(questionTypeFields["*"], nrow(soq$items));
+      itemDf$questionType <- rep(questionTypeFields["*"], nrow(soq$items));
     } else {
-      lsType_per_item <- rep(NA, nrow(soq$items));
+      itemDf$questionType <- rep(NA, nrow(soq$items));
     }
 
   } else {
     warning("No question types specified in the adapter information! Assuming radio buttons.");
-    lsType_per_item <- rep("radio", nrow(soq$items));
+    itemDf$questionType <- rep("radio", nrow(soq$items));
   }
-  names(lsType_per_item) <- soq$items$uiid;
+
+  ### Regexes for converting UUIDs to LimeSurvey question codes
+
+  if (all(c("uiid_to_code_regex_match", "uiid_to_code_regex_replace") %in% adapterInfo$field)) {
+
+    codeRegex1 <- adapterInfo[adapterInfo$field == "uiid_to_code_regex_match", c("uiid", "content")];
+    codeRegex1 <- stats::setNames(codeRegex1$content, nm = codeRegex1$uiid);
+
+    codeRegex2 <- adapterInfo[adapterInfo$field == "uiid_to_code_regex_replace", c("uiid", "content")];
+    codeRegex2 <- stats::setNames(codeRegex2$content, nm = codeRegex2$uiid);
+
+    itemDf$codeRegex1 <- rep("(.{1,20})$", nrow(soq$items));
+    itemDf$codeRegex2 <- rep("\\1", nrow(soq$items));
+
+    if ("*" %in% names(codeRegex1)) {
+      itemDf$codeRegex1 <- rep(codeRegex1["*"], nrow(soq$items));
+    }
+
+    if ("*" %in% names(codeRegex2)) {
+      itemDf$codeRegex2 <- rep(codeRegex2["*"], nrow(soq$items));
+    }
+
+    itemDf$questionCode <-
+      apply(itemDf, 1, \(x) {
+        sub(x['codeRegex1'], x['codeRegex2'], x['uiid']);
+      });
+
+  } else {
+
+    warning("No regular expressions to convert UUIDs into LimeSurvey question codes specified in the adapter information! ",
+            "Stripping all non-alphabetic and non-digit characters, taking the last 19 characters, and if ",
+            "the first character is a digit, replacing it with a Z.");
+
+    itemDf$questionCode <-
+      gsub("[^a-zA-Z0-9]", "", itemDf$uuid);
+    itemDf$questionCode <-
+      substr(itemDf$questionCode, nchar(itemDf$questionCode)-20, nchar(itemDf$questionCode));
+    itemDf$questionCode <-
+      ifelse(grepl("^[0-9]", itemDf$questionCode),
+             paste0(
+               "Z",
+               substr(itemDf$questionCode, nchar(itemDf$questionCode)-19, nchar(itemDf$questionCode))
+              ),
+             itemDf$questionCode);
+
+  }
+
+  ### Convert response option sequences and maybe values to numeric
+
+  soq$response_registration_templates <-
+    tryCatch(
+      lapply(
+        soq$response_registration_templates,  ### Loop through templates; and
+        lapply,                               ### then, in each template,
+        \(current_respOption) {               ### loop through response options
+          current_respOption$response_option_sequence <-
+            as.numeric(current_respOption$response_option_sequence);
+          current_respOption$response_option_value <-
+            ifelse(
+                grepl("[^0-9\\. ]", current_respOption$response_option_value),
+                current_respOption$response_option_value,
+                as.numeric(current_respOption$response_option_value)
+              );
+            return(current_respOption);
+        }
+      ),
+      error = \(x) stop("Could not convert the `sequence` values to numeric values!")
+    );
+
+  ### Sort the response registration templates
+
+  soq$response_registration_templates <-
+    lapply(
+      soq$response_registration_templates,
+      \(current_rrTemplate) {
+        current_rrTemplate[
+          order(unlist(lapply(
+            current_rrTemplate,
+            \(x) x$response_option_sequence
+          )))
+        ]
+      }
+    );
+
+  ### Create LimeSurvey group
 
   lsGroup <- limonaid::Group$new(
     group_name = soq$metadata$label,
     language = langAlpha2
   );
 
+  for (uiid in itemDf$uiid) {
 
+    currentQuestion <-
+      lsGroup$add_question(
+        code = itemDf[uiid, 'questionCode'],
+        type = itemDf[uiid, 'questionType'],
+        questionTexts = itemDf[uiid, 'question_text']
+      );
 
+    current_rrTemplate <-
+      soq$response_registration_templates[[
+        itemDf[uiid, 'rrTemplateId']
+      ]];
 
-  browser();
+    for (current_answerOption in current_rrTemplate) {
+      currentQuestion$add_answer_option(
+        code = current_answerOption$response_option_value,
+        optionTexts = current_answerOption$response_option_content
+      );
+    }
 
-  add_question
+  }
 
-  export_to_lsg
+  if (!is.null(file)) {
+    lsGroup$export_to_lsg(file = file);
+  }
+
+  return(lsGroup);
 
 }

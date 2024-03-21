@@ -4,7 +4,7 @@
 \alias{soq_adapter_limonaid}
 \title{SOQ adapter for LimeSurvey (using the {limonaid} package)}
 \usage{
-soq_adapter_limonaid(soq)
+soq_adapter_limonaid(soq, file = NULL, silent = psyverse::opts$get("silent"))
 }
 \arguments{
 \item{soq}{The SOQ specification}
@@ -19,6 +19,11 @@ SOQ adapter for LimeSurvey (using the {limonaid} package)
 \donttest{
 UQID <- "eq60eng_7rs8g3bd";
 
+tmpFile <- tempfile(
+  pattern = paste0(UQID, "_"),
+  fileext = ".lsg"
+);
+
 all_soq_specs <-
   psyverse::read_SOQs_from_url();
 
@@ -26,8 +31,13 @@ selected_soq <- all_soq_specs[[UQID]];
 
 lsgContent <-
   psyverse::soq_adapter_limonaid(
-    selected_soq
+    selected_soq,
+    file = tmpFile
   );
+
+### You can now import this file as a LimeSurvey group:
+cat(tmpFile);
+
 }
 
 }
