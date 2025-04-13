@@ -1,7 +1,7 @@
 Package: psyverse
 Type: Package
 Title: Decentralized Unequivocality in Psychological Science
-Version: 0.2.7
+Version: 0.3.0
 Authors@R: c(person("Gjalt-Jorn", "Peters",
                     email = "psyverse@opens.science",
                     role = c("aut", "cre", "ctb"),
@@ -29,7 +29,7 @@ Description: The constructs used to study the human psychology have
 BugReports: https://gitlab.com/r-packages/psyverse/-/issues
 URL: https://psyverse.opens.science
 Encoding: UTF-8
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Roxygen: list(markdown = TRUE)
 Depends: R (>= 3.0.0)
 Imports: stats (>= 3.0.0),
@@ -40,8 +40,10 @@ Suggests:
     DiagrammeR (>= 1.0.0),
     haven,
     googlesheets4,
+    ISOcodes (>= 2024.02),
     knitr,
     openxlsx,
+    psyverse (>= 0.2),
     readxl,
     rmarkdown,
     rstudioapi,

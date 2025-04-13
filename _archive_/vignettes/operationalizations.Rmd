@@ -1,0 +1,29 @@
+---
+title: "Tabulated and Serialized Open Item, Questionnaire, and Minimal Metadata specifications (TOIs, SOIs, TOQs, SOQs, TOMMs, and SOMMs)"
+author: "Gjalt-Jorn Ygram Peters"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tabulated and Serialized Open Item, Questionnaire, and Minimal Metadata specifications (TOIs, SOIs, TOQs, SOQs, TOMMs, and SOMMs)}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+: TOI and SOI specifications
+  
+Tabulated Open Item specification and Serialized Open Item Specifications.
+
+: TOQ and SOQ specifications
+  
+Tabulated Open Questionnaire specification and Serialized Open Questionnaire Specifications.
+
+: TOM and SOM specifications
+  
+Tabulated Open Minimal / Metadata / Measure / Manipulation specification and Serialized Open Minimal / Metadata / Measure / Manipulation Specifications

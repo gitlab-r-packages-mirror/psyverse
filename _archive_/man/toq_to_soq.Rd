@@ -4,11 +4,13 @@
 \alias{toq_to_soq}
 \title{Import a TOQ spec and convert it to a SOQ spec}
 \usage{
-toq_to_soq(x)
+toq_to_soq(x, returnYAML = FALSE)
 }
 \arguments{
 \item{x}{The path to a spreadheet file or the URL to a google sheet that
 is publicly accessible.}
+
+\item{returnYAML}{Whether to return an R object (\code{FALSE}) or YAML (\code{TRUE}).}
 }
 \value{
 A character vector holding the YAML.
@@ -16,14 +18,18 @@ A character vector holding the YAML.
 \description{
 Import a Tabulated Open Questionnaire specification (e.g. in a
 spreadsheet) and convert it into a Serialized Open Questionnaire
-specification (in YAML format).
+specification (as an R object or in YAML format).
 }
 \examples{
+\donttest{
 soq <-
   psyverse::toq_to_soq(
     paste0(
       "https://docs.google.com/spreadsheets/d/",
       "1temqfgkUqWypzjsvvLKMkjR707An1Vt-jzK96WBUsPQ"
-    )
+    ),
+    returnYAML = TRUE
   );
+}
+
 }
