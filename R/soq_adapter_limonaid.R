@@ -145,6 +145,9 @@ soq_adapter_limonaid <- function(soq,
 
   }
 
+  browser();
+
+
   ### Convert response option sequences and maybe values to numeric
 
   soq$response_registration_templates <-
